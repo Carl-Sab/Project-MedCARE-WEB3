@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f0f4f9;
+    }
+
+    header {
+      background: linear-gradient(135deg, #003f7d, #0078d7);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav button {
+      background-color: #0056b3; 
+      color: white; 
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s ease;
+    }
+
+    nav button:hover {
+      background-color: #003f7d; 
+      color: #f0f4f9;
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap; 
+      gap: 20px;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      flex: 1 1 calc(25% - 40px);
+      max-width: 300px;
+      background-color: white;
+      border-left: 5px solid #0078d7;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-10px); 
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #004aad;
+    }
+
+    .card button {
+      background-color: #0056b3;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .card button:hover {
+      background-color: #003f7d; 
+      color: #f0f4f9;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        flex: 1 1 calc(50% - 40px); 
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        flex: 1 1 100%; 
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Admin Panel</h1>
+    <nav>
+      <button>Log Out</button>
+      <button>User Panel</button>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="card" id="dashboard">
+      <h2>Dashboard</h2>
+      <p>View reports, statistics, and manage platform activity.</p>
+      <button>Go to Dashboard</button>
+    </div>
+
+    <div class="card" id="blood-donation">
+      <h2>Blood Donation System</h2>
+      <p>Manage blood donors and requests.</p>
+      <button>Manage Donations</button>
+    </div>
+
+    <div class="card" id="emergency">
+      <h2>Emergency Requests</h2>
+      <p>View and assign urgent service requests.</p>
+      <button>Manage Requests</button>
+    </div>
+
+    <div class="card" id="chat">
+      <h2>Chat System</h2>
+      <p>Monitor chat logs and consultations.</p>
+      <button>View Chats</button>
+    </div>
+
+    <div class="card" id="appointments">
+      <h2>Doctor Booking</h2>
+      <p>Track and manage doctor appointments.</p>
+      <button>Manage Appointments</button>
+    </div>
+  </div>
+</body>
+</html>
+

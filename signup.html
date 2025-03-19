@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="signup.css" />
+  </head>
+  <body>
+    <div class="background">
+      <div class="glow"></div>
+    </div>
+    <div class="signup-container">
+      <div class="signup-card">
+        
+        <h1>Create Account</h1>
+        <p>Sign up to get started</p>
+        <form>
+          <input
+            type="text"
+            placeholder="Username"
+            id="name"
+            onblur="validateName()"
+            required
+            autocomplete="off"
+          />
+          <p
+            id="name-error"
+            style="color:rgb(169, 16, 16); font-size: 14px; margin: 5px 0 0"
+          ></p>
+          <input
+            type="email"
+            placeholder="Email"
+            id="mail"
+            onblur="validateMail()"
+            required
+            autocomplete="off"
+          />
+          <p
+            id="mail-error"
+            style="color: rgb(169, 16, 16); font-size: 14px; margin: 5px 0 0"
+          ></p>
+          <div class="input-wrapper">
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              required
+              onblur="validatePass()"
+              autocomplete="off"
+            />
+            <button
+              type="button"
+              class="show-password"
+              onclick="togglePassword(1)"
+            >
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+          <p
+            id="pass1-error"
+            style="color: rgb(169, 16, 16); font-size: 14px; margin: 5px 0 0"
+          ></p>
+          <div class="input-wrapper">
+            <input
+              type="password"
+              id="confirm-password"
+              placeholder="Confirm Password"
+              required
+              onblur="validateConfPass()"
+              autocomplete="off"
+            />
+            <button
+              type="button"
+              class="show-password"
+              onclick="togglePassword(2)"
+            >
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+          <p
+            id="confirm-password-error"
+            style="color: rgb(169, 16, 16); font-size: 14px; margin: 5px 0 0"
+          ></p>
+          <button id="signup" type="submit" onclick="Validation()">
+            Sign Up
+          </button>
+        </form>
+        <div class="already-account">
+          Already have an account?
+          <a href="login.html" class="login-link">Log In</a>
+        </div>
+      </div>
+    </div>
+    <script>
+function togglePassword(n) {
+    let passwordField = n === 1 ? document.getElementById("password") : document.getElementById("confirm-password");
+    let icon = document.querySelectorAll(".show-password i")[n - 1];
+
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        passwordField.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }
+}
+
+function validateName() {
+    let name = document.getElementById("name").value.trim();
+    let errorMessage = document.getElementById("name-error");
+    let namePattern = /^[A-Za-z]+$/;
+
+    if (name.length > 0 && !namePattern.test(name)) {
+        errorMessage.textContent = "Name can only contain letters.";
+        return false;
+    } else {
+        errorMessage.textContent = "";
+        return true;
+    }
+}
+
+function validateMail() {
+    let mail = document.getElementById("mail").value.trim();
+    let errorMail = document.getElementById("mail-error");
+    let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (mail.length > 0 && !emailPattern.test(mail)) {
+        errorMail.textContent = "Enter a valid email address.";
+        return false;
+    } else {
+        errorMail.textContent = "";
+        return true;
+    }
+}
+
+function validatePass() {
+    let pass = document.getElementById("password").value.trim();
+    let errorPass = document.getElementById("pass1-error");
+    let passPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (!passPattern.test(pass)) {
+        errorPass.textContent = "Password must be at least 8 characters, include an uppercase letter, a lowercase letter, a number, and a special character (@$!%*?&).";
+        return false;
+    } else {
+        errorPass.textContent = ""; // Clear error when valid
+        return true;
+    }
+}
+
+function validateConfPass() {
+    let pass = document.getElementById("password").value.trim();
+    let confPass = document.getElementById("confirm-password").value.trim();
+    let confirmError = document.getElementById("confirm-password-error");
+
+    if (confPass.length > 0 && confPass !== pass) {
+        confirmError.textContent = "Passwords do not match. Please try again.";
+        return false;
+    } else {
+        confirmError.textContent = ""; // Clear error when valid
+        return true;
+    }
+}
+
+// Validate all fields on form submit
+document.querySelector("form").addEventListener("submit", function (event) {
+    let isNameValid = validateName();
+    let isMailValid = validateMail();
+    let isPassValid = validatePass();
+    let isConfPassValid = validateConfPass();
+
+    // If any validation fails, prevent form submission
+    if (!isNameValid || !isMailValid || !isPassValid || !isConfPassValid) {
+        event.preventDefault(); 
+    }
+});
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      p {
+        color: red;
+        font-size: xx-small;
+      }
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      button {
+        box-shadow: 0 8px 16px 0 rgba(63, 20, 183, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      form {
+        background-image: url(form.jpg);
+        border-radius: 25px;
+        padding: 100px;
+        width: auto;
+        /* height: auto; */
+      }
+      input[onblur] {
+        padding: 5px;
+        /* border-radius: 25px; */
+        width: 150px;
+        height: 20px;
+        background-color: transparent;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+      }
+      body {
+        background-image: url(page.jpg);
+        font-family: "Courier New", Courier, monospace;
+        font-weight: bold;
+      }
+      h1 {
+        text-align: center;
+     }
+     button{
+        width: 100px;
+        padding: 10px;
+        border-radius: 25px;
+        border-color: aliceblue;
+     }
+     button:hover{
+        border-color:grey;
+
+     }
+
+    </style>
+  </head>
+  <body>
+      <form action="" id="container">
+          <h1>About you</h1>
+          <p id="required"></p>
+      <table cellspacing="15">
+        <tr>
+          <td><label for="Name">Username</label></td>
+          <td>
+            <input type="text" id="Name" onblur="Field1()" required/>
+            <p id="error1"></p>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="fname">First name</label></td>
+          <td>
+            <input type="text" id="fname" onblur="Field2()" required/>
+            <p id="error2"></p>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="lname ">Last name</label></td>
+          <td>
+            <input type="text" id="lname" onblur="Field3()" required/>
+            <p id="error3"></p>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="mail">Email</label></td>
+          <td>
+            <input type="text" id="mail" onblur="Field4()" required/>
+            <p id="error4"></p>
+          </td>
+        </tr>
+        <tr>
+          <td>Gender</td>
+          <td>
+            <input type="radio" id="male" /><label for="male">Male</label>
+            <input type="radio" id="female" /><label for="female">female</label>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="pass">Password</label></td>
+          <td><input type="password" id="pass" onblur="Field5()" required/><p id="error5"></p></td>
+        </tr>
+        <tr>
+          <th colspan="2">
+            <button type="submit" onclick="sub()">Submit</button>
+            <button type="reset">Clear Form</button>
+          </th>
+        </tr>
+      </table>
+    </form>
+
+    <script>
+        let required=document.getElementById("required")
+      function Field1() {
+        let username = document.getElementById("Name").value;
+        let error1 = document.getElementById("error1");
+        if (/^[a-zA-Z0-9_.-]*$/.test(username) ) {
+          return true;
+        } 
+        else {
+          error1.textContent = "Only letters and numbers allowed";
+        }
+      }
+
+      function Field2() {
+        let firstName = document.getElementById("fname").value;
+        let error2 = document.getElementById("error2");
+        if (/^[A-Za-z]+$/.test(firstName)) {
+          return true;
+        } else {
+          error2.textContent = "Only letters allowed";
+        }
+      }
+      function Field3() {
+        let lastName = document.getElementById("lname").value;
+        let error3 = document.getElementById("error3");
+        if (/^[a-zA-Z\s]*$/.test(lastName) ) {
+          return true;
+        } else {
+          error3.textContent = "only letters and white space";
+        }
+      }
+      function Field4() {
+        let mail = document.getElementById("mail").value;
+        let error4 = document.getElementById("error4");
+        if (
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(mail) 
+        ) {
+          return true;
+        } else {
+          error4.textContent = "invalid mail address";
+        }
+      }
+      function sub(){
+        let pass = document.getElementById("pass").value;
+        let title = document.getElementById("title");
+        if (Field1 || Field2 || Field3 || Field4 || pass.length < 8) {
+          alert("Pass less than 8 characters or there is 1 error");
+        }
+    }
+       
+    </script>
+  </body>
+</html>
