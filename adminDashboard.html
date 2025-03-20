@@ -280,43 +280,6 @@
         toggleSidebar();
       }
     });
-
-    // Doctor Management: Add & Remove with Animations
-    const addDoctorButton = document.getElementById('addDoctorButton');
-    const doctorsTableBody = document.querySelector('#doctorsTable tbody');
-
-    // When "Add Doctor" is clicked, prompt for details & add a new row with fade-in
-    addDoctorButton.addEventListener('click', () => {
-      const doctorName = prompt("Enter doctor's name:");
-      if (!doctorName) return;
-      const specialty = prompt("Enter doctor's specialty:");
-      if (!specialty) return;
-
-      const newRow = document.createElement('tr');
-      newRow.innerHTML = `
-        <td>${doctorName}</td>
-        <td>${specialty}</td>
-        <td><button class="button remove-btn">Remove</button></td>
-      `;
-      newRow.classList.add('fade-in');
-      doctorsTableBody.appendChild(newRow);
-
-      // Remove the fade-in class after the animation completes
-      setTimeout(() => {
-        newRow.classList.remove('fade-in');
-      }, 500);
-    });
-
-    // Event delegation for "Remove" buttons, using a fade-out animation
-    doctorsTableBody.addEventListener('click', (e) => {
-      if (e.target.classList.contains('remove-btn')) {
-        const row = e.target.closest('tr');
-        row.classList.add('fade-out');
-        setTimeout(() => {
-          row.remove();
-        }, 500);
-      }
-    });
   </script>
 </body>
 </html>
