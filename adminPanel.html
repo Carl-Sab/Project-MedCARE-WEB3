@@ -3,142 +3,231 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel</title>
+  <title>Modern Admin Dashboard</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background-color: #f0f4f9;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f0f6fc;
+      color: #003f7d;
     }
-
-    header {
+    
+    /* HEADER STYLES */
+    .header {
       background: linear-gradient(135deg, #003f7d, #0078d7);
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    nav {
-      padding: 10px;
-      text-align: center;
-    }
-
-    nav button {
-      background-color: #0056b3; 
-      color: white; 
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s ease;
-    }
-
-    nav button:hover {
-      background-color: #003f7d; 
-      color: #f0f4f9;
-      transform: scale(1.1);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-    }
-
-    .container {
+      padding: 15px 20px;
+      border-radius: 0 0 8px 8px;
       display: flex;
-      flex-wrap: wrap; 
-      gap: 20px;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .card {
-      flex: 1 1 calc(25% - 40px);
-      max-width: 300px;
-      background-color: white;
-      border-left: 5px solid #0078d7;
-      border-radius: 10px;
-      padding: 20px;
-      margin: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-      text-align: center;
-    }
-
-    .card:hover {
-      transform: translateY(-10px); 
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
-    }
-
-    .card h2 {
-      margin-top: 0;
-      color: #004aad;
-    }
-
-    .card button {
-      background-color: #0056b3;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       color: white;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+      flex: 1;
+    }
+    .burger-btn {
       border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
+      background: none;
+      color: white;
+      font-size: 24px;
       cursor: pointer;
+      margin-right: 20px;
+    }
+    
+    /* SIDEBAR STYLES */
+    .sidebar {
+      width: 280px;
+      height: 100vh;
+      background-color: #003f7d;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 20px;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+      z-index: 1000;
+    }
+    .sidebar.open {
+      transform: translateX(0);
+    }
+    .sidebar h2 {
+      color: white;
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      text-decoration: none;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      background-color: transparent;
       transition: background-color 0.3s;
     }
-
-    .card button:hover {
-      background-color: #003f7d; 
-      color: #f0f4f9;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    .sidebar a:hover {
+      background-color: #0078d7;
     }
-
-    @media (max-width: 768px) {
-      .card {
-        flex: 1 1 calc(50% - 40px); 
-      }
+    
+    /* MAIN CONTENT STYLES */
+    .main-content {
+      margin: 80px 20px 20px 20px; /* top margin adjusted to account for header */
+      transition: margin-left 0.3s;
     }
-
-    @media (max-width: 480px) {
-      .card {
-        flex: 1 1 100%; 
-      }
+    .main-content.shifted {
+      margin-left: 300px;
+    }
+    .section {
+      background-color: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+    .section h3 {
+      color: #003f7d;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    table th, table td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+    table th {
+      background-color: #003f7d;
+      color: white;
+    }
+    table td {
+      background-color: #f9f9f9;
+    }
+    .button {
+      padding: 10px 15px;
+      background: linear-gradient(135deg, #003f7d, #0078d7);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+    }
+    .button:hover {
+      transform: translateY(-2px);
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Admin Panel</h1>
-    <nav>
-      <button>Log Out</button>
-      <button>User Panel</button>
-    </nav>
-  </header>
-  <div class="container">
-    <div class="card" id="dashboard">
-      <h2>Dashboard</h2>
-      <p>View reports, statistics, and manage platform activity.</p>
-      <button>Go to Dashboard</button>
+  <!-- Header now includes the burger button -->
+  <div class="header">
+    <button class="burger-btn" id="burgerButton">☰</button>
+    <h1>Welcome to the Admin Dashboard</h1>
+  </div>
+  
+  <div class="sidebar" id="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="#">📊 Dashboard</a>
+    <a href="#">💰 Monthly Salary</a>
+    <a href="#">👨‍⚕️ Manage Doctors</a>
+    <a href="#">⚠️ Fining</a>
+    <a href="#">🚪 Logout</a>
+  </div>
+  
+  <div class="main-content" id="mainContent">
+    <div class="section">
+      <h3>Monthly Salary Statistics</h3>
+      <table>
+        <tr>
+          <th>Month</th>
+          <th>Total Salaries</th>
+          <th>Budget Left</th>
+        </tr>
+        <tr>
+          <td>January</td>
+          <td>$50,000</td>
+          <td>$20,000</td>
+        </tr>
+      </table>
     </div>
 
-    <div class="card" id="blood-donation">
-      <h2>Blood Donation System</h2>
-      <p>Manage blood donors and requests.</p>
-      <button>Manage Donations</button>
+    <div class="section">
+      <h3>Manage Doctors</h3>
+      <button class="button">Add Doctor</button>
+      <table>
+        <tr>
+          <th>Doctor Name</th>
+          <th>Specialty</th>
+          <th>Actions</th>
+        </tr>
+        <tr>
+          <td>Dr. Smith</td>
+          <td>Cardiology</td>
+          <td><button class="button">Remove</button></td>
+        </tr>
+      </table>
     </div>
 
-    <div class="card" id="emergency">
-      <h2>Emergency Requests</h2>
-      <p>View and assign urgent service requests.</p>
-      <button>Manage Requests</button>
-    </div>
-
-    <div class="card" id="chat">
-      <h2>Chat System</h2>
-      <p>Monitor chat logs and consultations.</p>
-      <button>View Chats</button>
-    </div>
-
-    <div class="card" id="appointments">
-      <h2>Doctor Booking</h2>
-      <p>Track and manage doctor appointments.</p>
-      <button>Manage Appointments</button>
+    <div class="section">
+      <h3>Fining</h3>
+      <table>
+        <tr>
+          <th>Doctor Name</th>
+          <th>Reason</th>
+          <th>Fine Amount</th>
+        </tr>
+        <tr>
+          <td>Dr. Adams</td>
+          <td>Missed Appointment</td>
+          <td>$200</td>
+        </tr>
+      </table>
     </div>
   </div>
+  
+  <script>
+    // Get references to DOM elements
+const burgerButton = document.getElementById('burgerButton');
+const sidebar = document.getElementById('sidebar');
+const mainContent = document.getElementById('mainContent');
+
+// Function to toggle the sidebar open/closed state
+function toggleSidebar() {
+  sidebar.classList.toggle('open');
+  mainContent.classList.toggle('shifted');
+}
+
+// Toggle sidebar when the burger button is clicked
+burgerButton.addEventListener('click', (e) => {
+  e.stopPropagation(); // Prevent event bubbling
+  toggleSidebar();
+});
+
+// Optional: Close the sidebar if clicking outside of it
+document.addEventListener('click', (e) => {
+  if (
+    sidebar.classList.contains('open') &&
+    !sidebar.contains(e.target) &&
+    !burgerButton.contains(e.target)
+  ) {
+    toggleSidebar();
+  }
+});
+
+// Optional: Handle window resize events (e.g., auto-close sidebar on small screens)
+window.addEventListener('resize', () => {
+  if (window.innerWidth < 768 && sidebar.classList.contains('open')) {
+    toggleSidebar();
+  }
+});
+
+  </script>
 </body>
 </html>
-
