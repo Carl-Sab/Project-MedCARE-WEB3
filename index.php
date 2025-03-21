@@ -53,7 +53,7 @@
         </div>
       </div>
     </section>
-    <br><br>
+    <br><br><br>
       <section id="about" class="about-us">
         <h2 class="section-title">About Us</h2>
         <p>
@@ -63,7 +63,7 @@
           result management.
         </p>
       </section>
-      <br><br>
+      <br><br><br>
       <section id="services" class="services">
         <h2 class="section-title">Our Services</h2>
         <p>
