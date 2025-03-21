@@ -51,9 +51,9 @@ body {
     padding: 20px;
   }
   .signup-card {     
-    background-color: rgba(179, 224, 255, 0.3); /* Soft baby blue with transparency */     
+    background-color: rgba(179, 224, 255, 0.3);   
     border-radius: 20px;     
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Softer shadow */     
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); 
     padding: 30px;     
     width: 100%;     
     max-width: 450px;     
@@ -119,7 +119,7 @@ body {
   }
   .input-wrapper input {
     width: 100%;
-    padding-right: 40px; /* Creates space for the eye icon */
+    padding-right: 40px;
   }
   
   .show-password {
@@ -195,11 +195,11 @@ body {
     }
   }
   .signup-card input::placeholder {
-    color: rgba(255, 255, 255, 0.7); /* White with slight transparency */
+    color: rgba(255, 255, 255, 0.7); 
   }
   
   .signup-card input:focus::placeholder {
-    color: rgba(255, 255, 255, 0.5); /* Lighter white when focused */
+    color: rgba(255, 255, 255, 0.5);
   }
 
   

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Modern Admin Dashboard</title>
-  <!-- Google Fonts -->
+
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/public/asset/css/adminDashboard.css">
   <style>
@@ -13,13 +13,13 @@
   </style>
 </head>
 <body>
-  <!-- Header with burger button integrated -->
+ 
   <div class="header">
     <button class="burger-btn" id="burgerButton">☰</button>
     <h1>Welcome to the Admin Dashboard</h1>
   </div>
 
-  <!-- Sidebar -->
+
   <div class="sidebar" id="sidebar">
     <h2>Admin Panel</h2>
     <a href="adminPanel.html"> Panel</a>
@@ -29,7 +29,7 @@
     <a href="Landingpage.html">Logout</a>
   </div>
 
-  <!-- Main Content -->
+
   <div class="main-content" id="mainContent">
     <!-- Monthly Salary Section -->
     <div class="section">
@@ -73,7 +73,7 @@
       </table>
     </div>
 
-    <!-- Fining Section -->
+
     <div class="section">
         <h3>Job Applications</h3>
         <button class="button" id="JobApply">Job apply</button>
@@ -98,7 +98,7 @@
   </div>
 
   <script>
-    // Sidebar Toggle Functionality
+  
     const burgerButton = document.getElementById('burgerButton');
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
@@ -113,7 +113,7 @@
       toggleSidebar();
     });
 
-    // Close sidebar if clicking outside
+  
     document.addEventListener('click', (e) => {
       if (sidebar.classList.contains('open') &&
           !sidebar.contains(e.target) &&
@@ -122,7 +122,7 @@
       }
     });
 
-    // Auto-close sidebar on smaller screens when resizing
+ 
     window.addEventListener('resize', () => {
       if (window.innerWidth < 768 && sidebar.classList.contains('open')) {
         toggleSidebar();

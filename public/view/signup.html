@@ -153,7 +153,7 @@ function validatePass() {
         errorPass.textContent = "Password must be at least 8 characters, include an uppercase letter, a lowercase letter, a number, and a special character (@$!%*?&).";
         return false;
     } else {
-        errorPass.textContent = ""; // Clear error when valid
+        errorPass.textContent = "";
         return true;
     }
 }
@@ -167,19 +167,18 @@ function validateConfPass() {
         confirmError.textContent = "Passwords do not match. Please try again.";
         return false;
     } else {
-        confirmError.textContent = ""; // Clear error when valid
+        confirmError.textContent = ""; 
         return true;
     }
 }
 
-// Validate all fields on form submit
 document.querySelector("form").addEventListener("submit", function (event) {
     let isNameValid = validateName();
     let isMailValid = validateMail();
     let isPassValid = validatePass();
     let isConfPassValid = validateConfPass();
 
-    // If any validation fails, prevent form submission
+ 
     if (!isNameValid || !isMailValid || !isPassValid || !isConfPassValid) {
         event.preventDefault(); 
     }

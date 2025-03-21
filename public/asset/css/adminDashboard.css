@@ -5,11 +5,10 @@ body {
     color: #003f7d;
   }
 
-  /* Header */
+
   .header {
     background: linear-gradient(135deg, #003f7d, #0078d7);
     padding: 15px 20px;
-    border-radius: 0 0 8px 8px;
     display: flex;
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -34,7 +33,6 @@ body {
     margin-right: 20px;
   }
 
-  /* Sidebar */
   .sidebar {
     width: 280px;
     height: 100vh;
@@ -71,9 +69,8 @@ body {
     background-color: #0078d7;
   }
 
-  /* Main Content */
   .main-content {
-    padding: 100px 20px 20px 20px; /* top padding adjusted for fixed header */
+    padding: 100px 20px 20px 20px; 
     transition: margin-left 0.3s ease-in-out;
     margin-left: 0;
   }
@@ -81,7 +78,7 @@ body {
     margin-left: 300px;
   }
 
-  /* Section Styles */
+
   .section {
     background-color: white;
     padding: 20px;
@@ -95,7 +92,7 @@ body {
     font-size: 20px;
   }
 
-  /* Table Styles */
+
   table {
     width: 100%;
     border-collapse: collapse;
@@ -114,7 +111,7 @@ body {
     background-color: #f9f9f9;
   }
 
-  /* Button Styles */
+
   .button {
     padding: 10px 15px;
     background: linear-gradient(135deg, #003f7d, #0078d7);
@@ -128,7 +125,7 @@ body {
     transform: translateY(-2px);
   }
 
-  /* Animations */
+  
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -144,7 +141,7 @@ body {
     animation: fadeOut 0.5s ease-out;
   }
 
-  /* Responsive Adjustments */
+
   @media (max-width: 768px) {
     .main-content.shifted {
       margin-left: 0;

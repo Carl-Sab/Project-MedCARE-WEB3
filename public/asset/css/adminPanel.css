@@ -46,12 +46,12 @@ body {
 display: flex;
 flex-wrap: wrap;
 gap: 20px;
-justify-content: space-evenly; /* Ensures even spacing between cards */
+justify-content: space-evenly;
 padding: 20px;
 }
 
 .card {
-width: 280px; /* Set a fixed width for consistency */
+width: 280px; 
 background-color: white;
 border-radius: 10px;
 padding: 20px;
