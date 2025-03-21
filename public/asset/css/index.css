@@ -132,13 +132,8 @@
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    border-left:5px solid #0078d7;
-    transition: transform 0.3s;
   }
-  .about-us:hover,.services:hover{
-    transform: scale(1.05);
-    
-  }
+
   
 
   .about-us p,.services p,.services ul {
