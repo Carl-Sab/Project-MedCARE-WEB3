@@ -24,7 +24,7 @@
       </nav>
     </header>
     <section class="intro">
-    <img src="./asset/images/MedCare.jpg" alt="Medical Care">
+    <img src="/Project-MedCARE-WEB3/asset/images/MedCare.jpg" alt="Medical Care">
     <div class="overlay">
       <h1>Welcome to MedCare</h1>
       <p>Your health is our priority. Join us to experience world-class medical care!</p>
