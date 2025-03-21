@@ -9,11 +9,15 @@ body {
     color: white;
     padding: 20px;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
   }
 
   nav {
     padding: 10px;
     text-align: center;
+
   }
 
   nav button {
@@ -49,7 +53,6 @@ padding: 20px;
 .card {
 width: 280px; /* Set a fixed width for consistency */
 background-color: white;
-border-left: 5px solid #0078d7;
 border-radius: 10px;
 padding: 20px;
 margin: 10px;
