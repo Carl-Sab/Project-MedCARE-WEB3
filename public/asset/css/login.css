@@ -99,15 +99,21 @@ body {
     outline: none;
     font-size: 16px;
     color: #fff;
-    background: #003784;
+    background: white;
     transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s ease;
     box-sizing: border-box;
   }
-
+.login-card input{
+color: black;
+}
+.login-card input::placeholder{
+  color: black;
+}
   .login-card input:focus {
     border-color: #003784;
     box-shadow: 0 0 10px #003784;
   }
+  
 
   #login {
     border-width: 0px;

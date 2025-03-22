@@ -100,11 +100,17 @@ body {
     backdrop-filter: blur(25px);
     outline: none;
     font-size: 16px;
-    color: #fff;
-    background: #003784;
+    color: black;
+    background: white;
     transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s ease;
     box-sizing: border-box;
   }
+  
+  
+  .signup-card input::placeholder {
+    color: black !important;
+  }
+
   
   .signup-card input:focus {
     border-color: #003784;
