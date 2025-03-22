@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="./public/asset/css/Landing.css" />
   </head>
   <body>
+
+
+  
     <header>
       <h1>MedCare</h1>
       <button class="menu-toggle" onclick="toggleMenu()">
