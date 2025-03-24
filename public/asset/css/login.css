@@ -175,6 +175,10 @@ color: black;
   .signup-link:hover {
     text-decoration: underline;
   }
+  #login a{
+    text-decoration: none;
+    color: white;
+  }
 
   @media (max-width: 768px) {
     .login-card {
