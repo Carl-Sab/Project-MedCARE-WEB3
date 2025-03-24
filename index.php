@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
     <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-    <link rel="stylesheet" href="./public/asset/css/Landing.css" />
+    <link rel="stylesheet" href="./public/asset/css/index.css" />
   </head>
   <body>
     <header>
