@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
     <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-    <link rel="stylesheet" href="./public/asset/css/index.css" />
+    <link rel="stylesheet" href="./public/asset/css/Landing.css" />
   </head>
   <body>
     <header>
@@ -24,7 +24,7 @@
       </nav>
     </header>
     <section class="intro">
-    <img src="C:\xampp\htdocs\repos\WEB3-Project\Project-MedCARE-WEB3\public\asset\images\MedCare.jpg" alt="Medical Care">
+    <img src="public\asset\images\MedCare.jpg" alt="Medical Care">
     <div class="overlay">
       <h1>Welcome to MedCare</h1>
       <p>Your health is our priority. Join us to experience world-class medical care!</p>
@@ -53,7 +53,7 @@
         </div>
       </div>
     </section>
-    <br><br>
+    <br><br><br>
       <section id="about" class="about-us">
         <h2 class="section-title">About Us</h2>
         <p>
@@ -63,7 +63,7 @@
           result management.
         </p>
       </section>
-      <br><br>
+      <br><br><br>
       <section id="services" class="services">
         <h2 class="section-title">Our Services</h2>
         <p>

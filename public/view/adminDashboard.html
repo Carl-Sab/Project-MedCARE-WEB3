@@ -4,13 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Modern Admin Dashboard</title>
-  <!-- Google Fonts -->
+
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/Project-MedCARE-WEB3/public/asset/css/adminDashboard.css">
-  <style>
-   
-    
-  </style>
+  <link rel="stylesheet" href="/public/asset/css/adminDashboard.css">
 </head>
 <body>
 
@@ -27,7 +23,6 @@
     <a href="#">Job apply</a>
     <a href="Landingpage.html">Logout</a>
   </div>
-
 
   <div class="main-content" id="mainContent">
     <!-- Monthly Salary Section -->
@@ -51,10 +46,8 @@
       </table>
     </div>
 
-  
     <div class="section">
       <h3>Manage Doctors</h3>
-      <button class="button" id="addDoctorButton">Add Doctor</button>
       <table id="doctorsTable">
         <thead>
           <tr>
@@ -73,31 +66,29 @@
       </table>
     </div>
 
-    <!-- Fining Section -->
     <div class="section">
-        <h3>Job Applications</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Applicant Name</th>
-              <th>Position</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>John Doe</td>
-              <td>Software Engineer</td>
-              <td>Under Review</td>
-            </tr>
-          </tbody>
-        </table>
-        
+      <h3>Job Applications</h3>
+      <button class="button" id="JobApply">Job apply</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Applicant Name</th>
+            <th>Position</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>John Doe</td>
+            <td>Software Engineer</td>
+            <td>Under Review</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
   <script>
-  
     const burgerButton = document.getElementById('burgerButton');
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
