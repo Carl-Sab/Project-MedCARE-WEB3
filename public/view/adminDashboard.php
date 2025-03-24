@@ -6,7 +6,8 @@
   <title>Modern Admin Dashboard</title>
 
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/public/asset/css/adminDashboard.css">
+  <link rel="stylesheet" href="../css/adminDashboard.css">
+
   <style>
    
     
