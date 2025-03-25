@@ -73,8 +73,8 @@
         <ul>
           <li>Lab Test Results</li>
           <li>Emergency Services</li>
-          <li>chat consulting</li>
-          <li>Boocking an appointment with doctor</li>
+          <li>Chat consulting</li>
+          <li>Booking an appointment with doctor</li>
         </ul>
       </section>
     </div>
