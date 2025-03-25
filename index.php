@@ -7,27 +7,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
     <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-    <link rel="stylesheet" href="./public/asset/css/Landing.css" />
+  <link rel="stylesheet" href="./public/css/index.css">
+  
+
   </head>
   <body>
 
 
   
     <header>
-      <h1>MedCare</h1>
-      <button class="menu-toggle" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i>
-      </button>
-      <nav id="menu">
-        <a href="#features">Features</a>
-        <a href="#about">About Us</a>
-        <a href="#services">Services</a>
-        <a href="#Login">Login</a>
-
-      </nav>
+    <?php include "./includes/header.php";?>
     </header>
     <section class="intro">
-    <img src="public\asset\images\MedCare.jpg" alt="Medical Care">
+    <img src="public\images\MedCare.jpg" alt="Medical Care">
     <div class="overlay">
       <h1>Welcome to MedCare</h1>
       <p>Your health is our priority. Join us to experience world-class medical care!</p>
@@ -86,11 +78,5 @@
       <?php include "./includes/footer.php";?>
     </footer>
   </body>
-  <script>
-    const menuToggle = document.querySelector(".menu-toggle");
-    const nav = document.querySelector("nav");
-    menuToggle.addEventListener("click", function () {
-      nav.classList.toggle("active");
-});
-  </script>
+
 </html>

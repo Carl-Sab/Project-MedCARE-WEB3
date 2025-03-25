@@ -12,7 +12,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <link rel="stylesheet" href="/public/asset/css/signup.css" />
+    <link rel="stylesheet" href="../css/signup.css">
+
   </head>
   <body>
     <div class="background">
@@ -153,7 +154,7 @@ function validatePass() {
         errorPass.textContent = "Password must be at least 8 characters, include an uppercase letter, a lowercase letter, a number, and a special character (@$!%*?&).";
         return false;
     } else {
-        errorPass.textContent = "";
+        errorPass.textContent = "";0
         return true;
     }
 }
