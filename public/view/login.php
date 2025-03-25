@@ -9,8 +9,6 @@
   <link rel="stylesheet" href="../css/login.css">
 
 </head>
-<body>
-  
   <div class="background">
     <div class="glow"></div>
   </div>
@@ -33,7 +31,10 @@
         Don't have an account? <a href="./view/signup.php" class="signup-link">Sign Up</a>
       </div>
     </div>
+    
   </div>
+
+  </body>
   <script>
     function togglePassword() {
       var password = document.getElementById("password");

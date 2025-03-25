@@ -8,7 +8,7 @@
     <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
   <link rel="stylesheet" href="./public/css/index.css">
-
+  
 
   </head>
   <body>
@@ -75,11 +75,5 @@
       <?php include "./includes/footer.php";?>
     </footer>
   </body>
-  <script>
-    const menuToggle = document.querySelector(".menu-toggle");
-    const nav = document.querySelector("nav");
-    menuToggle.addEventListener("click", function () {
-      nav.classList.toggle("active");
-});
-  </script>
+
 </html>
