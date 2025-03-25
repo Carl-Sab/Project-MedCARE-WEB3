@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/public/asset/css/adminPanel.css">
+  <link rel="stylesheet" href="../css/adminPanel.css">
+
+
   <title>Admin Panel</title>
 
 </head>
@@ -46,6 +48,9 @@
       <button><a href="">Manage Appointments</a></button>
     </div>
   </div>
+  <footer>
+    <?php include "./includes/footer.php";?>
+  </footer>
 </body>
 </html>
 

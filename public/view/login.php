@@ -6,9 +6,9 @@
   <title>Log In</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="/public/asset/css/login.css">
+  <link rel="stylesheet" href="../css/login.css">
+
 </head>
-<body>
   <div class="background">
     <div class="glow"></div>
   </div>
@@ -25,13 +25,16 @@
           </button>
         </div>
         <a href="#" class="forgot-password">Forgot Password?</a>
-        <button id="login" type="submit">Log In</button>
+        <button id="login" type="submit"><a href="login.html">Log In</a></button>
       </form>
       <div class="no-account">
-        Don't have an account? <a href="signup.html" class="signup-link">Sign Up</a>
+        Don't have an account? <a href="./view/signup.php" class="signup-link">Sign Up</a>
       </div>
     </div>
+    
   </div>
+
+  </body>
   <script>
     function togglePassword() {
       var password = document.getElementById("password");
