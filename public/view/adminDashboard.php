@@ -24,7 +24,7 @@
       top: 0;
       left: 0;
       right: 0;
-      z-index: 1000;
+      z-index: 1000; /* Below sidebar */
     }
 
     .header h1 {
@@ -39,6 +39,7 @@
       color: white;
       font-size: 24px;
       cursor: pointer;
+      z-index: 1002; /* Above header */
     }
 
     .sidebar {
@@ -52,6 +53,7 @@
       left: 0;
       transform: translateX(-100%);
       transition: transform 0.3s ease-in-out;
+      z-index: 1001; /* Above header */
     }
 
     .sidebar.open {
@@ -129,13 +131,26 @@
       border: 1px solid #ddd;
       border-radius: 5px;
     }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000; /* Below sidebar */
+      display: none; /* Hidden by default */
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .overlay.visible {
+      display: block; /* Shown when sidebar is open */
+    }
   </style>
 </head>
 <body>
-  <div class="header">
-    <button class="burger-btn" id="burgerButton">☰</button>
-    <h1>Admin Dashboard</h1>
-  </div>
+  <div class="overlay" id="overlay"></div>
 
   <div class="sidebar" id="sidebar">
     <a href="#">Manage Doctors</a>
@@ -144,13 +159,17 @@
     <a href="#">Logout</a>
   </div>
 
+  <div class="header">
+    <button class="burger-btn" id="burgerButton">☰</button>
+    <h1>Admin Dashboard</h1>
+  </div>
+
   <div class="main-content" id="mainContent">
     <!-- Doctor Management Section -->
     <div class="section">
       <h3>Manage Doctors</h3>
       <form id="addDoctorForm">
-        <label for="profilePicture">Profile Picture URL:</label>
-        <input type="text" id="profilePicture" placeholder="Enter profile picture URL">
+       
         <label for="doctorName">Doctor Name:</label>
         <input type="text" id="doctorName" placeholder="Enter doctor's name">
         <label for="doctorSpecialty">Specialty:</label>
@@ -199,11 +218,19 @@
   <script>
     const burgerButton = document.getElementById('burgerButton');
     const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
     const mainContent = document.getElementById('mainContent');
 
+    // Toggle Sidebar
     burgerButton.addEventListener('click', () => {
       sidebar.classList.toggle('open');
-      mainContent.classList.toggle('shifted');
+      overlay.classList.toggle('visible');
+    });
+
+    // Close Sidebar on Overlay Click
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('visible');
     });
 
     const doctorsTableBody = document.getElementById('doctorsTable').querySelector('tbody');
