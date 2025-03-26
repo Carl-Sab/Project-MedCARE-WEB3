@@ -17,7 +17,7 @@
       <h1>Welcome Back</h1>
       <p>Login to your account</p>
       <form>
-        <input type="text" placeholder="Username" autocomplete="off" required>
+        <input type="text" placeholder="Username/Email" autocomplete="off" required>
         <div class="input-wrapper">
           <input type="password" id="password" placeholder="Password" autocomplete="off" required>
           <button type="button" class="show-password" onclick="togglePassword()">
