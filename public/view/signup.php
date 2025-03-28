@@ -139,7 +139,7 @@ function validateConfPass() {
     }
 }
 
-document.querySelector("#signup").addEventListener("click", function (event) {
+doument.querySelector("#signup").addEventListener("click", function (event) {
     let isNameValid = validateName();
     let isMailValid = validateMail();
     let isPassValid = validatePass();
