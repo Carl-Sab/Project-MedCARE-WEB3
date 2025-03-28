@@ -16,7 +16,7 @@
     <div class="login-card">
       <h1>Welcome Back</h1>
       <p>Login to your account</p>
-      <form>
+      <form action="../../private/php/handleLogin.php" method="POST">
         <input type="text" placeholder="Username/Email" autocomplete="off" required>
         <div class="input-wrapper">
           <input type="password" id="password" placeholder="Password" autocomplete="off" required>
