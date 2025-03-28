@@ -62,11 +62,11 @@ if(isset($_POST['Uname'])&&isset($_POST['pass'])){
             <i class="fas fa-eye"></i>
           </button>
         </div>
-        <a href="#" class="forgot-password">Forgot Password?</a>
+        <a href="./forgotPass.php" class="forgot-password">Forgot Password?</a>
         <button id="login" type="submit">Log In</button>
       </form>
       <div class="no-account">
-        Don't have an account? <a href="./view/signup.php" class="signup-link">Sign Up</a>
+        Don't have an account? <a href="./signup.php" class="signup-link">Sign Up</a>
       </div>
     </div>
     
