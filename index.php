@@ -106,7 +106,7 @@ nav a:hover {
     <div class="overlay">
       <h1>Welcome to MedCare</h1>
       <p>Your health is our priority. Join us to experience world-class medical care!</p>
-      <a href="#join">Join Us</a>
+      <a href="./public/view/signup.php">Join Us</a>
     </div>
     </section>
     <div class="container">
