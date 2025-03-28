@@ -64,7 +64,7 @@ if(isset($_POST['uname'],$_POST['mail'],$_POST['tel'],$_POST['pass'])){
           <button id="signup" onclick="Validation()"> Sign Up </button>
 
         </form>
-        <div class="already-account"> Already have an account?<a href="login.html" class="login-link">Log In</a></div>
+        <div class="already-account"> Already have an account?<a href="./login.php" class="login-link">Log In</a></div>
       </div>
     </div>
     <script>
