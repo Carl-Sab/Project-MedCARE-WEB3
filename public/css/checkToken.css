@@ -9,16 +9,16 @@ body {
     background: linear-gradient(135deg, #003784, #003784);
     overflow: hidden;
     color: white;
-  }
+}
 
-  .background {
+.background {
     position: absolute;
     width: 100%;
     height: 100%;
     overflow: hidden;
-  }
+}
 
-  .background .glow{
+.background .glow{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -29,20 +29,20 @@ body {
     transform: translate(-50%, -50%);
     z-index: -1;
     animation: pulse 7s ease infinite;
-  }
+}
 
-  @keyframes pulse {
+@keyframes pulse {
     0%, 100% {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
     }
     50% {
-      transform: translate(-50%, -50%) scale(2);
-      opacity: 0.7;
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0.7;
     }
-  }
+}
 
-  .login-container {
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,9 +51,9 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
-  }
+}
 
-  .login-card {
+.login-card {
     background-color: rgba(179, 224, 255, 0.3);
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
@@ -65,33 +65,33 @@ body {
     opacity: 0;
     animation: fadeInUp 1s ease forwards;
     transition: transform 0.5s ease, box-shadow 0.5s ease;
-  }
+}
 
-  @keyframes fadeInUp {
+@keyframes fadeInUp {
     to {
-      transform: translateY(0);
-      opacity: 1;
+        transform: translateY(0);
+        opacity: 1;
     }
-  }
+}
 
-  .login-card h1 {
+.login-card h1 {
     font-size: 24px;
     margin-bottom: 10px;
     font-weight: 600;
-  }
+}
 
-  .login-card p {
+.login-card p {
     font-size: 14px;
     margin-bottom: 20px;
     color:white;
-  }
+}
 
-  .login-card form {
+.login-card form {
     display: flex;
     flex-direction: column;
-  }
+}
 
-  .login-card input, #login {
+.login-card input, #login {
     width: 100%;
     margin: 10px 0;
     padding: 14px;
@@ -104,108 +104,112 @@ body {
     background: white;
     transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s ease;
     box-sizing: border-box;
-  }
+}
+
 .login-card input{
-color: black;
+    color: black;
 }
+
 .login-card input::placeholder{
-  color: black;
+    color: black;
 }
-  .login-card input:focus {
+
+.login-card input:focus {
     border-color: #003784;
     box-shadow: 0 0 10px #003784;
-  }
-  
+}
 
-  #login {
+#login {
     border-width: 0px;
     margin-top: 20px;
     font-weight: 600;
     background: linear-gradient(135deg, #003784, #008cff);
     cursor: pointer;
-  }
+}
 
-  #login:hover {
+#login:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-  }
+}
 
-  .input-wrapper {
+.input-wrapper {
     position: relative;
     width: 100%;
-  }
+}
 
-  .show-password {
+.show-password {
     position: absolute;
     top: 50%;
     right: 15px;
     transform: translateY(-50%);
     background: none;
     border: none;
-    color: #003784;
+    color: white;
     cursor: pointer;
     font-size: 18px;
     padding: 0;
     line-height: 1;
-  }
+}
 
-  .forgot-password {
+.forgot-password {
     font-size: 14px;
     align-self: last baseline;
     margin-top: 10px;
     margin-right: 10px;
     color:white;
     text-decoration: none;
-  }
+}
 
-  .forgot-password:hover {
+.forgot-password:hover {
     text-decoration: underline;
-  }
+}
 
-  .no-account {
+.no-account {
     margin-top: 10px;
     font-size: 14px;
     color: white;
-  }
+}
 
-  .signup-link {
+.signup-link {
     color: white;
     text-decoration: none;
     font-weight: 600;
-  }
+}
 
-  .signup-link:hover {
+.signup-link:hover {
     text-decoration: underline;
-  }
-  #login a{
+}
+
+#login a{
     text-decoration: none;
     color: white;
-  }
+}
 
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
     .login-card {
-      padding: 20px;
-      width: 100%;
-      background-color: transparent;
-      box-shadow: 0px 0px 0px;
+        padding: 20px;
+        width: 100%;
+        background-color: transparent;
+        box-shadow: 0px 0px 0px;
     }
 
     .login-card input, #login {
-      padding: 12px;
-      font-size: 14px;
+        padding: 12px;
+        font-size: 14px;
     }
-  }
+}
 
-  @media (max-width: 480px) {
+@media (max-width: 480px) {
     .login-card {
-      padding: 15px;
+        padding: 15px;
     }
 
     .login-card input, #login {
-      padding: 10px;
-      font-size: 12px;
+        padding: 10px;
+        font-size: 12px;
     }
-  }
-  input::placeholder{
+}
+
+input::placeholder{
     color: white;
-  }
+}

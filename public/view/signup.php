@@ -15,6 +15,21 @@
     <link rel="stylesheet" href="../css/signup.css">
 
   </head>
+<?php 
+include "../../includes/connection.php";
+session_start();
+
+if(isset($_POST['uname'],$_POST['mail'],$_POST['tel'],$_POST['pass'])){
+  $name = $_POST['uname'];
+  $email = $_POST['mail'];
+  $tel = $_POST['tel'];
+  $pass = $_POST['pass'];
+
+  $insert = "INSERT INTO users (`user_name`,`email`,`tel`,`pass`,`role`)VALUES('$name','$email','$tel','$pass','client');";
+  $conn ->query($insert);
+}
+
+?>
   <body>
     <div class="background">
       <div class="glow"></div>
@@ -24,81 +39,32 @@
         
         <h1>Create Account</h1>
         <p>Sign up to get started</p>
-        <form>
-          <input
-            type="text"
-            placeholder="Username"
-            id="name"
-            onblur="validateName()"
-            required
-            autocomplete="off"
-          />
-          <p
-            id="name-error"
-            style="color:rgb(169, 16, 16); font-size: 14px; margin: 5px 0 0"
-          ></p>
-          <input
-            type="email"
-            placeholder="Email"
-            id="mail"
-            onblur="validateMail()"
-            required
-            autocomplete="off"
-          />
-          <p
-            id="mail-error"
-            style="color: rgb(169, 16, 16); font-size: 14px; margin: 5px 0 0"
-          ></p>
+        <form action="signup.php" method="POST">
+          <input type="text" placeholder="Username" name="uname" id="name" onblur="validateName()" required autocomplete="off"/>
+          <p id="name-error" style="color:rgb(169, 16, 16); font-size: 14px; margin: 5px 0 0"></p>
+
+          <input type="email" placeholder="Email" id="mail" name="mail" onblur="validateMail()" required autocomplete="off"/>
+          <p id="mail-error" style="color: rgb(169, 16, 16); font-size: 14px; margin: 5px 0 0"></p>
+
+          <input type="text" placeholder="Tel" id="tel" name="tel" onblur="validateMail()" required autocomplete="off"/>
+
+
           <div class="input-wrapper">
-            <input
-              type="password"
-              id="password"
-              placeholder="Password"
-              required
-              onblur="validatePass()"
-              autocomplete="off"
-            />
-            <button
-              type="button"
-              class="show-password"
-              onclick="togglePassword(1)"
-            >
-              <i class="fas fa-eye"></i>
-            </button>
+            <input type="password" id="password" placeholder="Password" required onblur="validatePass()" autocomplete="off"/>
+            <button type="button" class="show-password" onclick="togglePassword(1)"><i class="fas fa-eye"></i></button>
           </div>
-          <p
-            id="pass1-error"
-            style="color: rgb(169, 16, 16); font-size: 14px; margin: 5px 0 0"
-          ></p>
+
+          <p id="pass1-error" style="color: rgb(169, 16, 16); font-size: 14px; margin: 5px 0 0"></p>
           <div class="input-wrapper">
-            <input
-              type="password"
-              id="confirm-password"
-              placeholder="Confirm Password"
-              required
-              onblur="validateConfPass()"
-              autocomplete="off"
-            />
-            <button
-              type="button"
-              class="show-password"
-              onclick="togglePassword(2)"
-            >
-              <i class="fas fa-eye"></i>
-            </button>
+            <input type="password" id="confirm-password" placeholder="Confirm Password" name="pass" required onblur="validateConfPass()" autocomplete="off"/>
+            <button type="button" class="show-password" onclick="togglePassword(2)"><i class="fas fa-eye"></i></button>
           </div>
-          <p
-            id="confirm-password-error"
-            style="color: rgb(169, 16, 16); font-size: 14px; margin: 5px 0 0"
-          ></p>
-          <button id="signup" type="submit" onclick="Validation()">
-            Sign Up
-          </button>
+          <p id="confirm-password-error" style="color: rgb(169, 16, 16); font-size: 14px; margin: 5px 0 0"></p>
+
+          <button id="signup" onclick="Validation()"> Sign Up </button>
+
         </form>
-        <div class="already-account">
-          Already have an account?
-          <a href="login.html" class="login-link">Log In</a>
-        </div>
+        <div class="already-account"> Already have an account?<a href="./login.php" class="login-link">Log In</a></div>
       </div>
     </div>
     <script>
@@ -154,7 +120,7 @@ function validatePass() {
         errorPass.textContent = "Password must be at least 8 characters, include an uppercase letter, a lowercase letter, a number, and a special character (@$!%*?&).";
         return false;
     } else {
-        errorPass.textContent = "";0
+        errorPass.textContent = "";
         return true;
     }
 }
@@ -173,7 +139,7 @@ function validateConfPass() {
     }
 }
 
-document.querySelector("form").addEventListener("submit", function (event) {
+doument.querySelector("#signup").addEventListener("click", function (event) {
     let isNameValid = validateName();
     let isMailValid = validateMail();
     let isPassValid = validatePass();
@@ -182,6 +148,9 @@ document.querySelector("form").addEventListener("submit", function (event) {
  
     if (!isNameValid || !isMailValid || !isPassValid || !isConfPassValid) {
         event.preventDefault(); 
+    }
+    else{
+      document.querySelector("form").submit();
     }
 });
 

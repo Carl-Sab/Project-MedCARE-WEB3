@@ -5,16 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/adminPanel.css">
 
-
+<?php
+session_start();
+$username = $_SESSION['Uname'];
+?>
   <title>Admin Panel</title>
 
 </head>
 <body>
   <header>
-    <h1>Admin Panel</h1>
+    <h1>Admin Panel<?php echo " "."$username"?></h1>
     <nav>
-      <button><a href="login.html">Log Out</a></button>
-      <button><a href="">User Panel</a></button>
+      <button><a href="logout.php">Log Out</a></button>
+      <button><a href="homepage.php">Homepage</a></button>
     </nav>
   </header>
   <div class="container">

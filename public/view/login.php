@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+`<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -9,6 +9,41 @@
   <link rel="stylesheet" href="../css/login.css">
 
 </head>
+<?php
+include "../../includes/connection.php";
+session_start();
+$msg ="";
+if(isset($_POST['Uname'])&&isset($_POST['pass'])){
+    $uname = $_POST['Uname'];
+    $pass = $_POST['pass'];
+
+    $sql = "SELECT * FROM users where user_name = '$uname' and pass = '$pass';";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows>0){
+       $row = $result->fetch_assoc();
+       $id = $row['id_user'];
+       $_SESSION["id_user"] =$id;
+       $_SESSION["Uname"] = $uname;
+
+       if($row['role']=='admin'){
+        header("location:./adminPanel.php");
+       }
+
+       else if($row['role']=='doctor'){
+        header("location:./doctorPanel.php");
+       }
+
+       else{
+        header("location:./homepage.php");
+       }
+
+    }
+    else{
+        $msg = "username not found.";
+    }
+}
+?>
   <div class="background">
     <div class="glow"></div>
   </div>
@@ -16,19 +51,22 @@
     <div class="login-card">
       <h1>Welcome Back</h1>
       <p>Login to your account</p>
-      <form>
-        <input type="text" placeholder="Username/Email" autocomplete="off" required>
+
+      <form action="./login.php" method="POST">
+
+      <p style="color: red;"><?php echo (isset($msg)?$msg:"");?></p>
+        <input type="text" placeholder="Username/Email" name="Uname" autocomplete="off" required>
         <div class="input-wrapper">
-          <input type="password" id="password" placeholder="Password" autocomplete="off" required>
+          <input type="password" id="password" placeholder="Password" name="pass" autocomplete="off" required>
           <button type="button" class="show-password" onclick="togglePassword()">
             <i class="fas fa-eye"></i>
           </button>
         </div>
-        <a href="#" class="forgot-password">Forgot Password?</a>
-        <button id="login" type="submit"><a href="login.html">Log In</a></button>
+        <a href="./forgotPass.php" class="forgot-password">Forgot Password?</a>
+        <button id="login" type="submit">Log In</button>
       </form>
       <div class="no-account">
-        Don't have an account? <a href="./view/signup.php" class="signup-link">Sign Up</a>
+        Don't have an account? <a href="./signup.php" class="signup-link">Sign Up</a>
       </div>
     </div>
     
