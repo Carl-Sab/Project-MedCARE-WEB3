@@ -7,11 +7,10 @@ body {
   align-items: center;
   height: 100vh;
   background: linear-gradient(135deg, #003784, #003784);
-  overflow-x: hidden; /* Allow vertical scrolling */
+  overflow-x: hidden;
   color: white;
 }
 
-/* Background Glow */
 .background {
   position: absolute;
   width: 100%;
@@ -43,7 +42,6 @@ body {
   }
 }
 
-/* Login Container */
 .login-container {
   display: flex;
   justify-content: center;
@@ -54,7 +52,6 @@ body {
   flex-direction: column;
 }
 
-/* Card */
 .login-card {
   background-color: rgba(179, 224, 255, 0.3);
   border-radius: 20px;
@@ -76,7 +73,6 @@ body {
   }
 }
 
-/* Headings */
 .login-card h1 {
   font-size: 24px;
   margin-bottom: 10px;
@@ -89,13 +85,11 @@ body {
   color: white;
 }
 
-/* Form */
 .login-card form {
   display: flex;
   flex-direction: column;
 }
 
-/* Inputs and Button */
 .login-card input, #Change_Password {
   width: 100%;
   margin: 10px 0;
@@ -120,7 +114,6 @@ body {
   box-shadow: 0 0 10px #003784;
 }
 
-/* Change Password Button */
 #Change_Password {
   border-width: 0px;
   margin-top: 20px;
@@ -135,14 +128,12 @@ body {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
 }
 
-/* Input Wrapper */
 .input-wrapper {
   position: relative;
   width: 100%;
   margin-bottom: 20px;
 }
 
-/* Password Toggle Button */
 .show-password {
   position: absolute;
   top: 50%;
@@ -157,7 +148,6 @@ body {
   line-height: 1;
 }
 
-/* Error message styling */
 #pass1-error, #confirm-password-error {
   font-size: 12px;
   color: red;
@@ -168,7 +158,6 @@ body {
   padding-left: 5px;
 }
 
-/* To prevent icon overlap when error appears */
 .input-wrapper.error input {
   border-color: red;
   box-shadow: 0 0 5px red;
@@ -178,7 +167,6 @@ body {
   top: 45%;
 }
 
-/* Links */
 .forgot-password {
   font-size: 14px;
   align-self: last baseline;
@@ -208,7 +196,6 @@ body {
   text-decoration: underline;
 }
 
-/* Mobile Styles */
 @media (max-width: 768px) {
   .login-card {
       padding: 20px;

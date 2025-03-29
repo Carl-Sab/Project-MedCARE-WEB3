@@ -135,13 +135,13 @@ body {
     transform: translateY(-50%);
     background: none;
     border: none;
-    color: white;
+    color: rgb(0, 68, 156);
+    
     cursor: pointer;
     font-size: 18px;
     padding: 0;
     line-height: 1;
   }
-  
   .signup-card #signup {
     margin-top: 20px;
     padding: 14px;

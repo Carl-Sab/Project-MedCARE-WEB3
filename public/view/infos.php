@@ -4,138 +4,87 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Modern User Form</title>
-  <style>
-    /* Body Styling */
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #1e3a8a, #2563eb); 
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    
-    }
-
-    /* Form Container Styling */
-    .form-container {
-        color: white;
-      width: 100%;
-      max-width: 400px;
-      background-color: rgba(179, 224, 255, 0.3); 
-      padding: 20px 25px;
-      border-radius: 15px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    h1 {
-      text-align: center;
-      color: white;
-      margin-bottom: 20px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    label {
-      font-weight: bold;
-      color: white;
-    }
-
-    input, select, textarea {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      font-size: 14px;
-      width: 100%;
-      background: #f9f9f9;
-      box-sizing: border-box;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: #2563eb;
-      box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
-    }
-
-    textarea {
-      resize: none;
-      height: 80px;
-    }
-
-    button {
-      padding: 12px;
-      border: none;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #1e3a8a, #2563eb); 
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-    }
-
-    .file-upload {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .file-upload input[type="file"] {
-      display: none;
-    }
-
-    .file-upload label {
-      padding: 8px 12px;
-      background: linear-gradient(135deg, #1e3a8a, #2563eb); 
-      color: white;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-
-    .file-upload label:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-    }
-
-    .preview {
-      font-size: 12px;
-      color: white;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <link rel="stylesheet" href="../css/infos.css">
 </head>
+<?php
+include "../../includes/connection.php";  // Make sure this file is present and the connection works
+session_start();
+$id = $_SESSION["id_user"];
+
+$msg = "";
+if (isset($_POST['dob'], $_POST['adress'], $_POST['blood_type'], $_POST['condition'])) {
+    $dob = $_POST['dob'];
+    $adress = $_POST['adress'];
+    $blood_type = $_POST['blood_type'];
+    $condition = $_POST['condition'];
+    $id = $_SESSION["id_user"];
+
+    // Default image if no profile pic uploaded
+    $file_uploaded = false;
+    $file_name = 'default_profile_pic.jpg'; // Default image name
+
+    if (isset($_FILES["profile-pic"]) && $_FILES["profile-pic"]["error"] === 0) {
+        $format = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'tiff', 'tif', 'heif', 'heic', 'ico', 'svg'];
+        $file_extension = strtolower(pathinfo($_FILES['profile-pic']['name'], PATHINFO_EXTENSION));
+
+        if (in_array($file_extension, $format)) {
+            // Set upload directory and generate file name
+            $upload_dir = '../../images/uploads/';
+            $file_name = basename($_FILES['profile-pic']['name']);
+            $upload_file_path = $upload_dir . $file_name;
+
+            // Check if upload directory exists and is writable
+            if (!is_dir($upload_dir) || !is_writable($upload_dir)) {
+                $msg = "Upload directory is not writable.";
+            } else {
+                if (move_uploaded_file($_FILES['profile-pic']['tmp_name'], $upload_file_path)) {
+                    $file_uploaded = true;
+                } else {
+                    $msg = "Error while uploading the file.";
+                }
+            }
+        } else {
+            $msg = "Invalid file format.";
+        }
+    }
+
+    // Use the uploaded file name (if uploaded) or the default image
+    if ($file_uploaded) {
+        $update = "UPDATE users SET `PPicture` = '$file_name', `date_of_birth` = '$dob', `adress` = '$adress' WHERE `id_user` = '$id';";
+    } else {
+        // Using default image if no file was uploaded
+        $update = "UPDATE users SET `PPicture` = '$file_name', `date_of_birth` = '$dob', `adress` = '$adress' WHERE `id_user` = '$id';";
+    }
+
+    // Check if the query executed successfully
+    if ($conn->query($update) === TRUE) {
+      $insert = "INSERT INTO client (id_client, blood_type, health_condition) VALUES ($id, '$blood_type', '$condition')";
+        
+        if ($conn->query($insert) === TRUE) {
+          header("location:homepage.php");
+        } else {
+            $msg = "Error while inserting client data: " . $conn->error;
+        }
+    } else {
+        $msg = "Error while updating user data: " . $conn->error;
+    }
+}
+
+?>
 <body>
   <div class="form-container">
     <h1>User Information</h1>
-    <form id="user-form">
+    <form action="infos.php" method="POST" id="user-form" enctype="multipart/form-data">
       <label for="dob">Date of Birth</label>
       <input type="date" id="dob" name="dob" required>
+
+      <label for="adress">Address</label>
+      <input type="text" placeholder="Address" name="adress" required>
       
       <label for="blood-type">Blood Type</label>
-      <select id="blood-type" name="blood-type" required>
+      <select id="blood-type" name="blood_type" required>
         <option value="" disabled selected>Select</option>
         <option value="A+">A+</option>
         <option value="A-">A-</option>
@@ -147,8 +96,8 @@
         <option value="O-">O-</option>
       </select>
 
-      <label for="health-condition">Health Condition</label>
-      <textarea id="health-condition" name="health-condition" placeholder="Enter allergies, diseases, etc." required></textarea>
+      <label for="condition">Health Condition</label>
+      <textarea id="health-condition" name="condition" placeholder="Enter allergies, diseases, etc." required></textarea>
 
       <label for="profile-pic">Profile Picture</label>
       <div class="file-upload">
@@ -156,11 +105,11 @@
         <input type="file" id="profile-pic" name="profile-pic" accept="image/*">
         <span class="preview" id="file-preview">No file chosen</span>
       </div>
+      <p><?php echo(isset($msg)?$msg:"");?></p>
 
       <button type="submit">Submit</button>
     </form>
   </div>
-
   <script>
     const fileInput = document.getElementById('profile-pic');
     const filePreview = document.getElementById('file-preview');
@@ -170,7 +119,7 @@
       filePreview.textContent = fileName;
     });
 
-    document.getElementById('user-form').addEventListener('submit', function(event) {
+    document.querySelector('button').addEventListener('click', function(event) {
       event.preventDefault();
       
       const dob = document.getElementById('dob').value;
@@ -185,7 +134,7 @@
         console.log("Profile Picture:", profilePic.name);
       }
 
-      alert("Form submitted successfully!");
+      document.querySelector('#user-form').submit();
     });
   </script>
 </body>

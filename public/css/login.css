@@ -138,11 +138,13 @@ color: black;
   .show-password {
     position: absolute;
     top: 50%;
-    right: 15px;
+    right: 10px;
     transform: translateY(-50%);
     background: none;
+  
+    
     border: none;
-    color: #003784;
+    color: rgb(0, 68, 156);
     cursor: pointer;
     font-size: 18px;
     padding: 0;

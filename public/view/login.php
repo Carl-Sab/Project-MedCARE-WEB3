@@ -1,4 +1,4 @@
-`<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -44,6 +44,7 @@ if(isset($_POST['Uname'])&&isset($_POST['pass'])){
     }
 }
 ?>
+<body>
   <div class="background">
     <div class="glow"></div>
   </div>
@@ -88,5 +89,4 @@ if(isset($_POST['Uname'])&&isset($_POST['pass'])){
       }
     }
   </script>
-</body>
 </html>
