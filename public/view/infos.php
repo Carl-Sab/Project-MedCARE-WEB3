@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../css/infos.css">
 </head>
 <?php
-include "../../includes/connection.php";  // Make sure this file is present and the connection works
+include "../../includes/connection.php";
 session_start();
 $id = $_SESSION["id_user"];
 
@@ -21,21 +21,18 @@ if (isset($_POST['dob'], $_POST['adress'], $_POST['blood_type'], $_POST['conditi
     $condition = $_POST['condition'];
     $id = $_SESSION["id_user"];
 
-    // Default image if no profile pic uploaded
     $file_uploaded = false;
-    $file_name = 'default_profile_pic.jpg'; // Default image name
+    $file_name = 'default_profile_pic.jpg';
 
     if (isset($_FILES["profile-pic"]) && $_FILES["profile-pic"]["error"] === 0) {
         $format = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'tiff', 'tif', 'heif', 'heic', 'ico', 'svg'];
         $file_extension = strtolower(pathinfo($_FILES['profile-pic']['name'], PATHINFO_EXTENSION));
 
         if (in_array($file_extension, $format)) {
-            // Set upload directory and generate file name
-            $upload_dir = '../../images/uploads/';
+            $upload_dir = '../images/uploads/';
             $file_name = basename($_FILES['profile-pic']['name']);
             $upload_file_path = $upload_dir . $file_name;
 
-            // Check if upload directory exists and is writable
             if (!is_dir($upload_dir) || !is_writable($upload_dir)) {
                 $msg = "Upload directory is not writable.";
             } else {
@@ -50,15 +47,12 @@ if (isset($_POST['dob'], $_POST['adress'], $_POST['blood_type'], $_POST['conditi
         }
     }
 
-    // Use the uploaded file name (if uploaded) or the default image
     if ($file_uploaded) {
         $update = "UPDATE users SET `PPicture` = '$file_name', `date_of_birth` = '$dob', `adress` = '$adress' WHERE `id_user` = '$id';";
     } else {
-        // Using default image if no file was uploaded
-        $update = "UPDATE users SET `PPicture` = '$file_name', `date_of_birth` = '$dob', `adress` = '$adress' WHERE `id_user` = '$id';";
+        $update = "UPDATE users SET `date_of_birth` = '$dob', `adress` = '$adress' WHERE `id_user` = '$id';";
     }
 
-    // Check if the query executed successfully
     if ($conn->query($update) === TRUE) {
       $insert = "INSERT INTO client (id_client, blood_type, health_condition) VALUES ($id, '$blood_type', '$condition')";
         
