@@ -17,8 +17,8 @@ if(isset($_POST['uname'],$_POST['mail'],$_POST['tel'],$_POST['pass'])){
   $email = $_POST['mail'];
   $tel = $_POST['tel'];
   $pass = $_POST['pass'];
-
-  $insert = "INSERT INTO users (`user_name`,`email`,`tel`,`pass`,`role`)VALUES('$name','$email','$tel','$pass','client');";
+  $hashedPass=password_hash($pass,PASSWORD_DEFAULT);
+  $insert = "INSERT INTO users (`user_name`,`email`,`tel`,`pass`,`role`)VALUES('$name','$email','$tel','$hashedPass','client');";
   $conn ->query($insert);
 
   $select = "SELECT * from users where user_name = '$name' && email = '$email';";
