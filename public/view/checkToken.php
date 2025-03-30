@@ -27,6 +27,7 @@ if(isset($_POST['code'])){
 }
 ?>
 <body>
+    
     <div class="background">
         <div class="glow"></div>
     </div>

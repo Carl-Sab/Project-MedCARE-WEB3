@@ -5,7 +5,7 @@ body {
   }
 
   header {
-    background: linear-gradient(135deg, #003f7d, #0078d7);
+  background: linear-gradient(90deg, #00796b, #004d40);
     color: white;
     padding: 20px;
     text-align: center;
@@ -21,7 +21,7 @@ body {
   }
 
   nav button {
-    background-color: #0056b3; 
+    background: linear-gradient(90deg, #00796b, #004d40);
     color: white; 
     border: none;
     padding: 10px 15px;
@@ -36,7 +36,6 @@ body {
 
 
   nav button:hover {
-    background-color: #003f7d; 
     color: #f0f4f9;
     transform: scale(1.1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
@@ -72,21 +71,21 @@ text-align: center;
 
   .card h2 {
     margin-top: 0;
-    color: #004aad;
+    color: #66bb6a;
   }
 
   .card button {
-    background-color: #0056b3;
+    background: linear-gradient(90deg, #00796b, #004d40);
     color: white;
     border: none;
+    width: 200px;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
   }
 
-  .card button:hover {
-    background-color: #003f7d; 
+  .card button:hover { 
     color: #f0f4f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
   }

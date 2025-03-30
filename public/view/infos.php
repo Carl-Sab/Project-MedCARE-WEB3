@@ -101,7 +101,7 @@ if (isset($_POST['dob'], $_POST['adress'], $_POST['blood_type'], $_POST['conditi
       </div>
       <p><?php echo(isset($msg)?$msg:"");?></p>
 
-      <button type="submit">Submit</button>
+      <button type="submit" id="Submit">Submit</button>
     </form>
   </div>
   <script>
