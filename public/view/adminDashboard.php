@@ -27,7 +27,6 @@
     <div class="section">
       <h3>Manage Doctors</h3>
       <form id="addDoctorForm">
-       
         <label for="doctorName">Doctor Name:</label>
         <input type="text" id="doctorName" placeholder="Enter doctor's name">
         <label for="doctorSpecialty">Specialty:</label>
@@ -39,7 +38,6 @@
       <table id="doctorsTable">
         <thead>
           <tr>
-            <th>Profile Picture</th>
             <th>ID</th>
             <th>Doctor Name</th>
             <th>Specialty</th>
@@ -78,35 +76,29 @@
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
     const mainContent = document.getElementById('mainContent');
+    const doctorsTableBody = document.getElementById('doctorsTable').querySelector('tbody');
 
-    // Toggle Sidebar
     burgerButton.addEventListener('click', () => {
       sidebar.classList.toggle('open');
       overlay.classList.toggle('visible');
     });
 
-    // Close Sidebar on Overlay Click
     overlay.addEventListener('click', () => {
       sidebar.classList.remove('open');
       overlay.classList.remove('visible');
     });
 
-    const doctorsTableBody = document.getElementById('doctorsTable').querySelector('tbody');
-    const addDoctorForm = document.getElementById('addDoctorForm');
-
-    // Add Doctor Form Submission
+    // Add Doctor Functionality
     document.getElementById('addDoctorButton').addEventListener('click', () => {
-      const profilePic = document.getElementById('profilePicture').value;
       const name = document.getElementById('doctorName').value;
       const specialty = document.getElementById('doctorSpecialty').value;
       const salary = document.getElementById('doctorSalary').value;
       const id = Math.random().toString(36).substring(2, 8).toUpperCase(); // Random ID generator
       const review = '★★★★★';
 
-      if (profilePic && name && specialty && salary) {
+      if (name && specialty && salary) {
         const row = document.createElement('tr');
         row.innerHTML = `
-          <td><img src="${profilePic}" alt="Profile Picture" style="border-radius: 50%;"></td>
           <td>${id}</td>
           <td>${name}</td>
           <td>${specialty}</td>
@@ -115,61 +107,69 @@
           <td><button class="button" onclick="removeDoctor(this)">Remove</button></td>
         `;
         doctorsTableBody.appendChild(row);
-        addDoctorForm.reset(); // Clear the form fields
+        document.getElementById('addDoctorForm').reset();
       }
     });
 
-    // Remove Doctor
     function removeDoctor(button) {
       const row = button.parentElement.parentElement;
       doctorsTableBody.removeChild(row);
     }
 
-    // Job Applications Data
+    // Job Applications
     const applications = [
-      { name: 'John Doe', position: 'Software Engineer', status: 'Under Review' },
-      { name: 'Jane Smith', position: 'UI Designer', status: 'Under Review' },
-    ];
+  { name: 'John Doe', position: 'Software Engineer', status: 'Under Review' },
+  { name: 'Jane Smith', position: 'UI Designer', status: 'Under Review' },
+];
 
-    // Populate Job Applications Table
-    const applicationsTableBody = document.getElementById('applicationsTableBody');
-    applications.forEach((applicant, index) => {
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${applicant.name}</td>
-        <td>${applicant.position}</td>
-        <td id="status-${index}">${applicant.status}</td>
-        <td>
-          <button class="button" onclick="acceptApplicant(${index})">Accept</button>
-          <button class="button" onclick="declineApplicant(${index})">Decline</button>
-        </td>
-      `;
-      applicationsTableBody.appendChild(row);
-    });
+const applicationsTableBody = document.getElementById('applicationsTableBody');
+applications.forEach((applicant, index) => {
+  const row = document.createElement('tr');
+  row.innerHTML = `
+    <td>${applicant.name}</td>
+    <td>${applicant.position}</td>
+    <td id="status-${index}">${applicant.status}</td>
+    <td>
+      <button class="button" onclick="acceptApplicant(${index})">Accept</button>
+      <button class="button" onclick="declineApplicant(${index})">Decline</button>
+    </td>
+  `;
+  applicationsTableBody.appendChild(row);
+});
 
-    // Accept Applicant
-    function acceptApplicant(index) {
-      const applicant = applications[index];
-      const id = Math.random().toString(36).substring(2, 8).toUpperCase(); // Random ID generator
-      const review = '★★★★★';
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td><img src="https://via.placeholder.com/50" alt="Profile Picture" style="border-radius: 50%;"></td>
-        <td>${id}</td>
-        <td>${applicant.name}</td>
-        <td>${applicant.position}</td>
-        <td>$100,000</td>
-        <td>${review}</td>
-        <td><button class="button" onclick="removeDoctor(this)">Remove</button></td>
-      `;
-      doctorsTableBody.appendChild(row);
-      document.getElementById(`status-${index}`).textContent = 'Accepted';
-    }
+function acceptApplicant(index) {
+  const applicant = applications[index];
+  const id = Math.random().toString(36).substring(2, 8).toUpperCase();
+  const review = '★★★★★';
+  const salary = '$100,000';
 
-    // Decline Applicant
-    function declineApplicant(index) {
-      document.getElementById(`status-${index}`).textContent = 'Declined';
-    }
+  const row = document.createElement('tr');
+  row.innerHTML = `
+    <td>${id}</td>
+    <td>${applicant.name}</td>
+    <td>${applicant.position}</td>
+    <td>${salary}</td>
+    <td>${review}</td>
+    <td><button class="button" onclick="removeDoctor(this)">Remove</button></td>
+  `;
+  doctorsTableBody.appendChild(row);
+
+  document.getElementById(`status-${index}`).textContent = 'Accepted';
+}
+
+function declineApplicant(index) {
+  const statusElement = document.getElementById(`status-${index}`);
+  if (statusElement) {
+    statusElement.textContent = 'Declined';
+  } else {
+    console.error(`Status element with ID 'status-${index}' not found.`);
+  }
+}
+
+function removeDoctor(button) {
+  const row = button.parentElement.parentElement;
+  doctorsTableBody.removeChild(row);
+}
   </script>
 </body>
 </html>
