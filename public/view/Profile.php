@@ -27,7 +27,6 @@
       <a class="back-button" href="/index.php">Add review</a>
     </div>
   </div>
-
   <script>
     // Example data for demonstration (replace with dynamic data in your implementation)
     const doctorData = {
