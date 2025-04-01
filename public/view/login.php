@@ -1,4 +1,4 @@
-`<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -16,13 +16,13 @@ $msg ="";
 if(isset($_POST['Uname'])&&isset($_POST['pass'])){
     $uname = $_POST['Uname'];
     $pass = $_POST['pass'];
-
-    $sql = "SELECT * FROM users where user_name = '$uname' and pass = '$pass';";
+    $sql = "SELECT * FROM users where user_name = '$uname';";
     $result = $conn->query($sql);
 
     if ($result->num_rows>0){
        $row = $result->fetch_assoc();
        $id = $row['id_user'];
+       if(password_verify($pass,$row['pass'])){
        $_SESSION["id_user"] =$id;
        $_SESSION["Uname"] = $uname;
 
@@ -33,7 +33,7 @@ if(isset($_POST['Uname'])&&isset($_POST['pass'])){
        else if($row['role']=='doctor'){
         header("location:./doctorPanel.php");
        }
-
+      }
        else{
         header("location:./homepage.php");
        }
@@ -44,6 +44,7 @@ if(isset($_POST['Uname'])&&isset($_POST['pass'])){
     }
 }
 ?>
+<body>
   <div class="background">
     <div class="glow"></div>
   </div>
@@ -88,5 +89,4 @@ if(isset($_POST['Uname'])&&isset($_POST['pass'])){
       }
     }
   </script>
-</body>
 </html>

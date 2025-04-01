@@ -10,80 +10,80 @@
     <link rel="stylesheet" href="./public/css/index.css">
     <style>
       
-header {
-  background: linear-gradient(135deg, #003f7d, #0078d7);
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
+      header {
+    background: linear-gradient(135deg, #00796b, #004d40);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
 }
 
 header h1 {
-  font-size: 36px;
+    font-size: 36px;
 }
 
 nav {
-  display: flex;
+    display: flex;
 }
 
 .menu-toggle {
-  display: none;
-  font-size: 30px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  color: white;
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
 }
 
 nav a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 15px;
-  padding: 8px 16px;
-  border-radius: 20px;
-  transition: background 0.3s, color 0.3s;
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background 0.3s, color 0.3s;
 }
 
 nav a:hover {
-  background: white;
-  color: #003f7d;
+    background: white;
+    color: #004d40;
 }
-
 
 @media (max-width: 768px) {
-  .menu-toggle {
-      display: block;
-  }
+    .menu-toggle {
+        display: block;
+    }
 
-  nav {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 70px;
-      left: 0;
-      width: 100%;
-      background: linear-gradient(81deg, #003f7d, #0078d7);
-      text-align: center;
-      padding: 10px 0;
-      z-index: 99;
-  }
+    nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(81deg, #00796b, #004d40);
+        text-align: center;
+        padding: 10px 0;
+        z-index: 99;
+    }
 
-  nav a {
-      display: block;
-      margin: 10px 0;
-      font-size: 18px;
-      padding: 12px 20px;
-  }
+    nav a {
+        display: block;
+        margin: 10px 0;
+        font-size: 18px;
+        padding: 12px 20px;
+    }
 
-  nav.active {
-      display: flex;
-  }
+    nav.active {
+        display: flex;
+    }
 
-  header h1 {
-      font-size: 28px;
-  }
+    header h1 {
+        font-size: 28px;
+    }
 }
+
     </style>
   </head>
   <body>

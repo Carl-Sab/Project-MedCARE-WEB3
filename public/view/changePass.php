@@ -45,7 +45,7 @@ if(isset($_POST['pass'])){
   <div class="login-container">
     <div class="login-card">
       <h1>Change Password</h1>
-      <p>Enter your current password and set a new one.</p>
+      <span>Enter your current password and set a new one.</span>
       <form action="changePass.php" method="POST">
         <div class="input-wrapper">
           <input type="password" placeholder="New Password" id="new-password" required onblur="validatePass()">

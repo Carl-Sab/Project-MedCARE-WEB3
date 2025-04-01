@@ -20,14 +20,10 @@
       <p><strong>Phone:</strong> <span id="doctorPhone">+123 456 7890</span></p>
       <p><strong>Specialty:</strong> <span id="doctorSpecialty">Cardiology</span></p>
       <p><strong>Salary:</strong> <span id="doctorSalary">$100,000</span></p>
-      <div class="review">
-        <strong>Review:</strong>
-        <p>★★★★★</p>
-      </div>
-      <a class="back-button" href="/index.php">Add review</a>
+      <?php include "../..//includes/starsReview.php";?>
+      <a class="back-button" href="">Add review</a>
     </div>
   </div>
-
   <script>
     // Example data for demonstration (replace with dynamic data in your implementation)
     const doctorData = {

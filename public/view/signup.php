@@ -4,16 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     <link rel="stylesheet" href="../css/signup.css">
-
   </head>
 <?php 
 include "../../includes/connection.php";
@@ -24,9 +17,21 @@ if(isset($_POST['uname'],$_POST['mail'],$_POST['tel'],$_POST['pass'])){
   $email = $_POST['mail'];
   $tel = $_POST['tel'];
   $pass = $_POST['pass'];
-
-  $insert = "INSERT INTO users (`user_name`,`email`,`tel`,`pass`,`role`)VALUES('$name','$email','$tel','$pass','client');";
+  $hashedPass=password_hash($pass,PASSWORD_DEFAULT);
+  $insert = "INSERT INTO users (`user_name`,`email`,`tel`,`pass`,`role`)VALUES('$name','$email','$tel','$hashedPass','client');";
   $conn ->query($insert);
+
+  $select = "SELECT * from users where user_name = '$name' && email = '$email';";
+  $result = $conn->query($select);
+
+  if($result->num_rows>0){
+    $row = $result->fetch_assoc();
+    $_SESSION['id_user'] = $row["id_user"];
+    $_SESSION['Uname'] = $name;
+
+    header("location:infos.php");
+
+  }
 }
 
 ?>
@@ -134,26 +139,24 @@ function validateConfPass() {
         confirmError.textContent = "Passwords do not match. Please try again.";
         return false;
     } else {
-        confirmError.textContent = ""; 
+        confirmError.textContent = "";
         return true;
     }
 }
 
-doument.querySelector("#signup").addEventListener("click", function (event) {
+document.querySelector("#signup").addEventListener("click", function (event) {
     let isNameValid = validateName();
     let isMailValid = validateMail();
     let isPassValid = validatePass();
     let isConfPassValid = validateConfPass();
 
- 
     if (!isNameValid || !isMailValid || !isPassValid || !isConfPassValid) {
         event.preventDefault(); 
-    }
-    else{
-      document.querySelector("form").submit();
+    } else {
+        document.querySelector("form").submit();
     }
 });
+</script>
 
-    </script>
   </body>
 </html>

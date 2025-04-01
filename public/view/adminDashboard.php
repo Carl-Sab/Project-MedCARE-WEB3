@@ -5,149 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
-  <style>
-    /* Basic styling */
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background-color: #f4f7fc;
-      color: #003f7d;
-    }
-
-    .header {
-      background: linear-gradient(135deg, #0066cc, #4a90e2);
-      padding: 20px;
-      color: white;
-      display: flex;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000; /* Below sidebar */
-    }
-
-    .header h1 {
-      margin: 0;
-      font-size: 24px;
-      flex: 1;
-    }
-
-    .burger-btn {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 1002; /* Above header */
-    }
-
-    .sidebar {
-      width: 250px;
-      background-color: #003f7d;
-      color: white;
-      height: 100vh;
-      padding: 20px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease-in-out;
-      z-index: 1001; /* Above header */
-    }
-
-    .sidebar.open {
-      transform: translateX(0);
-    }
-
-    .sidebar a {
-      color: white;
-      text-decoration: none;
-      display: block;
-      padding: 10px 0;
-      border-radius: 5px;
-    }
-
-    .sidebar a:hover {
-      background-color: #4a90e2;
-    }
-
-    .main-content {
-      padding: 100px 20px;
-      margin-left: 0;
-      transition: margin-left 0.3s ease-in-out;
-    }
-
-    .main-content.shifted {
-      margin-left: 250px;
-    }
-
-    .section {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-
-    table th, table td {
-      padding: 10px;
-      text-align: center;
-      border: 1px solid #ddd;
-    }
-
-    .button {
-      padding: 10px 15px;
-      background-color: #0066cc;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .button:hover {
-      background-color: #005bb5;
-    }
-
-    form {
-      margin-bottom: 20px;
-    }
-
-    form label {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    form input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 1000; /* Below sidebar */
-      display: none; /* Hidden by default */
-      transition: opacity 0.3s ease-in-out;
-    }
-
-    .overlay.visible {
-      display: block; /* Shown when sidebar is open */
-    }
-  </style>
+  <link rel="stylesheet" href="../css/adminDashboard.css">
 </head>
 <body>
   <div class="overlay" id="overlay"></div>
@@ -169,7 +27,6 @@
     <div class="section">
       <h3>Manage Doctors</h3>
       <form id="addDoctorForm">
-       
         <label for="doctorName">Doctor Name:</label>
         <input type="text" id="doctorName" placeholder="Enter doctor's name">
         <label for="doctorSpecialty">Specialty:</label>
@@ -181,7 +38,6 @@
       <table id="doctorsTable">
         <thead>
           <tr>
-            <th>Profile Picture</th>
             <th>ID</th>
             <th>Doctor Name</th>
             <th>Specialty</th>
@@ -220,35 +76,29 @@
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
     const mainContent = document.getElementById('mainContent');
+    const doctorsTableBody = document.getElementById('doctorsTable').querySelector('tbody');
 
-    // Toggle Sidebar
     burgerButton.addEventListener('click', () => {
       sidebar.classList.toggle('open');
       overlay.classList.toggle('visible');
     });
 
-    // Close Sidebar on Overlay Click
     overlay.addEventListener('click', () => {
       sidebar.classList.remove('open');
       overlay.classList.remove('visible');
     });
 
-    const doctorsTableBody = document.getElementById('doctorsTable').querySelector('tbody');
-    const addDoctorForm = document.getElementById('addDoctorForm');
-
-    // Add Doctor Form Submission
+    // Add Doctor Functionality
     document.getElementById('addDoctorButton').addEventListener('click', () => {
-      const profilePic = document.getElementById('profilePicture').value;
       const name = document.getElementById('doctorName').value;
       const specialty = document.getElementById('doctorSpecialty').value;
       const salary = document.getElementById('doctorSalary').value;
       const id = Math.random().toString(36).substring(2, 8).toUpperCase(); // Random ID generator
       const review = '★★★★★';
 
-      if (profilePic && name && specialty && salary) {
+      if (name && specialty && salary) {
         const row = document.createElement('tr');
         row.innerHTML = `
-          <td><img src="${profilePic}" alt="Profile Picture" style="border-radius: 50%;"></td>
           <td>${id}</td>
           <td>${name}</td>
           <td>${specialty}</td>
@@ -257,61 +107,69 @@
           <td><button class="button" onclick="removeDoctor(this)">Remove</button></td>
         `;
         doctorsTableBody.appendChild(row);
-        addDoctorForm.reset(); // Clear the form fields
+        document.getElementById('addDoctorForm').reset();
       }
     });
 
-    // Remove Doctor
     function removeDoctor(button) {
       const row = button.parentElement.parentElement;
       doctorsTableBody.removeChild(row);
     }
 
-    // Job Applications Data
+    // Job Applications
     const applications = [
-      { name: 'John Doe', position: 'Software Engineer', status: 'Under Review' },
-      { name: 'Jane Smith', position: 'UI Designer', status: 'Under Review' },
-    ];
+  { name: 'John Doe', position: 'Software Engineer', status: 'Under Review' },
+  { name: 'Jane Smith', position: 'UI Designer', status: 'Under Review' },
+];
 
-    // Populate Job Applications Table
-    const applicationsTableBody = document.getElementById('applicationsTableBody');
-    applications.forEach((applicant, index) => {
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${applicant.name}</td>
-        <td>${applicant.position}</td>
-        <td id="status-${index}">${applicant.status}</td>
-        <td>
-          <button class="button" onclick="acceptApplicant(${index})">Accept</button>
-          <button class="button" onclick="declineApplicant(${index})">Decline</button>
-        </td>
-      `;
-      applicationsTableBody.appendChild(row);
-    });
+const applicationsTableBody = document.getElementById('applicationsTableBody');
+applications.forEach((applicant, index) => {
+  const row = document.createElement('tr');
+  row.innerHTML = `
+    <td>${applicant.name}</td>
+    <td>${applicant.position}</td>
+    <td id="status-${index}">${applicant.status}</td>
+    <td>
+      <button class="button" onclick="acceptApplicant(${index})">Accept</button>
+      <button class="button" onclick="declineApplicant(${index})">Decline</button>
+    </td>
+  `;
+  applicationsTableBody.appendChild(row);
+});
 
-    // Accept Applicant
-    function acceptApplicant(index) {
-      const applicant = applications[index];
-      const id = Math.random().toString(36).substring(2, 8).toUpperCase(); // Random ID generator
-      const review = '★★★★★';
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td><img src="https://via.placeholder.com/50" alt="Profile Picture" style="border-radius: 50%;"></td>
-        <td>${id}</td>
-        <td>${applicant.name}</td>
-        <td>${applicant.position}</td>
-        <td>$100,000</td>
-        <td>${review}</td>
-        <td><button class="button" onclick="removeDoctor(this)">Remove</button></td>
-      `;
-      doctorsTableBody.appendChild(row);
-      document.getElementById(`status-${index}`).textContent = 'Accepted';
-    }
+function acceptApplicant(index) {
+  const applicant = applications[index];
+  const id = Math.random().toString(36).substring(2, 8).toUpperCase();
+  const review = '★★★★★';
+  const salary = '$100,000';
 
-    // Decline Applicant
-    function declineApplicant(index) {
-      document.getElementById(`status-${index}`).textContent = 'Declined';
-    }
+  const row = document.createElement('tr');
+  row.innerHTML = `
+    <td>${id}</td>
+    <td>${applicant.name}</td>
+    <td>${applicant.position}</td>
+    <td>${salary}</td>
+    <td>${review}</td>
+    <td><button class="button" onclick="removeDoctor(this)">Remove</button></td>
+  `;
+  doctorsTableBody.appendChild(row);
+
+  document.getElementById(`status-${index}`).textContent = 'Accepted';
+}
+
+function declineApplicant(index) {
+  const statusElement = document.getElementById(`status-${index}`);
+  if (statusElement) {
+    statusElement.textContent = 'Declined';
+  } else {
+    console.error(`Status element with ID 'status-${index}' not found.`);
+  }
+}
+
+function removeDoctor(button) {
+  const row = button.parentElement.parentElement;
+  doctorsTableBody.removeChild(row);
+}
   </script>
 </body>
 </html>
