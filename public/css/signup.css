@@ -196,3 +196,6 @@ body {
 .signup-card input:focus::placeholder {
   color: black;
 }
+#signup {
+color: white;
+}

@@ -92,3 +92,19 @@ body {
 .back-button:hover {
   background-color: #00695c;
 }
+
+.star-rating {
+  display: flex;
+  direction: row;
+}
+
+.star {
+  font-size: 2rem;
+  color: gray;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.star.filled {
+  color: gold;
+}

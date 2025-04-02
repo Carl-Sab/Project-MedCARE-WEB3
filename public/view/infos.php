@@ -68,6 +68,9 @@ if (isset($_POST['dob'], $_POST['adress'], $_POST['blood_type'], $_POST['conditi
 
 ?>
 <body>
+<div class="background">
+      <div class="glow"></div>
+    </div>
   <div class="form-container">
     <h1>User Information</h1>
     <form action="infos.php" method="POST" id="user-form" enctype="multipart/form-data">
