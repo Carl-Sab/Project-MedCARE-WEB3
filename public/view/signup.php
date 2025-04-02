@@ -28,9 +28,7 @@ if(isset($_POST['uname'],$_POST['mail'],$_POST['tel'],$_POST['pass'])){
     $row = $result->fetch_assoc();
     $_SESSION['id_user'] = $row["id_user"];
     $_SESSION['Uname'] = $name;
-
     header("location:infos.php");
-
   }
 }
 
