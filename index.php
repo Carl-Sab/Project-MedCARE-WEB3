@@ -8,6 +8,7 @@
     <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     <link rel="stylesheet" href="./public/css/index.css">
+    <link rel="stylesheet" href="./public/css/footer.css">
     <style>
       
       header {

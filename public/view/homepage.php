@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="">
     <title>MedCare Home</title>
     <link rel="stylesheet" href="../css/homepage.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             console.log('Welcome to the enhanced MedCare homepage!');
@@ -21,7 +22,7 @@
                 <li><a href="#blood-donation">Blood Donation</a></li>
                 <li><a href="#appointments">Appointments</a></li>
                 <li><a href="#emergency-requests">Emergency</a></li>
-                <li><a href="#admin-dashboard">Admin Dashboard</a></li>
+
             </ul>
         </nav>
     </header>
@@ -41,11 +42,7 @@
             <p>Request home visits or emergency help from our team.</p>
             <button class="btn">Get Help</button>
         </section>
-        <section id="admin-dashboard">
-            <h2>Admin Dashboard</h2>
-            <p>Monitor logs, manage users, and review system statistics.</p>
-            <button class="btn">View Dashboard</button>
-        </section>
+
     </main>
     <footer>
     <?php include "../../includes/footer.php";?>

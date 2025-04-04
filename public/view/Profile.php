@@ -113,11 +113,11 @@
     </div>
     <div class="details-section">
       <h3>Doctor Details</h3>
-      <p><strong>ID:</strong> <span id="doctorID">D001</span></p>
+ 
       <p><strong>Email:</strong> <span id="doctorEmail">john.doe@example.com</span></p>
       <p><strong>Phone:</strong> <span id="doctorPhone">+123 456 7890</span></p>
       <p><strong>Specialty:</strong> <span id="doctorSpecialty">Cardiology</span></p>
-      <p><strong>Salary:</strong> <span id="doctorSalary">$100,000</span></p>
+
       
       <!-- Star Rating Section -->
       <div class="star-rating">

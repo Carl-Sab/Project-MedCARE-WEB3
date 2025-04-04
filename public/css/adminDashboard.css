@@ -166,3 +166,30 @@ form input {
       width: 240px;
     }
   }
+/* Style the select dropdown */
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd; /* Blue border */
+  border-radius: 8px;
+  background-color: white;
+  color: #003f7d;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+select:focus {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  outline: none;
+}
+
+
+option {
+  font-size: 16px;
+  background-color: white;
+  color: #003f7d;
+}

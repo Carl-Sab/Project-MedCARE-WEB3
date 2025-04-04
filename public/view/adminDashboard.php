@@ -30,7 +30,19 @@
         <label for="doctorName">Doctor Name:</label>
         <input type="text" id="doctorName" placeholder="Enter doctor's name">
         <label for="doctorSpecialty">Specialty:</label>
-        <input type="text" id="doctorSpecialty" placeholder="Enter specialty">
+        <select id="doctorSpecialty" name="doctorSpecialty">
+    <option value="" disabled selected>Select a specialty</option>
+    <option value="general-practice">General Practice</option>
+    <option value="cardiology">Cardiology (Heart Specialist)</option>
+    <option value="dermatology">Dermatology (Skin Specialist)</option>
+    <option value="neurology">Neurology (Brain & Nerves Specialist)</option>
+    <option value="orthopedics">Orthopedics (Bones & Joints Specialist)</option>
+    <option value="pediatrics">Pediatrics (Children's Doctor)</option>
+    <option value="obstetrics-gynecology">Obstetrics & Gynecology (Women's Health)</option>
+    <option value="oncology">Oncology (Cancer Specialist)</option>
+    <option value="psychiatry">Psychiatry (Mental Health Specialist)</option>
+    <option value="radiology">Radiology (Imaging & X-rays)</option>
+</select>
         <label for="doctorSalary">Salary:</label>
         <input type="text" id="doctorSalary" placeholder="Enter salary">
         <button type="button" class="button" id="addDoctorButton">Add Doctor</button>
@@ -72,6 +84,13 @@
   </div>
 
   <script>
+      const input = document.getElementById("doctorSalary");
+
+input.addEventListener("input", () => {
+  let value = input.value.replace(/[^0-9.]/g, ""); 
+  input.value = value ? `$${value}` : "";
+});
+
     const burgerButton = document.getElementById('burgerButton');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
@@ -88,7 +107,7 @@
       overlay.classList.remove('visible');
     });
 
-    // Add Doctor Functionality
+
     document.getElementById('addDoctorButton').addEventListener('click', () => {
       const name = document.getElementById('doctorName').value;
       const specialty = document.getElementById('doctorSpecialty').value;
@@ -116,7 +135,7 @@
       doctorsTableBody.removeChild(row);
     }
 
-    // Job Applications
+   
     const applications = [
   { name: 'John Doe', position: 'Software Engineer', status: 'Under Review' },
   { name: 'Jane Smith', position: 'UI Designer', status: 'Under Review' },
