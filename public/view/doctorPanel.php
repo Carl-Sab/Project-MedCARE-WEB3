@@ -15,31 +15,29 @@
     </header>
 
     <div class="container">
-        <!-- Manage Consultations -->
+        
         <div class="card">
             <h2>Consultations</h2>
             <p>Chat with patients, view saved chat logs, and respond to consultation requests.</p>
             <button><a href="#">View Consultations</a></button>
         </div>
         
-        <!-- Emergency Requests -->
+    
         <div class="card">
             <h2>Emergency Requests</h2>
             <p>View and respond to urgent blood test or vaccination requests.</p>
             <button><a href="#">Manage Requests</a></button>
         </div>
 
-        <!-- Home Visits -->
   
 
-        <!-- Test Results -->
+
         <div class="card">
             <h2>Upload Test Results</h2>
             <p>Upload and manage patient test results securely.</p>
             <button><a href="#">Upload Results</a></button>
         </div>
 
-        <!-- Profile Management -->
         <div class="card">
             <h2>Profile</h2>
             <p>Manage your profile details and availability.</p>
