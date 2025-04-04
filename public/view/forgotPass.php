@@ -84,7 +84,7 @@ if(isset($_POST['mail'])){
 
       <p id="mail-error" style="color: red;"><?php echo "$msg"; ?></p>
         <input type="text" placeholder="Your Email" name="mail" id="mail" autocomplete="off" required>
-        <button id="login" onclick="validateMail()">Submit</button>
+        <button id="login" onclick="validateMail()">Forgot Password</button>
 
       </form>
     </div>
