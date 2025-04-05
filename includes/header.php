@@ -1,146 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Glassmorphism Navbar HTML CSS JS | Codehal</title>
-    <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <style>
-       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-body {
-  min-height: 100vh;
-  background: url("White Simple Aesthetic Inspirational Quotes Desktop Wallpaper.png") no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px 100px;
-  background: rgba(255, 255, 255, 0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  backdrop-filter: blur(10px);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-  z-index: 100;
-}
-.header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.4),
-    transparent
-  );
-  transition: 0.5s;
-}
-.header:hover::before {
-  left: 100%;
-}
-.logo {
-  color: #fff;
-  font-size: 25px;
-  text-decoration: none;
-  font-weight: 600;
-  cursor: default;
-}
-.navbar a {
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Glassmorphism Navbar</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Boxicons -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+    
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 100px;
+      background: linear-gradient(135deg, #00796b, #004d40);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+      z-index: 100;
+    }
+
+    .header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      );
+      transition: 0.5s;
+    }
+
+    .header:hover::before {
+      left: 100%;
+    }
+
+    .logo {
+      color: #fff;
+      font-size: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: default;
+    }
+
+    .navbar a {
+  position: relative;
+  display: inline-block;
   color: #fff;
   font-size: 18px;
   text-decoration: none;
   margin-left: 35px;
-  transition: 0.3s;
+  transition: color 0.3s ease;
+  padding: 4px 0; 
 }
-.navbar a:hover {
-  color: #66bb6a;
+
+.navbar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background-color:white;
+  transition: width 0.3s ease;
 }
-#menu-icon {
-  font-size: 36px;
-  color: #fff;
-  display: none;
+
+.navbar a:hover::after {
+  width: 100%;
 }
-/* BREAKPOINTS */
-@media (max-width: 992px) {
-  .header {
-    padding: 1.25rem 4%;
-  }
-}
-@media (max-width: 768px) {
-  #menu-icon {
-    display: block;
-  }
-  .navbar {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    padding: 0.5rem 4%;
-    display: none;
-  }
-  .navbar.active {
-    display: block;
-  }
-  .navbar a {
-    display: block;
-    margin: 1.5rem 0;
-  }
-  .nav-bg {
-    position: absolute;
-    top: 79px;
-    left: 0;
-    width: 100%;
-    height: 295px;
-    background: rgba(255, 255, 255, 0.1);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    z-index: 99;
-    display: none;
-  }
-  .nav-bg.active {
-    display: block;
-  }
-} 
-    </style>
+
+
+    #menu-icon {
+      font-size: 36px;
+      color: #fff;
+      display: none;
+      cursor: pointer;
+    }
+
+    /* BREAKPOINTS */
+    @media (max-width: 992px) {
+      .header {
+        padding: 1.25rem 4%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #menu-icon {
+        display: block;
+      }
+
+      .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 0.5rem 4%;
+        display: none;
+        background: linear-gradient(135deg, #00796b, #004d40);
+        z-index: 100;
+      }
+
+      .navbar.active {
+        display: block;
+      }
+
+      .navbar a {
+        display: block;
+        margin: 1.5rem 0;
+      }
+      
+
+      .nav-bg {
+        position: absolute;
+        top: 79px;
+        left: 0;
+        width: 100%;
+        height: 295px;
+        background: rgba(255, 255, 255, 0.1);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        z-index: 99;
+        display: none;
+      }
+
+      .nav-bg.active {
+        display: block;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header class="header">
-        <a href="#" class="logo">Logo</a>
-        <i class='bx bx-menu' id="menu-icon"></i>
-        <nav class="navbar">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Portfolio</a>
-            <a href="#">Services</a>
-            <a href="#">Contact</a>
-        </nav>
-    </header>
-    <div class="nav-bg"></div>
-    <script src="script.js"></script>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="#" class="logo">MEDCARE</a>
+    <i class="bx bx-menu" id="menu-icon"></i>
+    <nav class="navbar">
+     <a href="#features">Features</a>
+      <a href="#about">About Us</a>
+      <a href="#services">Services</a>
+      <a href="public/view/login.php">Login</a>
+      <a href="public/view/Signup.php">Signup</a>
+    </nav>
+  </header>
+
+  <!-- Mobile background overlay -->
+  <div class="nav-bg"></div>
+
+  <!-- JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuIcon = document.querySelector('#menu-icon');
+      const navbar = document.querySelector('.navbar');
+      const navbg = document.querySelector('.nav-bg');
+
+      menuIcon.addEventListener('click', () => {
+        menuIcon.classList.toggle('bx-x');
+        navbar.classList.toggle('active');
+        navbg.classList.toggle('active');
+      });
+    });
+  </script>
 </body>
-<script>
-    const menuIcon = document.querySelector('#menu-icon');
-const navbar = document.querySelector('.navbar');
-const navbg = document.querySelector('.nav-bg');
-menuIcon.addEventListener('click', () => {
-    menuIcon.classList.toggle('bx-x');
-    navbar.classList.toggle('active');
-    navbg.classList.toggle('active');
-});
-</script>
 </html>
