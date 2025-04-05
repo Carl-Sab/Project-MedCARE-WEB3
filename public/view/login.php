@@ -27,7 +27,7 @@ if(isset($_POST['Uname'])&&isset($_POST['pass'])){
        $_SESSION["Uname"] = $uname;
 
        if($row['role']=='admin'){
-        header("location:./adminPanel.php");
+        header("location:../admin/adminPanel.php");
        }
 
        else if($row['role']=='doctor'){

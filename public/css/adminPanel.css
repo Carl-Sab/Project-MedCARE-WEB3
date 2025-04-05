@@ -1,103 +1,119 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background-color: #f0f4f9;
-  }
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f0f4f9;
+}
 
-  header {
+header {
   background: linear-gradient(90deg, #00796b, #004d40);
-    color: white;
-    padding: 20px;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    align-items:center;
-  }
-
-  nav {
-    padding: 10px;
-    text-align: center;
-
-  }
-
-  nav button {
-    background: linear-gradient(90deg, #00796b, #004d40);
-    color: white; 
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s ease;
-  }
-  nav button a{
-    text-decoration: none;
-    color: white;
-  }
-
-
-  nav button:hover {
-    color: #f0f4f9;
-    transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-  }
-
-  .container {
-display: flex;
-flex-wrap: wrap;
-gap: 20px;
-justify-content: space-evenly;
-padding: 20px;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+nav {
+  padding: 10px;
+  text-align: center;
+}
+
+nav button {
+  background: linear-gradient(90deg, #00796b, #004d40);
+  color: white; 
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s ease;
+}
+
+nav button a {
+  text-decoration: none;
+  color: white;
+}
+
+nav button:hover {
+  color: #f0f4f9;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+/* Center cards */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Updated Card for Consistency */
 .card {
-width: 280px; 
-background-color: white;
-border-radius: 10px;
-padding: 20px;
-margin: 10px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-text-align: center;
+  width: 280px; 
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  text-align: center;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100px; /* Reduced height to remove excess space */
 }
-  .card button a{
-    text-decoration: none;
-    color: white;
-  }
 
-  .card:hover {
-    transform: translateY(-10px); 
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
-  }
+.card h2 {
+  margin-top: 0;
+  color: #66bb6a;
+}
 
-  .card h2 {
-    margin-top: 0;
-    color: #66bb6a;
-  }
+.card p {
+  flex-grow: 1; /* Allows the text to take up space without stretching */
+  margin-bottom: 10px; /* Reduced spacing below text */
+}
 
-  .card button {
-    background: linear-gradient(90deg, #00796b, #004d40);
-    color: white;
-    border: none;
-    width: 200px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
+.card button a {
+  text-decoration: none;
+  color: white;
+}
 
-  .card button:hover { 
-    color: #f0f4f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-  }
+/* Keep Buttons Aligned */
+.card button {
+  background: linear-gradient(90deg, #00796b, #004d40);
+  color: white;
+  border: none;
+  width: 200px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 
-  @media (max-width: 768px) {
-    .card {
+  align-self: center; /* Centers the button */
+}
+
+.card:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card button:hover { 
+  color: #f0f4f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+/* Responsive Fixes */
+@media (max-width: 768px) {
+  .card {
       flex: 1 1 calc(50% - 40px); 
-    }
   }
+}
 
-  @media (max-width: 480px) {
-    .card {
+@media (max-width: 480px) {
+  .card {
       flex: 1 1 100%; 
-    }
   }
+}

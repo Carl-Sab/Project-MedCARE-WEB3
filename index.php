@@ -8,7 +8,8 @@
     <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     <link rel="stylesheet" href="./public/css/index.css">
-    <style>
+    <link rel="stylesheet" href="./public/css/footer.css">
+    <!-- <style>
       
       header {
     background: linear-gradient(135deg, #00796b, #004d40);
@@ -84,11 +85,11 @@ nav a:hover {
     }
 }
 
-    </style>
+    </style> -->
   </head>
   <body>
 
-  <header>
+  <!-- <header>
     <h1>MedCare</h1>
     <button class="menu-toggle" onclick="toggleMenu()">
       <i class="fas fa-bars"></i>
@@ -98,9 +99,9 @@ nav a:hover {
       <a href="#about">About Us</a>
       <a href="#services">Services</a>
       <a href="public/view/login.php">Login</a>
-    </nav>
-  </header>
-
+    </nav> 
+  </header> -->
+<?php include "includes/header.php"    ?>
     <section class="intro">
     <img src="public\images\MedCare.jpg" alt="Medical Care">
     <div class="overlay">
