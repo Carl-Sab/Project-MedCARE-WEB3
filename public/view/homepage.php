@@ -9,19 +9,30 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             console.log('Welcome to the enhanced MedCare homepage!');
-            // Add additional interactivity (e.g., animations or functionality) here
         });
     </script>
 </head>
+<?php
+
+session_start();
+include "../../includes/connection.php";
+$Uname = $_SESSION['Uname'];
+$id = $_SESSION['id_user'];
+
+?>
 <body>
     <header>
-        <h1>Welcome to MedCare</h1>
+        <h1>MedCare</h1>
         <nav>
             <ul>
                 <li><a href="#blood-donation">Blood Donation</a></li>
                 <li><a href="#appointments">Appointments</a></li>
                 <li><a href="#emergency-requests">Emergency</a></li>
-                <li><a href="#admin-dashboard">Admin Dashboard</a></li>
+                <li><a href="#chat">Chats</a></li>
+                <li><a href="#profile"><?php echo "$Uname";?></a></li>
+
+
+                
             </ul>
         </nav>
     </header>

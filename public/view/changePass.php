@@ -15,8 +15,9 @@ session_start();
 
 if(isset($_POST['pass'])){
     $pass = $_POST['pass'];
+    $hashedPass=password_hash($pass,PASSWORD_DEFAULT);
     $id = $_SESSION['id_user'];
-    $sql = "UPDATE users set pass = '$pass' where id_user =$id;";
+    $sql = "UPDATE users set pass = '$hashedPass' where id_user =$id;";
     $conn->query($sql);
 
     $sql = "SELECT * FROM users where id_user = $id;";
