@@ -16,15 +16,15 @@ $msg ="";
 if(isset($_POST['Uname'])&&isset($_POST['pass'])){
     $uname = $_POST['Uname'];
     $pass = $_POST['pass'];
-    $sql = "SELECT * FROM users where user_name = '$uname';";
+    $sql = "SELECT * FROM users WHERE BINARY user_name = '$uname';";
     $result = $conn->query($sql);
 
     if ($result->num_rows>0){
        $row = $result->fetch_assoc();
        $id = $row['id_user'];
        if(password_verify($pass,$row['pass'])){
-       $_SESSION["id_user"] =$id;
-       $_SESSION["Uname"] = $uname;
+        $_SESSION["id_user"] =$id;
+        $_SESSION["Uname"] = $uname;
 
        if($row['role']=='admin'){
         header("location:../admin/adminPanel.php");
@@ -33,14 +33,16 @@ if(isset($_POST['Uname'])&&isset($_POST['pass'])){
        else if($row['role']=='doctor'){
         header("location:./doctorPanel.php");
        }
-      }
        else{
         header("location:./homepage.php");
        }
-
+      }
+      else{
+        $msg = "wrong username or password";
+       }
     }
     else{
-        $msg = "username not found.";
+        $msg = "wrong username or password";
     }
 }
 ?>

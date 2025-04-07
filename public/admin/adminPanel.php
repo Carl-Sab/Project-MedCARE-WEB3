@@ -13,18 +13,15 @@ $username = $_SESSION['Uname'];
 
 </head>
 <body>
-  <header>
-    <h1>Admin Panel<?php echo " "."$username"?></h1>
-    <nav>
-      <button><a href="logout.php">Log Out</a></button>
-      <button><a href="homepage.php">Homepage</a></button>
-    </nav>
-  </header>
+  <?php
+  include "../../includes/header.php";
+  echo "<style>.n2{display:flex}</style>";
+  ?>
   <div class="container">
     <div class="card" id="dashboard">
       <h2>Dashboard</h2>
       <p>View reports, statistics, and manage platform activity.</p>
-      <button><a href="adminDashboard.html">Go to Dashboard</a></button>
+      <button><a href="adminDashboard.php">Go to Dashboard</a></button>
     </div>
 
     <div class="card" id="blood-donation">

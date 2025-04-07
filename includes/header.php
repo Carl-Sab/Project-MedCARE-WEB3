@@ -6,13 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Responsive Glassmorphism Navbar</title>
 
-  <!-- External CSS -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Boxicons -->
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-
-  <!-- Google Fonts -->
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
@@ -29,7 +24,6 @@
     }
 
     .header {
-      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -42,6 +36,12 @@
       border-bottom: 2px solid rgba(255, 255, 255, 0.2);
       z-index: 100;
     }
+    .n1{
+      display:none;
+    }
+    .n2{
+      display:none;
+    }
 
     .header::before {
       content: "";
@@ -50,17 +50,12 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.4),
-        transparent
-      );
+      background: linear-gradient(90deg,transparent,rgba(255, 255, 255, 0.4),transparent);
       transition: 0.5s;
     }
 
     .header:hover::before {
-      left: 100%;
+      left: 0%;
     }
 
     .logo {
@@ -105,7 +100,6 @@
       cursor: pointer;
     }
 
-    /* BREAKPOINTS */
     @media (max-width: 992px) {
       .header {
         padding: 1.25rem 4%;
@@ -159,8 +153,7 @@
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="header">
+  <header class="header n1">
     <a href="#" class="logo">MEDCARE</a>
     <i class="bx bx-menu" id="menu-icon"></i>
     <nav class="navbar">
@@ -168,14 +161,20 @@
       <a href="#about">About Us</a>
       <a href="#services">Services</a>
       <a href="public/view/login.php">Login</a>
-      <a href="public/view/Signup.php">Signup</a>
+    </nav>
+  </header>
+  <header class="header n2">
+    <a href="#" class="logo">Admin Panel</a>
+    <i class="bx bx-menu" id="menu-icon"></i>
+    <nav class="navbar">
+     <a href="#features">Logout</a>
+      <a href="#about">Homepage</a>
+      <a href="#services">Doctor</a>
     </nav>
   </header>
 
-  <!-- Mobile background overlay -->
   <div class="nav-bg"></div>
 
-  <!-- JavaScript -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const menuIcon = document.querySelector('#menu-icon');

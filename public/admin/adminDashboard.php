@@ -23,7 +23,6 @@
   </div>
 
   <div class="main-content" id="mainContent">
-    <!-- Doctor Management Section -->
     <div class="section">
       <h3>Manage Doctors</h3>
       <form id="addDoctorForm">
