@@ -3,71 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Admin - Client Reports</title>
-  <style>
-    .stats-section {
-      padding: 20px;
-    }
-
-    .stats-section h2 {
-      color: #004d40;
-    }
-
-    .filter {
-      margin-bottom: 20px;
-    }
-
-    .filter input[type="month"] {
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 30px;
-    }
-
-    table th, table td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: center;
-    }
-
-    table th {
-      background-color: #00796b;
-      color: white;
-    }
-
-    .status-pending {
-      color: orange;
-      font-weight: bold;
-    }
-
-    .status-readed {
-      color: green;
-      font-weight: bold;
-    }
-
-    .date {
-      font-size: 0.9em;
-      color: #555;
-    }
-
-    .mark-read-btn {
-      background-color: #00796b;
-      color: white;
-      padding: 6px 12px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .mark-read-btn:hover {
-      background-color: #005f56;
-    }
-  </style>
+  <link rel="stylesheet" href="../css/adminReport.css">
 </head>
 <body>
 
