@@ -6,8 +6,6 @@
   <link rel="stylesheet" href="../css/adminPanel.css">
 
 <?php
-session_start();
-$username = $_SESSION['Uname'];
 ?>
   <title>Admin Panel</title>
 
@@ -34,7 +32,7 @@ $username = $_SESSION['Uname'];
     <div class="card" id="emergency">
       <h2>Emergency Requests</h2>
       <p>View and assign urgent service requests.</p>
-      <button><a href="">Manage Requests</a></button>
+      <button><a href="adminEmergency.php">Manage Requests</a></button>
     </div>
 
     <div class="card" id="chat">

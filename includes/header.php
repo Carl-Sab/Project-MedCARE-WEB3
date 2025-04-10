@@ -41,6 +41,9 @@
     .n2{
       display:none;
     }
+    .n3{
+      display: none;
+    }
 
     .header::before {
       content: "";
@@ -166,9 +169,22 @@
     <a href="#" class="logo">Admin Panel</a>
     <i class="bx bx-menu" id="menu-icon"></i>
     <nav class="navbar">
-     <a href="#features">Logout</a>
-      <a href="#about">Homepage</a>
-      <a href="#services">Doctor</a>
+
+     <a href="../public/view/logout.php">Logout</a>
+      <a href="../public/view/homepage.php">Homepage</a>
+      <a href="#doctor">Doctor</a>
+
+    </nav>
+  </header>
+  <header class="header n3">
+    <a href="#" class="logo">Admin Panel</a>
+    <i class="bx bx-menu" id="menu-icon"></i>
+    <nav class="navbar">
+     <a href="../public/view/logout.php">Logout</a>
+      <a href="../public/view/homepage.php">Homepage</a>
+      <a href="#doctor">Doctor</a>
+      <a href="adminPanel.php">back</a>
+
     </nav>
   </header>
 

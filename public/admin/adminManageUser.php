@@ -119,7 +119,7 @@
 
 <?php
 include "../../includes/header.php";
-echo "<style>.n2{display:flex}</style>";
+echo "<style>.n3{display:flex}</style>";
 
 include "../../includes/connection.php";
 
