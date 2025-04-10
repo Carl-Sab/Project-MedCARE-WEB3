@@ -52,7 +52,7 @@ $username = $_SESSION['Uname'];
     <div class="card" id="userManage">
     <h2>Manage Users</h2>
     <p>Control user roles, permissions, and activity.</p>
-    <button><a href="#">Manage Users</a></button>
+    <button><a href="adminManageUser.php">Manage Users</a></button>
   </div>
 
   <div class="card" id="jobApply">
@@ -64,10 +64,10 @@ $username = $_SESSION['Uname'];
   <div class="card" id="Reports">
     <h2>Reports</h2>
     <p>tracking Reports and help users with their case</p>
-    <button><a href="#">check report</a></button>
+    <button><a href="adminReport.php">check report</a></button>
   </div>
 
-  <div class="card" id="Reports">
+  <div class="card" id="testResult">
     <h2>Test Result</h2>
     <p>double check on test result for prevending problems</p>
     <button><a href="#">check result</a></button>

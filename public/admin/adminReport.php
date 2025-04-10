@@ -77,11 +77,8 @@ echo "<style>.n2{display:flex}</style>";
 
 include "../../includes/connection.php";
 
-$sql = "SELECT u.user_name, c.id_client, r.id_report, r.description, r.stats, r.date_of_post 
-        FROM users u, client c, report r
-        WHERE u.id_user = c.id_client 
-          AND c.id_client = r.id_client 
-          AND r.stats = 'pending';";
+$sql = "SELECT u.user_name, c.id_client, r.id_report, r.description, r.stats, r.date_of_post FROM users u, client c, report r
+        WHERE u.id_user = c.id_client AND c.id_client = r.id_client AND r.stats = 'pending';";
 
 $result = $conn->query($sql);
 ?>
