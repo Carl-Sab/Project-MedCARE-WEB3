@@ -10,17 +10,10 @@
 <body>
   <div class="overlay" id="overlay"></div>
 
-  <div class="sidebar" id="sidebar">
-    <a href="#">Manage Doctors</a>
-    <a href="#">Job Applications</a>
-    <a href="#">Monthly Salary</a>
-    <a href="#">Logout</a>
-  </div>
+  <?php
+  include "../../includes/header.php";
+  ?>
 
-  <div class="header">
-    <button class="burger-btn" id="burgerButton">☰</button>
-    <h1>Admin Dashboard</h1>
-  </div>
 
   <div class="main-content" id="mainContent">
     <div class="section">

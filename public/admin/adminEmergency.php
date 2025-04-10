@@ -9,7 +9,7 @@
 
 <?php
 include "../../includes/header.php";
-echo "<style>.n3{display:flex}</style>";
+
 include "../../includes/connection.php";
 
 $sql = "SELECT u.user_name, c.id_client, e.id_emergency, e.reason, e.date_emergency, e.stats 
