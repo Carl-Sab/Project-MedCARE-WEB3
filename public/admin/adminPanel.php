@@ -22,13 +22,13 @@ $username = $_SESSION['Uname'];
     <div class="card" id="dashboard">
       <h2>Statistics</h2>
       <p>View statistics, and tracking payment and profit</p>
-      <button><a href="adminDashboard.php">Go to Dashboard</a></button>
+      <button><a href="adminStats.php">Go to Dashboard</a></button>
     </div>
 
     <div class="card" id="blood-donation">
       <h2>Blood Donation System</h2>
       <p>Manage blood donors and requests.</p>
-      <button><a href="">Manage Donations</a></button>
+      <button><a href="adminBloodDonation.php">Manage Donations</a></button>
     </div>
 
     <div class="card" id="emergency">

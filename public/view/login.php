@@ -49,7 +49,7 @@ if(isset($_POST['Uname'])&&isset($_POST['pass'])){
 <body>
   <div class="background">
     <div class="glow"></div>
-  </div>
+  </div> 
   <div class="login-container">
     <div class="login-card">
       <h1>Welcome Back</h1>
