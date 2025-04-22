@@ -26,7 +26,7 @@ if(isset($_POST['pass'])){
     if ($result->num_rows>0){
        $row = $result->fetch_assoc();
        if($row['role']=='admin'){
-        header("location:./adminPanel.php");
+        header("location:../admin/adminPanel.php");
        }
 
        else if($row['role']=='doctor'){
