@@ -9,6 +9,9 @@
 
 <?php
 include "../../includes/header.php";
+echo "<style>.n3{display:flex}</style>";
+
+include "../../includes/connection.php";
 ?>
 
 <div class="stats-section">

@@ -162,9 +162,51 @@ body {
         }
         ?>
     </nav>
+
 </header>
     <div class="nav-bg"></div>
     <script src="script.js"></script>
+
+  </header>
+  <header class="header n2">
+    <a href="#" class="logo">Admin Panel</a>
+    <i class="bx bx-menu" id="menu-icon"></i>
+    <nav class="navbar">
+
+     <a href="../view/logout.php">Logout</a>
+      <a href="../view/homepage.php">Homepage</a>
+      <a href="#doctor">Doctor</a>
+
+    </nav>
+  </header>
+  <header class="header n3">
+    <a href="#" class="logo">Admin Panel</a>
+    <i class="bx bx-menu" id="menu-icon"></i>
+    <nav class="navbar">
+     <a href="../view/logout.php">Logout</a>
+      <a href="../view/homepage.php">Homepage</a>
+      <a href="#doctor">Doctor</a>
+      <a href="adminPanel.php">back</a>
+
+    </nav>
+  </header>
+
+  <div class="nav-bg"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuIcon = document.querySelector('#menu-icon');
+      const navbar = document.querySelector('.navbar');
+      const navbg = document.querySelector('.nav-bg');
+
+      menuIcon.addEventListener('click', () => {
+        menuIcon.classList.toggle('bx-x');
+        navbar.classList.toggle('active');
+        navbg.classList.toggle('active');
+      });
+    });
+  </script>
+
 </body>
 <script>
     const menuIcon = document.querySelector('#menu-icon');

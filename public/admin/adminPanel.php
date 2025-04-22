@@ -38,7 +38,7 @@
     <div class="card" id="chat">
       <h2>Chat Review</h2>
       <p>Monitor chat review and consultations.</p>
-      <button><a href="">Check Reviews</a></button>
+      <button><a href="adminChatReview.php">Check Reviews</a></button>
     </div>
 
     <div class="card" id="appointments">
