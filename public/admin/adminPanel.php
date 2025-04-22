@@ -13,7 +13,7 @@
 <body>
   <?php
   include "../../includes/header.php";
-  echo "<style>.n2{display:flex}</style>";
+
   ?>
   <br><br>
   <div class="container">

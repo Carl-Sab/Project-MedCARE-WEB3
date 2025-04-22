@@ -10,7 +10,7 @@
 
 <?php
 include "../../includes/header.php";
-echo "<style>.n3{display:flex}</style>";
+
 
 $selectedMonth = isset($_GET['month']) ? $_GET['month'] : date('Y-m');
 
