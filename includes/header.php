@@ -163,6 +163,14 @@ body {
         ?>
     </nav>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+</header>
+    <div class="nav-bg"></div>
+    <script src="script.js"></script>
+
+>>>>>>> origin/dev
   </header>
   <header class="header n2">
     <a href="#" class="logo">Admin Panel</a>
@@ -202,11 +210,15 @@ body {
       });
     });
   </script>
+<<<<<<< HEAD
 =======
 </header>
     <div class="nav-bg"></div>
     <script src="script.js"></script>
 >>>>>>> 96438c41a85fdce63eea88ecc93b4cdab3a98869
+=======
+
+>>>>>>> origin/dev
 </body>
 <script>
     const menuIcon = document.querySelector('#menu-icon');
