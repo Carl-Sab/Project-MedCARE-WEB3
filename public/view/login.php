@@ -12,37 +12,44 @@
 <?php
 include "../../includes/connection.php";
 session_start();
-$msg ="";
-if(isset($_POST['Uname'])&&isset($_POST['pass'])){
+$msg = "";
+
+if (isset($_POST['Uname']) && isset($_POST['pass'])) {
     $uname = $_POST['Uname'];
     $pass = $_POST['pass'];
-    $sql = "SELECT * FROM users WHERE BINARY user_name = '$uname';";
-    $result = $conn->query($sql);
 
-    if ($result->num_rows>0){
-       $row = $result->fetch_assoc();
-       $id = $row['id_user'];
-       if(password_verify($pass,$row['pass'])){
-        $_SESSION["id_user"] =$id;
-        $_SESSION["Uname"] = $uname;
+    // Prepare statement using MySQLi (object-oriented)
+    $stmt = $conn->prepare("SELECT * FROM users WHERE BINARY user_name = ?");
+    if ($stmt) {
+        $stmt->bind_param("s", $uname); // "s" means string
+        $stmt->execute();
 
-       if($row['role']=='admin'){
-        header("location:../admin/adminPanel.php");
-       }
+        $result = $stmt->get_result();
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
 
-       else if($row['role']=='doctor'){
-        header("location:./doctorPanel.php");
-       }
-       else{
-        header("location:./homepage.php");
-       }
-      }
-      else{
-        $msg = "wrong username or password";
-       }
-    }
-    else{
-        $msg = "wrong username or password";
+            if (password_verify($pass, $row['pass'])) {
+                $_SESSION["id_user"] = $row['id_user'];
+                $_SESSION["Uname"] = $row['user_name'];
+
+                if ($row['role'] == 'admin') {
+                    header("Location: ../admin/adminPanel.php");
+                } else if ($row['role'] == 'doctor') {
+                    header("Location: ./doctorPanel.php");
+                } else {
+                    header("Location: ./homepage.php");
+                }
+                exit();
+            } else {
+                $msg = "Wrong username or password";
+            }
+        } else {
+            $msg = "Wrong username or password";
+        }
+
+        $stmt->close();
+    } else {
+        $msg = "Something went wrong with the database connection.";
     }
 }
 ?>

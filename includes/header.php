@@ -138,10 +138,13 @@
         echo '
         <a href="../public/view/logout.php">Logout</a>
         <a href="../public/view/homepage.php">Homepage</a>
-        <a href="#doctor">Doctor</a>';
+        <a href="#doctor">Doctor</a>
+        <a href="adminManageSchedule.php">Manage Schedule</a>
+        <a href="adminTestResult.php">Show result</a>';
+        
       } elseif (in_array($currentPage, [
         "adminBloodDonation.php", "adminChatReview.php", "adminDashboard.php",
-        "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php"
+        "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminManageSchedule.php","adminTestResult.php"
       ])) {
         echo '
         <a href="../public/view/logout.php">Logout</a>

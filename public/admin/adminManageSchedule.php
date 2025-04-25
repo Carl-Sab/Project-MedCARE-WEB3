@@ -90,6 +90,10 @@
   </style>
 </head>
 <body>
+<?php
+  include "../../includes/header.php";
+
+  ?>
   <h2>Doctor Schedule Management</h2>
 
   <div class="summary">

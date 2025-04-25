@@ -90,6 +90,9 @@
   </style>
 </head>
 <body>
+   <?php include "../../includes/header.php";
+
+  ?>
   <h2>Test Results Management</h2>
 
   <div class="summary">

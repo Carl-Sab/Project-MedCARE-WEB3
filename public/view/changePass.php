@@ -9,36 +9,44 @@
   <title>Change Password</title>
 </head>
 <?php
-
 include "../../includes/connection.php";
 session_start();
 
-if(isset($_POST['pass'])){
+if (isset($_POST['pass']) && isset($_SESSION['id_user'])) {
     $pass = $_POST['pass'];
-    $hashedPass=password_hash($pass,PASSWORD_DEFAULT);
+    $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
     $id = $_SESSION['id_user'];
-    $sql = "UPDATE users set pass = '$hashedPass' where id_user =$id;";
-    $conn->query($sql);
 
-    $sql = "SELECT * FROM users where id_user = $id;";
-    $result = $conn->query($sql);
+    // Secure UPDATE statement
+    $update = $conn->prepare("UPDATE users SET pass = ? WHERE id_user = ?");
+    $update->bind_param("si", $hashedPass, $id);
+    $update->execute();
+    $update->close();
 
-    if ($result->num_rows>0){
-       $row = $result->fetch_assoc();
-       if($row['role']=='admin'){
-        header("location:../admin/adminPanel.php");
-       }
+    // Secure SELECT statement
+    $select = $conn->prepare("SELECT role FROM users WHERE id_user = ?");
+    $select->bind_param("i", $id);
+    $select->execute();
+    $result = $select->get_result();
 
-       else if($row['role']=='doctor'){
-        header("location:./doctorPanel.php");
-       }
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $role = $row['role'];
 
-       else{
-        header("location:./homepage.php");
-       }
+        if ($role === 'admin') {
+            header("Location: ../admin/adminPanel.php");
+        } else if ($role === 'doctor') {
+            header("Location: ./doctorPanel.php");
+        } else {
+            header("Location: ./homepage.php");
+        }
+        exit();
     }
+
+    $select->close();
 }
 ?>
+
 <body>
   <div class="background">
     <div class="glow"></div>

@@ -17,59 +17,68 @@ require '../../PHPMailer/src/Exception.php';
 require '../../PHPMailer/src/PHPMailer.php';
 require '../../PHPMailer/src/SMTP.php';
 
-
 include '../../includes/connection.php';
-$msg ="";
-if(isset($_POST['mail'])){
-    $userEmail = $_POST['mail'];
-    $sql = "SELECT * FROM users where email = '$userEmail';";
-    $result = $conn->query($sql);
+$msg = "";
 
-    if($result->num_rows>0){
+if (isset($_POST['mail'])) {
+    $userEmail = $_POST['mail'];
+
+    // Prepare SELECT statement
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->bind_param("s", $userEmail);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $id = $row['id_user'];
-        $_SESSION['id_user'] = $id;
         $username = $row['user_name'];
-        $_SESSION["Uname"] = $username;
-        $random = rand(100000,999999);
 
-        $update = "UPDATE users set reset_token = '$random' where id_user = $id;";
-        $conn->query($update);
+        $_SESSION['id_user'] = $id;
+        $_SESSION["Uname"] = $username;
+
+        $random = rand(100000, 999999);
+
+        // Prepare UPDATE statement
+        $update = $conn->prepare("UPDATE users SET reset_token = ? WHERE id_user = ?");
+        $update->bind_param("ii", $random, $id);
+        $update->execute();
+        $update->close();
 
         try {
             $mail = new PHPMailer(true);
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com'; 
+            $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'rogerfahed9@gmail.com'; 
-            $mail->Password = 'ndce nmau gfhv wiok'; 
+            $mail->Username = 'rogerfahed9@gmail.com';
+            $mail->Password = 'ndce nmau gfhv wiok'; // Consider moving this to an .env file or config outside of public code
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
             $mail->setFrom('rogerfahed9@gmail.com', "medCare");
-            $mail->addAddress($userEmail,$username);
+            $mail->addAddress($userEmail, $username);
 
             $mail->isHTML(true);
             $mail->Subject = "Forgot password";
-            $mail->Body = "this is your code {$random} don't send it to anyone ";
+            $mail->Body = "This is your code: <strong>{$random}</strong>. Do not share it with anyone.";
 
             if ($mail->send()) {
-                header("location:./checkToken.php");
+                header("Location: ./checkToken.php");
+                exit();
             } else {
                 echo "<script>alert('Failed to send email. Please try again.'); window.history.back();</script>";
             }
         } catch (Exception $e) {
-            echo "<script>alert('Error: " . $mail->ErrorInfo . "'); window.history.back();</script>";
+            echo "<script>alert('Mailer Error: " . $mail->ErrorInfo . "'); window.history.back();</script>";
         }
+    } else {
+        $msg = "Invalid email address";
+    }
 
-
-        }
-        else{
-            $msg = "invalid email adress";
-        }
+    $stmt->close();
 }
-
 ?>
+
 <body>
 <div class="background">
     <div class="glow"></div>
