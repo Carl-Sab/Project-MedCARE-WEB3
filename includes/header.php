@@ -141,7 +141,7 @@
         <a href="#doctor">Doctor</a>';
       } elseif (in_array($currentPage, [
         "adminBloodDonation.php", "adminChatReview.php", "adminDashboard.php",
-        "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php"
+        "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminJobApply.php","adminTestResult.php",
       ])) {
         echo '
         <a href="../public/view/logout.php">Logout</a>

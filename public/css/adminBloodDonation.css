@@ -33,3 +33,6 @@
     background-color: #00796b;
     color: white;
   }
+  .pending-status {
+    color: yellow;
+  }
