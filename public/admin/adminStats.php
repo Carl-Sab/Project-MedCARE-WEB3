@@ -4,23 +4,110 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin Statistics</title>
-  <link rel="stylesheet" href="../css/adminStats.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7fb;
+      margin: 0;
+      padding: 0;
+    }
+
+    .stats-section {
+      padding: 20px;
+    }
+
+    .stats-section h2 {
+      color: #004d40;
+    }
+
+    .filter {
+      margin-bottom: 20px;
+    }
+
+    .filter input[type="month"] {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 250px;
+    }
+
+    .filter button {
+      padding: 10px 20px;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .filter button:hover {
+      background-color: #004d40;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+
+    table th {
+      background-color: #00796b;
+      color: white;
+    }
+
+    .total-profit {
+      font-size: 18px;
+      font-weight: bold;
+      color: #00796b;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
 
 <?php
 include "../../includes/header.php";
-
+include "../../includes/connection.php";  // Ensure database connection
 
 $selectedMonth = isset($_GET['month']) ? $_GET['month'] : date('Y-m');
 
-$transactions = [
-  ["date" => "2025-04-05", "user" => "Ali", "doctor" => "Dr. Smith", "option" => "Consultation", "amount" => 120, "commission" => 20],
-  ["date" => "2025-04-07", "user" => "Zainab", "doctor" => "Dr. Leila", "option" => "Vaccination", "amount" => 250, "commission" => 30],
-  ["date" => "2025-04-15", "user" => "Omar", "doctor" => "Dr. Noor", "option" => "Test", "amount" => 90, "commission" => 10],
-];
+// Corrected SQL query: Get doctor name from users (joined via doctor table)
+$sql = "SELECT 
+            p.payment_date, 
+            u.user_name AS client_name, 
+            u2.user_name AS doctor_name,
+            d.speciality AS doctor_speciality,
+            p.amount, 
+            p.admin_percentage 
+        FROM 
+            payments p
+        JOIN 
+            client c ON p.id_client = c.id_client
+        JOIN 
+            users u ON c.id_client = u.id_user         -- client user name
+        JOIN 
+            doctor d ON p.id_doctor = d.id_doctor
+        JOIN 
+            users u2 ON d.id_doctor = u2.id_user       -- doctor user name
+        WHERE 
+            DATE_FORMAT(p.payment_date, '%Y-%m') = ?";
 
-$total = 0;
+$stmt = $conn->prepare($sql);
+if (!$stmt) {
+    die("SQL prepare failed: " . $conn->error);
+}
+
+$stmt->bind_param("s", $selectedMonth);
+$stmt->execute();
+$result = $stmt->get_result();
+$totalCommission = 0;
 ?>
 
 <div class="stats-section">
@@ -28,38 +115,41 @@ $total = 0;
 
   <form class="filter" method="GET">
     <label for="month">Choose Month:</label>
-    <input type="month" name="month" id="month" value="<?= $selectedMonth ?>">
+    <input type="month" name="month" id="month" value="<?= htmlspecialchars($selectedMonth) ?>">
     <button type="submit" id="filter">Filter</button>
   </form>
 
   <table>
     <tr>
-      <th>Date time</th>
-      <th>User name</th>
-      <th>Doctor name</th>
-      <th>Option</th>
+      <th>Date Time</th>
+      <th>Client Name</th>
+      <th>Doctor Name</th>
+      <th>Doctor Speciality</th>
       <th>Transaction Amount ($)</th>
       <th>Admin Commission ($)</th>
     </tr>
+
     <?php
-    foreach ($transactions as $row) {
-      if (strpos($row['date'], $selectedMonth) === 0) {
+    while ($row = $result->fetch_assoc()) {
         echo "<tr>
-                <td>{$row['date']}</td>
-                <td>{$row['user']}</td>
-                <td>{$row['doctor']}</td>
-                <td>{$row['option']}</td>
+                <td>{$row['payment_date']}</td>
+                <td>{$row['client_name']}</td>
+                <td>{$row['doctor_name']}</td>
+                <td>{$row['doctor_speciality']}</td>
                 <td>{$row['amount']}</td>
-                <td>{$row['commission']}</td>
+                <td>{$row['admin_percentage']}</td>
               </tr>";
-        $total += $row['commission'];
-      }
+        $totalCommission += $row['admin_percentage'];
     }
     ?>
   </table>
 
-  <div class="total-profit">Total Profit: $<?= $total ?></div>
+  <div class="total-profit">Total Profit: $<?= number_format($totalCommission, 2) ?></div>
 </div>
+
+<?php
+$conn->close();
+?>
 
 </body>
 </html>

@@ -44,7 +44,7 @@
     <div class="card" id="appointments">
       <h2>Doctor schedule </h2>
       <p>Track and manage doctor appointments.</p>
-      <button><a href="">Manage schedule</a></button>
+      <button><a href="adminManageDoctorSchedule.php">Manage schedule</a></button>
     </div>
     
     <div class="card" id="userManage">
@@ -56,7 +56,7 @@
   <div class="card" id="jobApply">
     <h2>Job apply</h2>
     <p>getting employement request accept/decline</p>
-    <button><a href="#">check requests</a></button>
+    <button><a href="adminJobApply.php">check requests</a></button>
   </div>
 
   <div class="card" id="Reports">
@@ -68,7 +68,7 @@
   <div class="card" id="testResult">
     <h2>Test Result</h2>
     <p>double check on test result for prevending problems</p>
-    <button><a href="#">check result</a></button>
+    <button><a href="adminTestResult.php">check result</a></button>
   </div>
   </div>
   <footer>

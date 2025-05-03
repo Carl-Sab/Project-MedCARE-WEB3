@@ -144,7 +144,11 @@
         
       } elseif (in_array($currentPage, [
         "adminBloodDonation.php", "adminChatReview.php", "adminDashboard.php",
+<<<<<<< HEAD
         "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminManageSchedule.php","adminTestResult.php"
+=======
+        "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminJobApply.php","adminTestResult.php",
+>>>>>>> Roger
       ])) {
         echo '
         <a href="../public/view/logout.php">Logout</a>

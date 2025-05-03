@@ -1,8 +1,11 @@
+<?php
+include "../../includes/connection.php"; // Adjust this path as needed
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Test Results Management</title>
   <style>
     /* General Styling */
@@ -95,21 +98,6 @@
   ?>
   <h2>Test Results Management</h2>
 
-  <div class="summary">
-    <div>
-      <h3>Total Tests</h3>
-      <p>50</p>
-    </div>
-    <div>
-      <h3>Pending Results</h3>
-      <p>10</p>
-    </div>
-    <div>
-      <h3>Completed Results</h3>
-      <p>40</p>
-    </div>
-  </div>
-
   <div class="filter">
     <input type="search" placeholder="Search by Patient or Test Name...">
   </div>
@@ -118,6 +106,7 @@
     <thead>
       <tr>
         <th>Patient Name</th>
+        <th>Doctor Name</th>
         <th>Test Name</th>
         <th>Date</th>
         <th>Status</th>
@@ -125,73 +114,54 @@
       </tr>
     </thead>
     <tbody id="results-table">
-      <tr>
-        <td>John Doe</td>
-        <td>Blood Test</td>
-        <td>2025-04-21</td>
-        <td>Completed</td>
-        <td class="action-buttons">
-          <button class="view-btn">View</button>
-          <button class="edit-btn">Edit</button>
-        </td>
-      </tr>
-      <tr>
-        <td>Jane Smith</td>
-        <td>X-Ray</td>
-        <td>2025-04-20</td>
-        <td>Pending</td>
-        <td class="action-buttons">
-          <button class="view-btn">View</button>
-          <button class="edit-btn">Edit</button>
-        </td>
-      </tr>
+      <?php
+      $sql = "SELECT 
+                tr.id_result, 
+                u_client.user_name AS patient_name,
+                u_doctor.user_name AS doctor_name,
+                tr.result, 
+                tr.date_result
+              FROM test_result tr
+              LEFT JOIN users u_client ON tr.id_client = u_client.id_user
+              LEFT JOIN users u_doctor ON tr.id_doctor = u_doctor.id_user
+              ORDER BY tr.date_result DESC";
+
+      $res = $conn->query($sql);
+      if ($res && $res->num_rows > 0) {
+        while ($row = $res->fetch_assoc()) {
+          $status = stripos($row['result'], 'pending') !== false ? 'Pending' : 'Completed';
+          echo "<tr>
+                  <td>{$row['patient_name']}</td>
+                  <td>{$row['doctor_name']}</td>
+                  <td>{$row['result']}</td>
+                  <td>{$row['date_result']}</td>
+                  <td>$status</td>
+                  <td class='action-buttons'>
+                    <button class='view-btn' data-id='{$row['id_result']}'>View</button>
+                  </td>
+                </tr>";
+        }
+      } else {
+        echo "<tr><td colspan='6'>No test results found.</td></tr>";
+      }
+      ?>
     </tbody>
   </table>
-  <button id="add-result-btn">Add New Result</button>
 
   <script>
-    // Add Test Result Functionality
-    const addResultButton = document.getElementById('add-result-btn');
-    addResultButton.addEventListener('click', () => {
-      const resultsTable = document.getElementById('results-table');
-      const newRow = document.createElement('tr');
-      newRow.innerHTML = `
-        <td>New Patient</td>
-        <td>New Test</td>
-        <td>2025-04-22</td>
-        <td>Pending</td>
-        <td class="action-buttons">
-          <button class="view-btn">View</button>
-          <button class="edit-btn">Edit</button>
-        </td>
-      `;
-      resultsTable.appendChild(newRow);
-      alert('New test result added!');
+    document.getElementById('add-result-btn').addEventListener('click', () => {
+      alert('Redirect to add result form (to be implemented).');
     });
 
-    // Edit and View Buttons
     document.getElementById('results-table').addEventListener('click', (event) => {
-      // View functionality
       if (event.target.classList.contains('view-btn')) {
-        alert('Viewing test result details!');
-        // Add your logic for displaying details
+        const id = event.target.getAttribute('data-id');
+        alert('Viewing test result ID: ' + id);
       }
-      // Edit functionality
-      if (event.target.classList.contains('edit-btn')) {
-        const row = event.target.closest('tr');
-        const cells = row.getElementsByTagName('td');
-        const patientName = prompt('Edit Patient Name:', cells[0].innerText);
-        const testName = prompt('Edit Test Name:', cells[1].innerText);
-        const date = prompt('Edit Date (YYYY-MM-DD):', cells[2].innerText);
-        const status = prompt('Edit Status (Pending/Completed):', cells[3].innerText);
 
-        if (patientName && testName && date && status) {
-          cells[0].innerText = patientName;
-          cells[1].innerText = testName;
-          cells[2].innerText = date;
-          cells[3].innerText = status;
-          alert('Test result updated successfully!');
-        }
+      if (event.target.classList.contains('edit-btn')) {
+        const id = event.target.getAttribute('data-id');
+        alert('Redirect to edit result form for ID: ' + id);
       }
     });
   </script>

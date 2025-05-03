@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Blood Donation Management</title>
+  <title>Blood Requests</title>
   <link rel="stylesheet" href="../css/adminPanel.css" />
   <link rel="stylesheet" href="../css/adminBloodDonation.css">
 </head>
@@ -11,51 +11,59 @@
 
 <?php
 include "../../includes/header.php";
-
+include "../../includes/connection.php";
 
 $selectedMonth = isset($_GET['month']) ? $_GET['month'] : date('Y-m');
 
-// Dummy data (replace with real DB results)
-$donations = [
-  ["donor" => "Ali Saleh", "blood" => "A+", "receiver" => "Sarah Noor", "date" => "2025-04-02"],
-  ["donor" => "Maya Khaled", "blood" => "B-", "receiver" => "Kareem Zaki", "date" => "2025-04-15"],
-  ["donor" => "Ahmed Sami", "blood" => "O+", "receiver" => "Nada Tarek", "date" => "2025-03-21"],
-];
+$sql = "SELECT r.id_blood_req, u.user_name AS requester, r.blood_type, r.date_request, r.status, t.id_transaction, t.id_donor, t.date_transaction
+        FROM blood_request r
+        JOIN users u ON r.id_requester = u.id_user
+        LEFT JOIN blood_transaction t ON r.id_blood_req = t.id_blood_req
+        WHERE DATE_FORMAT(r.date_request, '%Y-%m') = ?;";
+$stmt = $conn->prepare($sql);
+if (!$stmt) {
+    die("SQL prepare failed: " . $conn->error);
+}
+
+$stmt->bind_param("s", $selectedMonth);
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <div class="stats-section">
-  <h2>Blood Donation Records</h2>
+  <h2>Blood Request & Transaction Records</h2>
 
   <form class="filter" method="GET">
     <label for="month">Choose Month:</label>
-    <input type="month" name="month" id="month" value="<?= $selectedMonth ?>" />
-    <select name="status" id="status">
-      <option value="completed">completed</option>
-      <option value="pending">pending</option>
-      <option value="canceled">canceled</option>
-    </select>
+    <input type="month" name="month" id="month" value="<?= htmlspecialchars($selectedMonth) ?>" />
     <button type="submit">Filter</button>
   </form>
 
   <table>
     <tr>
-      <th>Donor Name</th>
-      <th>Blood Group</th>
-      <th>Receiver Name</th>
-      <th>Date of Donation</th>
+      <th>Request ID</th>
+      <th>Requester Name</th>
+      <th>Blood Type</th>
+      <th>Date of Request</th>
+      <th>Status</th>
+      <th>Transaction ID</th>
+      <th>Donor ID</th>
+      <th>Date of Transaction</th>
     </tr>
-    <?php
-    foreach ($donations as $row) {
-      if (strpos($row['date'], $selectedMonth) === 0) {
-        echo "<tr>
-                <td>{$row['donor']}</td>
-                <td>{$row['blood']}</td>
-                <td>{$row['receiver']}</td>
-                <td>{$row['date']}</td>
-              </tr>";
-      }
-    }
-    ?>
+    <?php while ($row = $result->fetch_assoc()): ?>
+      <tr>
+        <td><?= htmlspecialchars($row['id_blood_req']) ?></td>
+        <td><?= htmlspecialchars($row['requester']) ?></td>
+        <td><?= htmlspecialchars($row['blood_type']) ?></td>
+        <td><?= htmlspecialchars($row['date_request']) ?></td>
+        <td class="<?= $row['status'] == 'pending' ? 'pending-status' : '' ?>">
+          <?= htmlspecialchars($row['status']) ?>
+        </td>
+        <td><?= $row['id_transaction'] ? htmlspecialchars($row['id_transaction']) : 'N/A' ?></td>
+        <td><?= $row['id_donor'] ? htmlspecialchars($row['id_donor']) : 'N/A' ?></td>
+        <td><?= $row['date_transaction'] ? htmlspecialchars($row['date_transaction']) : 'N/A' ?></td>
+      </tr>
+    <?php endwhile; ?>
   </table>
 </div>
 
