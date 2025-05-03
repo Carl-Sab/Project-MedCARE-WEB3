@@ -92,7 +92,7 @@
 <body>
 <?php
   include "../../includes/header.php";
-
+  include "../../includes/connection.php";
   ?>
   <h2>Doctor Schedule Management</h2>
 
@@ -122,26 +122,27 @@
       </tr>
     </thead>
     <tbody id="schedule-table">
-      <tr>
-        <td>Dr. Smith</td>
-        <td>2025-04-22</td>
-        <td>10:00 AM - 11:00 AM</td>
-        <td>Available</td>
-        <td class="action-buttons">
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
-        </td>
-      </tr>
-      <tr>
-        <td>Dr. Jones</td>
-        <td>2025-04-22</td>
-        <td>11:00 AM - 12:00 PM</td>
-        <td>Booked</td>
-        <td class="action-buttons">
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
-        </td>
-      </tr>
+   <?php
+  $query = "SELECT user_name FROM users WHERE role = 'doctor'";
+  $result = mysqli_query($conn, $query);
+
+  if ($result && mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+      echo "<tr>
+              <td>Dr. " . htmlspecialchars($row['user_name']) . "</td>
+              <td>2025-04-22</td>
+              <td>10:00 AM - 11:00 AM</td>
+              <td>Available</td>
+              <td class='action-buttons'>
+                <button class='edit-btn'>Change Schedule</button>
+                <button class='delete-btn'>Delete</button>
+              </td>
+            </tr>";
+    }
+  }else{
+      echo "<tr><td colspan='5'>No doctors found.</td></tr>";
+  }
+  ?>
     </tbody>
   </table>
   <button id="add-slot-btn">Add Slot</button>
