@@ -73,7 +73,7 @@
       background-color: #005f56;
       transform: scale(1.1);
     }
-    #add-slot-btn {
+    #add-slot-btn,#edit-btn {
       margin: 20px;
       padding: 10px;
       background-color: #00796b;
@@ -84,8 +84,12 @@
       font-size: 16px;
       transition: background-color 0.3s ease;
     }
-    #add-slot-btn:hover {
+    #add-slot-btn:hover,#edit-btn:hover {
       background-color: #005f56;
+    }
+    a{
+      text-decoration: none;
+      color: white;
     }
   </style>
 </head>
@@ -112,40 +116,69 @@
   </div>
 
   <table>
-    <thead>
-      <tr>
-        <th>Doctor Name</th>
-        <th>Date</th>
-        <th>Time Slot</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody id="schedule-table">
-   <?php
-  $query = "SELECT user_name FROM users WHERE role = 'doctor'";
-  $result = mysqli_query($conn, $query);
+  <thead>
+    <tr>
+      <th>Doctor Name</th>
+      <th>Time Slot</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody id="schedule-table">
+    <?php
+    include "../../includes/connection.php";
 
-  if ($result && mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-      echo "<tr>
-              <td>Dr. " . htmlspecialchars($row['user_name']) . "</td>
-              <td>2025-04-22</td>
-              <td>10:00 AM - 11:00 AM</td>
-              <td>Available</td>
-              <td class='action-buttons'>
-                <button class='edit-btn'>Change Schedule</button>
-                <button class='delete-btn'>Delete</button>
-              </td>
-            </tr>";
-    }
-  }else{
+    // Fetch all doctors
+    $query = "SELECT * FROM users WHERE role = 'doctor'";
+    $result = mysqli_query($conn, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+      while ($row = mysqli_fetch_assoc($result)) {
+        $doctorName = "Dr. " . htmlspecialchars($row['user_name']);
+        $doctorId = $row['id_user'];
+
+        // Check for schedule for the doctor
+        $scheduleQuery = "SELECT * FROM time_slots WHERE id_doctor = $doctorId";
+        $scheduleResult = mysqli_query($conn, $scheduleQuery);
+
+        if ($scheduleResult && mysqli_num_rows($scheduleResult) > 0) {
+          while ($scheduleRow = mysqli_fetch_assoc($scheduleResult)) {
+            $date = $scheduleRow['date'] ?? "—";
+            $startTime = $scheduleRow['start_time'] ?? "—";
+            $endTime = $scheduleRow['end_time'] ?? "—";
+            $status = $scheduleRow['is_booked'] ? "Booked" : "Available";
+            
+            echo "<tr>
+                    <td>$doctorName</td>
+                    <td>$startTime - $endTime</td>
+                    <td>$status</td>
+                    <td class='action-buttons'>
+                      <button class='delete-btn'>Delete</button>
+                    </td>
+                  </tr>";
+          }
+        } else {
+          // If no schedule exists, show "No Schedule"
+          echo "<tr>
+                  <td>$doctorName</td>
+                  <td>No Schedule</td>
+                  <td>Unavailable</td>
+                  <td class='action-buttons'>
+ 
+                    <button class='delete-btn'>Delete</button>
+                  </td>
+                </tr>";
+        }
+      }
+    } else {
       echo "<tr><td colspan='5'>No doctors found.</td></tr>";
-  }
-  ?>
-    </tbody>
-  </table>
+    }
+    ?>
+  </tbody>
+</table>
+
   <button id="add-slot-btn">Add Slot</button>
+  <button id='edit-btn'><a href="adminChooseSchedule">Change Schedule</a></button>
 
   <script>
     // Add Slot Functionality
@@ -159,7 +192,6 @@
         <td>1:00 PM - 2:00 PM</td>
         <td>Available</td>
         <td class="action-buttons">
-          <button class="edit-btn">Edit</button>
           <button class="delete-btn">Delete</button>
         </td>
       `;
