@@ -148,7 +148,7 @@
         "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminManageSchedule.php","adminTestResult.php"
 =======
         "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminManageSchedule.php","adminTestResult.php",
-        "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminJobApply.php","adminTestResult.php",
+        "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminJobApply.php","adminTestResult.php","adminChatReview.php"
 
 >>>>>>> origin/dev
       ])) {
