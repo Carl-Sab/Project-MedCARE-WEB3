@@ -22,7 +22,7 @@ if (!$result) {
     body {
       font-family: Arial, sans-serif;
       background: #f4f7fb;
-      padding: 20px;
+      
     }
     h2 {
       color: #004d40;
@@ -44,7 +44,9 @@ if (!$result) {
   </style>
 </head>
 <body>
-
+<?php
+include "../../includes/header.php";
+?>
 <h2>All Chat Reviews</h2>
 
 <table>
