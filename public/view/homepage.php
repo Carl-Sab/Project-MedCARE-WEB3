@@ -42,7 +42,7 @@ $id = $_SESSION['id_user'];
         <section id="appointments">
             <h2>Consultation & Appointments</h2>
             <p>Request consultations, view time slots, and manage your bookings.</p>
-            <button class="btn">Book Now</button>
+            <button class="btn"><a href="doctorSelect.php">Book Now</a></button>
         </section>
         <section id="emergency-requests">
             <h2>Emergency Requests</h2>
