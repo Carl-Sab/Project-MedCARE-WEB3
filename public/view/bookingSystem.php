@@ -108,7 +108,7 @@ while ($current < $end_time) {
 </head>
 <body>
 <div class="container">
-    <a href="doctorsList.php" class="btn back-btn">← Back</a>
+    <a href="doctorSelect.php" class="btn back-btn">← Back</a>
     <h1>MedCare Booking</h1>
     <h2>All Slots</h2>
     <table>
