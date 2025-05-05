@@ -1,44 +1,49 @@
 <?php
-// bookAppointment.php
-require '../../includes/connection.php';  // Include the database connection
+require '../../includes/connection.php';
 
-// Handle Appointment Booking
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book_appointment'])) {
-    $doctor_id = $_POST['doctor_id'];
-    $patient_id = $_POST['patient_id'];
-    $slot_time = $_POST['slot_time'];
-    $date = $_POST['date'];
+// Get doctor_id from URL
+$doctor_id = isset($_GET['doctor_id']) ? intval($_GET['doctor_id']) : 0;
+if ($doctor_id <= 0) {
+    die("Invalid doctor ID.");
+}
 
-    // Check if the slot is available (is_booked == 0)
-    $query = "SELECT * FROM slot WHERE id_doctor = :doctor_id AND slot_time = :slot_time AND date = :date AND is_booked = 0";
-    $stmt = $pdo->prepare($query);
-    $stmt->bindParam(':doctor_id', $doctor_id);
-    $stmt->bindParam(':slot_time', $slot_time);
-    $stmt->bindParam(':date', $date);
-    $stmt->execute();
+// Get the time range for the doctor (assuming only one record in time_slots defines range)
+$sql = "SELECT start_time, End_time FROM time_slots WHERE id_doctor = $doctor_id LIMIT 1";
+$result = $conn->query($sql);
 
-    if ($stmt->rowCount() > 0) {
-        // Slot is available, let's book it
-        $insertQuery = "INSERT INTO appointments (id_doctor, id_patient, slot_time, date) VALUES (:doctor_id, :patient_id, :slot_time, :date)";
-        $insertStmt = $pdo->prepare($insertQuery);
-        $insertStmt->bindParam(':doctor_id', $doctor_id);
-        $insertStmt->bindParam(':patient_id', $patient_id);
-        $insertStmt->bindParam(':slot_time', $slot_time);
-        $insertStmt->bindParam(':date', $date);
-        $insertStmt->execute();
+if (!$result || $result->num_rows === 0) {
+    die("No schedule found for this doctor.");
+}
 
-        // Mark the slot as booked
-        $updateQuery = "UPDATE slot SET is_booked = 1 WHERE id_doctor = :doctor_id AND slot_time = :slot_time AND date = :date";
-        $updateStmt = $pdo->prepare($updateQuery);
-        $updateStmt->bindParam(':doctor_id', $doctor_id);
-        $updateStmt->bindParam(':slot_time', $slot_time);
-        $updateStmt->bindParam(':date', $date);
-        $updateStmt->execute();
+$row = $result->fetch_assoc();
+$start_time = new DateTime($row['start_time']);
+$end_time = new DateTime($row['End_time']);
 
-        echo "<div class='success-message'>Your appointment has been successfully booked!</div>";
-    } else {
-        echo "<div class='error-message'>This slot is already booked or unavailable.</div>";
+// Fetch already booked slots
+$booked_slots = [];
+$booked_sql = "SELECT start_time FROM time_slots WHERE id_doctor = $doctor_id AND is_booked = 1";
+$booked_result = $conn->query($booked_sql);
+if ($booked_result && $booked_result->num_rows > 0) {
+    while ($booked_row = $booked_result->fetch_assoc()) {
+        $booked_slots[] = $booked_row['start_time'];
     }
+}
+
+// Generate all 1-hour slots
+$slots = [];
+$current = clone $start_time;
+while ($current < $end_time) {
+    $next = clone $current;
+    $next->modify('+1 hour');
+    if ($next > $end_time) break;
+
+    $slots[] = [
+        'start_time' => $current->format('Y-m-d H:i:s'),
+        'end_time' => $next->format('Y-m-d H:i:s'),
+        'is_booked' => in_array($current->format('Y-m-d H:i:s'), $booked_slots) ? 1 : 0
+    ];
+
+    $current = $next;
 }
 ?>
 
@@ -46,95 +51,119 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book_appointment'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book an Appointment</title>
+    <title>MedCare Booking</title>
     <style>
-        /* CSS Styling */
         body {
+            background: linear-gradient(135deg, #00796b, #004d40);
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
+            color: #fff;
         }
-
         .container {
-            max-width: 600px;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
             margin: 50px auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
         }
-
-        h1 {
+        h1, h2 {
             text-align: center;
-            color: #333;
         }
-
-        label {
-            display: block;
-            margin: 10px 0 5px;
-        }
-
-        input[type="number"],
-        input[type="time"],
-        input[type="date"],
-        button {
+        table {
             width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            font-size: 16px;
+            background: rgba(0,0,0,0.2);
+            border-collapse: collapse;
+            border-radius: 15px;
+            overflow: hidden;
         }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        .success-message, .error-message {
-            padding: 10px;
+        th, td {
+            padding: 12px;
             text-align: center;
-            margin-top: 20px;
-            font-weight: bold;
         }
-
-        .success-message {
-            background-color: #4CAF50;
-            color: white;
+        th {
+            background: rgba(0,0,0,0.4);
         }
-
-        .error-message {
-            background-color: #f44336;
-            color: white;
+        tr:nth-child(even) {
+            background: rgba(0,0,0,0.1);
+        }
+        .btn {
+            background: #004d40;
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn:disabled {
+            background: gray;
+            cursor: not-allowed;
+        }
+        .back-btn {
+            background: #00695c;
+            margin-bottom: 15px;
+            display: inline-block;
         }
     </style>
 </head>
 <body>
-
 <div class="container">
-    <h1>Book an Appointment</h1>
-    <form method="POST" action="bookAppointment.php">
-        <input type="hidden" name="book_appointment">
-        <label for="doctor_id">Doctor ID:</label>
-        <input type="number" name="doctor_id" required>
-
-        <label for="patient_id">Patient ID:</label>
-        <input type="number" name="patient_id" required>
-
-        <label for="slot_time">Slot Time (HH:MM):</label>
-        <input type="time" name="slot_time" required>
-
-        <label for="date">Date (YYYY-MM-DD):</label>
-        <input type="date" name="date" required>
-
-        <button type="submit">Book Appointment</button>
-    </form>
+    <a href="doctorsList.php" class="btn back-btn">← Back</a>
+    <h1>MedCare Booking</h1>
+    <h2>All Slots</h2>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        <?php foreach ($slots as $index => $slot): ?>
+            <tr>
+                <td><?php echo $index + 1; ?></td>
+                <td><?php echo $slot['start_time']; ?></td>
+                <td><?php echo $slot['end_time']; ?></td>
+                <td id="status-<?php echo $index; ?>">
+                    <?php echo ($slot['is_booked']) ? 'Unavailable' : 'Available'; ?>
+                </td>
+                <td>
+                    <?php if (!$slot['is_booked']): ?>
+                        <button id="book-btn-<?php echo $index; ?>" onclick="bookSlot('<?php echo $slot['start_time']; ?>', '<?php echo $slot['end_time']; ?>', <?php echo $doctor_id; ?>, <?php echo $index; ?>)">
+                            Book
+                        </button>
+                    <?php else: ?>
+                        <button disabled>Booked</button>
+                    <?php endif; ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
 </div>
 
+<script>
+function bookSlot(startTime, endTime, doctorId, index) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'bookSlot.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var response = xhr.responseText;
+
+            if (response.includes('Slot booked successfully')) {
+                document.getElementById('status-' + index).textContent = 'Unavailable';
+                var button = document.getElementById('book-btn-' + index);
+                button.disabled = true;
+                button.textContent = 'Booked';
+            } else {
+                alert(response);
+            }
+        }
+    };
+
+    xhr.send('start_time=' + encodeURIComponent(startTime) + '&end_time=' + encodeURIComponent(endTime) + '&doctor_id=' + doctorId);
+}
+</script>
 </body>
 </html>
