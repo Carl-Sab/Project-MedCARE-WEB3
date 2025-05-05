@@ -9,99 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     <link rel="stylesheet" href="./public/css/index.css">
     <link rel="stylesheet" href="./public/css/footer.css">
-    <!-- <style>
-      
-      header {
-    background: linear-gradient(135deg, #00796b, #004d40);
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-}
-
-header h1 {
-    font-size: 36px;
-}
-
-nav {
-    display: flex;
-}
-
-.menu-toggle {
-    display: none;
-    font-size: 30px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    color: white;
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-    padding: 8px 16px;
-    border-radius: 20px;
-    transition: background 0.3s, color 0.3s;
-}
-
-nav a:hover {
-    background: white;
-    color: #004d40;
-}
-
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    nav {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: linear-gradient(81deg, #00796b, #004d40);
-        text-align: center;
-        padding: 10px 0;
-        z-index: 99;
-    }
-
-    nav a {
-        display: block;
-        margin: 10px 0;
-        font-size: 18px;
-        padding: 12px 20px;
-    }
-
-    nav.active {
-        display: flex;
-    }
-
-    header h1 {
-        font-size: 28px;
-    }
-}
-
-    </style> -->
-  </head>
-  <body>
-
-  <!-- <header>
-    <h1>MedCare</h1>
-    <button class="menu-toggle" onclick="toggleMenu()">
-      <i class="fas fa-bars"></i>
-    </button>
-    <nav id="menu">
-      <a href="#features">Features</a>
-      <a href="#about">About Us</a>
-      <a href="#services">Services</a>
-      <a href="public/view/login.php">Login</a>
-    </nav> 
-  </header> -->
-<?php include "includes/header.php"    ?>
+ 
+<?php
+include "includes/header.php";
+echo "<style>.n1{display:flex}</style>";
+?>
     <section class="intro">
     <img src="public\images\MedCare.jpg" alt="Medical Care">
     <div class="overlay">

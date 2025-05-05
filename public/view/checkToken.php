@@ -8,24 +8,35 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="../css/checkToken.css">
 </head>
-
 <?php
 include "../../includes/connection.php";
 session_start();
 
-if(isset($_POST['code'])){
+if (isset($_POST['code']) && isset($_SESSION['id_user'])) {
     $code = $_POST['code'];
     $id = $_SESSION['id_user'];
-    $sql = "SELECT * FROM users where id_user = '$id' and reset_token = '$code';";
-    $result = $conn->query($sql);
 
-    if($result->num_rows>0){
-        $update = "UPDATE users set reset_token = NULL where id_user = '$id';";
-        $conn->query($update);
-        header("location:./changePass.php");
+    // Secure SELECT statement
+    $stmt = $conn->prepare("SELECT * FROM users WHERE id_user = ? AND reset_token = ?");
+    $stmt->bind_param("ii", $id, $code); // both are integers
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        // Secure UPDATE statement to clear reset_token
+        $update = $conn->prepare("UPDATE users SET reset_token = NULL WHERE id_user = ?");
+        $update->bind_param("i", $id);
+        $update->execute();
+        $update->close();
+
+        header("Location: ./changePass.php");
+        exit();
     }
+
+    $stmt->close();
 }
 ?>
+
 <body>
     
     <div class="background">

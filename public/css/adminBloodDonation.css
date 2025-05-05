@@ -1,0 +1,38 @@
+.stats-section {
+    padding: 20px;
+  }
+
+  .stats-section h2 {
+    color: #004d40;
+  }
+
+  .filter {
+    margin-bottom: 20px;
+  }
+
+  .filter input,select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+  }
+
+  table th, table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+
+  table th {
+    background-color: #00796b;
+    color: white;
+  }
+  .pending-status {
+    color: yellow;
+  }

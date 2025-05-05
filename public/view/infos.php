@@ -12,14 +12,13 @@
 include "../../includes/connection.php";
 session_start();
 $id = $_SESSION["id_user"];
-
 $msg = "";
+
 if (isset($_POST['dob'], $_POST['adress'], $_POST['blood_type'], $_POST['condition'])) {
     $dob = $_POST['dob'];
     $adress = $_POST['adress'];
     $blood_type = $_POST['blood_type'];
     $condition = $_POST['condition'];
-    $id = $_SESSION["id_user"];
 
     $file_uploaded = false;
     $file_name = 'default_profile_pic.jpg';
@@ -47,26 +46,35 @@ if (isset($_POST['dob'], $_POST['adress'], $_POST['blood_type'], $_POST['conditi
         }
     }
 
+    // Use prepared statements for the update
     if ($file_uploaded) {
-        $update = "UPDATE users SET `PPicture` = '$file_name', `date_of_birth` = '$dob', `adress` = '$adress' WHERE `id_user` = '$id';";
+        $update = $conn->prepare("UPDATE users SET PPicture = ?, date_of_birth = ?, adress = ? WHERE id_user = ?");
+        $update->bind_param("sssi", $file_name, $dob, $adress, $id);
     } else {
-        $update = "UPDATE users SET `date_of_birth` = '$dob', `adress` = '$adress' WHERE `id_user` = '$id';";
+        $update = $conn->prepare("UPDATE users SET date_of_birth = ?, adress = ? WHERE id_user = ?");
+        $update->bind_param("ssi", $dob, $adress, $id);
     }
 
-    if ($conn->query($update) === TRUE) {
-      $insert = "INSERT INTO client (id_client, blood_type, health_condition) VALUES ($id, '$blood_type', '$condition')";
-        
-        if ($conn->query($insert) === TRUE) {
-          header("location:homepage.php");
+    if ($update->execute()) {
+        $update->close();
+
+        // Secure insert into client table
+        $insert = $conn->prepare("INSERT INTO client (id_client, blood_type, health_condition) VALUES (?, ?, ?)");
+        $insert->bind_param("iss", $id, $blood_type, $condition);
+
+        if ($insert->execute()) {
+            $insert->close();
+            header("Location: homepage.php");
+            exit();
         } else {
-            $msg = "Error while inserting client data: " . $conn->error;
+            $msg = "Error while inserting client data: " . $insert->error;
         }
     } else {
-        $msg = "Error while updating user data: " . $conn->error;
+        $msg = "Error while updating user data: " . $update->error;
     }
 }
-
 ?>
+
 <body>
 <div class="background">
       <div class="glow"></div>

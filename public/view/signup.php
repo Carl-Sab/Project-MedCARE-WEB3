@@ -8,31 +8,49 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     <link rel="stylesheet" href="../css/signup.css">
   </head>
-<?php 
+  <?php
 include "../../includes/connection.php";
 session_start();
 
-if(isset($_POST['uname'],$_POST['mail'],$_POST['tel'],$_POST['pass'])){
-  $name = $_POST['uname'];
-  $email = $_POST['mail'];
-  $tel = $_POST['tel'];
-  $pass = $_POST['pass'];
-  $hashedPass=password_hash($pass,PASSWORD_DEFAULT);
-  $insert = "INSERT INTO users (`user_name`,`email`,`tel`,`pass`,`role`)VALUES('$name','$email','$tel','$hashedPass','client');";
-  $conn ->query($insert);
+if (isset($_POST['uname'], $_POST['mail'], $_POST['tel'], $_POST['pass'])) {
+    $name = $_POST['uname'];
+    $email = $_POST['mail'];
+    $tel = $_POST['tel'];
+    $pass = $_POST['pass'];
+    $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
 
-  $select = "SELECT * from users where user_name = '$name' && email = '$email';";
-  $result = $conn->query($select);
+    // Insert user securely
+    $insert = $conn->prepare("INSERT INTO users (`user_name`, `email`, `tel`, `pass`, `role`) VALUES (?, ?, ?, ?, 'client')");
+    if ($insert) {
+        $insert->bind_param("ssss", $name, $email, $tel, $hashedPass);
+        $insert->execute();
+        $insert->close();
+    } else {
+        die("Error preparing insert statement: " . $conn->error);
+    }
 
-  if($result->num_rows>0){
-    $row = $result->fetch_assoc();
-    $_SESSION['id_user'] = $row["id_user"];
-    $_SESSION['Uname'] = $name;
-    header("location:infos.php");
-  }
+    // Select newly inserted user securely
+    $select = $conn->prepare("SELECT * FROM users WHERE user_name = ? AND email = ?");
+    if ($select) {
+        $select->bind_param("ss", $name, $email);
+        $select->execute();
+        $result = $select->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $_SESSION['id_user'] = $row["id_user"];
+            $_SESSION['Uname'] = $name;
+            header("location:infos.php");
+            exit();
+        }
+
+        $select->close();
+    } else {
+        die("Error preparing select statement: " . $conn->error);
+    }
 }
-
 ?>
+
   <body>
     <div class="background">
       <div class="glow"></div>

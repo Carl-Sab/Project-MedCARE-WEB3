@@ -2,10 +2,14 @@ body {
     font-family: 'Roboto', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #e0f7fa;
+    background-color: white;
     color: #333;
 }
 header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
     background: linear-gradient(90deg, #00796b, #004d40);
     color: #fff;
     padding: 2rem;
@@ -85,4 +89,8 @@ footer {
     text-align: center;
     padding: 1rem;
     margin-top: 2rem;
+}
+button a{
+    text-decoration: none;
+    color: white;
 }

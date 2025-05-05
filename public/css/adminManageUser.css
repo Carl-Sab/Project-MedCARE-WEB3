@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fb;
+    margin: 0;
+    padding: 0;
+  }
+  h2 {
+    color: #004d40;
+    margin-bottom: 20px;
+  }
+
+  .filter {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .filter input[type="search"] {
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 250px;
+    margin-left: 10px;
+  }
+
+  .summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+
+  .summary div {
+    background-color: #00796b;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  .summary div h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  .summary div p {
+    font-size: 32px;
+    margin: 10px 0;
+    font-weight: bold;
+  }
+
+  .summary div:hover {
+    background-color: #004d40;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  table th, table td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 14px;
+  }
+
+  table th {
+    background-color: #00796b;
+    color: white;
+  }
+
+  .role-btn {
+    background-color: #00796b;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .role-btn:hover {
+    background-color: #005f56;
+  }
+
+  .status {
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
+  .role {
+    color: #00796b;
+  }
+
+  .role select {
+    padding: 6px;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+  .no-users {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+  }

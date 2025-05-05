@@ -10,13 +10,20 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             console.log('Welcome to the enhanced MedCare homepage!');
-            // Add additional interactivity (e.g., animations or functionality) here
         });
     </script>
 </head>
+<?php
+
+session_start();
+include "../../includes/connection.php";
+$Uname = $_SESSION['Uname'];
+$id = $_SESSION['id_user'];
+
+?>
 <body>
     <header>
-        <h1>Welcome to MedCare</h1>
+        <h1>MedCare</h1>
         <nav>
             <ul>
                 <li><a href="#blood-donation">Blood Donation</a></li>
@@ -35,7 +42,7 @@
         <section id="appointments">
             <h2>Consultation & Appointments</h2>
             <p>Request consultations, view time slots, and manage your bookings.</p>
-            <button class="btn">Book Now</button>
+            <button class="btn"><a href="doctorSelect.php">Book Now</a></button>
         </section>
         <section id="emergency-requests">
             <h2>Emergency Requests</h2>

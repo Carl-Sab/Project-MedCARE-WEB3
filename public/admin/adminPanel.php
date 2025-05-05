@@ -6,50 +6,70 @@
   <link rel="stylesheet" href="../css/adminPanel.css">
 
 <?php
-session_start();
-$username = $_SESSION['Uname'];
 ?>
   <title>Admin Panel</title>
 
 </head>
 <body>
-  <header>
-    <h1>Admin Panel<?php echo " "."$username"?></h1>
-    <nav>
-      <button><a href="logout.php">Log Out</a></button>
-      <button><a href="homepage.php">Homepage</a></button>
-    </nav>
-  </header>
+  <?php
+  include "../../includes/header.php";
+
+  ?>
+  <br><br>
   <div class="container">
     <div class="card" id="dashboard">
-      <h2>Dashboard</h2>
-      <p>View reports, statistics, and manage platform activity.</p>
-      <button><a href="adminDashboard.html">Go to Dashboard</a></button>
+      <h2>Statistics</h2>
+      <p>View statistics, and tracking payment and profit</p>
+      <button><a href="adminStats.php">Go to Dashboard</a></button>
     </div>
 
     <div class="card" id="blood-donation">
       <h2>Blood Donation System</h2>
       <p>Manage blood donors and requests.</p>
-      <button><a href="">Manage Donations</a></button>
+      <button><a href="adminBloodDonation.php">Manage Donations</a></button>
     </div>
 
     <div class="card" id="emergency">
       <h2>Emergency Requests</h2>
       <p>View and assign urgent service requests.</p>
-      <button><a href="">Manage Requests</a></button>
+      <button><a href="adminEmergency.php">Manage Requests</a></button>
     </div>
 
     <div class="card" id="chat">
-      <h2>Chat System</h2>
-      <p>Monitor chat logs and consultations.</p>
-      <button><a href="">View Chats</a></button>
+      <h2>Chat Review</h2>
+      <p>Monitor chat review and consultations.</p>
+      <button><a href="adminChatReview.php">Check Reviews</a></button>
     </div>
 
     <div class="card" id="appointments">
-      <h2>Doctor Booking</h2>
+      <h2>Doctor schedule </h2>
       <p>Track and manage doctor appointments.</p>
-      <button><a href="">Manage Appointments</a></button>
+      <button><a href="adminManageDoctorSchedule.php">Manage schedule</a></button>
     </div>
+    
+    <div class="card" id="userManage">
+    <h2>Manage Users</h2>
+    <p>Control user roles, permissions, and activity.</p>
+    <button><a href="adminManageUser.php">Manage Users</a></button>
+  </div>
+
+  <div class="card" id="jobApply">
+    <h2>Job apply</h2>
+    <p>getting employement request accept/decline</p>
+    <button><a href="adminJobApply.php">check requests</a></button>
+  </div>
+
+  <div class="card" id="Reports">
+    <h2>Reports</h2>
+    <p>tracking Reports and help users with their case</p>
+    <button><a href="adminReport.php">check report</a></button>
+  </div>
+
+  <div class="card" id="testResult">
+    <h2>Test Result</h2>
+    <p>double check on test result for prevending problems</p>
+    <button><a href="adminTestResult.php">check result</a></button>
+  </div>
   </div>
   <footer>
     
