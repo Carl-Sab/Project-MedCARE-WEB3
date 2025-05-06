@@ -1,3 +1,8 @@
+<?php
+session_start();
+include "../../includes/connection.php";
+
+?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,6 +53,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            margin-bottom: 10px;
         }
 
         .contact:hover {
@@ -175,19 +181,40 @@
     </style>
 </head>
 <body>
-
 <!-- Sidebar for Contacts -->
 <div class="sidebar">
     <h3>Doctors</h3>
-    <div class="contact" onclick="changeChat('Dr. Smith')">
-        <img src="doctor1.jpg" alt="Dr. Smith"> Dr. Smith
-    </div>
-    <div class="contact" onclick="changeChat('Dr. Johnson')">
-        <img src="doctor2.jpg" alt="Dr. Johnson"> Dr. Johnson
-    </div>
-    <div class="contact" onclick="changeChat('Dr. Williams')">
-        <img src="doctor3.jpg" alt="Dr. Williams"> Dr. Williams
-    </div>
+    <?php
+    if (isset($_SESSION["id_user"])) {
+        $id_user = $_SESSION["id_user"];
+
+        $sql = "SELECT u.*,c.*,d.* 
+                FROM chat_sessions c
+                JOIN doctor d ON c.id_doctor = d.id_doctor
+                JOIN users u ON d.id_doctor = u.id_user
+                WHERE c.id_user = $id_user
+                GROUP BY u.id_user";
+
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $doc_id = $row['id_user'];
+                $doc_name = htmlspecialchars($row['user_name']);
+                $pic = $row['PPicture'] ? "../images/" . $row['PPicture'] : "../../images/default.png";
+                echo "
+                <div class='contact' onclick=\"changeChat('$doc_name')\">
+                    <img src='$pic' alt='Doctor Image'>
+                    <span>$doc_name</span>
+                </div>";
+            }
+        } else {
+            echo "<p>No doctors found.</p>";
+        }
+    } else {
+        echo "<p>Please login to view your doctors.</p>";
+    }
+    ?>
 </div>
 
 <!-- Chat Section -->
@@ -200,8 +227,10 @@
     </div>
 
     <div class="chat-input">
-        <input type="text" id="message-input" placeholder="Type your message...">
-        <button onclick="sendMessage()">Send</button>
+        <form action="getMessages.php" method="POST" style="width: 100%;" onsubmit="event.preventDefault(); sendMessage();">
+            <input type="text" name="message" id="message-input" placeholder="Type your message..." required>
+            <button type="submit">Send</button>
+        </form>
     </div>
 </div>
 
@@ -229,6 +258,7 @@
 
         chatBox.scrollTop = chatBox.scrollHeight;
 
+        // Simulated reply
         setTimeout(() => {
             let doctorMessage = document.createElement("div");
             doctorMessage.className = "message doctor";
