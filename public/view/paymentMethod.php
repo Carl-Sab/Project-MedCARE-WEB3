@@ -61,7 +61,12 @@ error_reporting(E_ALL);
 <body>
 
 <?php
+
 if (isset($_GET["id_doctor"], $_GET["type"])) {
+    if(isset($_GET['error'])){
+        $error = $_GET['error'];
+        echo "<script>alert('$error');</script>";
+    }
     $id_doctor = $_GET["id_doctor"];
     $id_type = $_GET["type"];
 

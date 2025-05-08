@@ -45,14 +45,19 @@ if (isset($_POST['id_doctor'], $_POST['type'], $_POST['amount'], $_POST['card_nu
                 $stmt->execute();
             }
 
-            echo "<p style='color:green'>Payment successful.</p>";
+            header("location:chatSystem.php");
         } else {
-            echo "<p style='color:red'>Insufficient balance.</p>";
+            $error = "Insufficient balance";
+            header("location:paymentMethod.php?id_doctor=$id_doctor&type=$type&error=$error");
         }
     } else {
-        echo "<p style='color:red'>Invalid card credentials.</p>";
+        $error ="Invalid card credentials.";
+        header("location:paymentMethod.php?id_doctor=$id_doctor&type=$type&error=$error");
+
     }
 } else {
-    echo "<p>Required fields missing.</p>";
+    $error = "Required fields missing.";
+    header("location:paymentMethod.php?id_doctor=$id_doctor&type=$type&error=$error");
+
 }
 ?>
