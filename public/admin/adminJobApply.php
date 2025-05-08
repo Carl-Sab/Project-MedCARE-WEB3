@@ -126,7 +126,7 @@ $result = $conn->query($sql);
             <td><?= htmlspecialchars($row['description']) ?></td>
             <td>
               <?php if (!empty($row['file'])): ?>
-                <a class="download-link" href="uploads/<?= urlencode($row['file']) ?>" target="_blank">Download</a>
+                <a class="download-link" href="<?= $row['file']?>">Download</a>
               <?php else: ?>
                 No file
               <?php endif; ?>
