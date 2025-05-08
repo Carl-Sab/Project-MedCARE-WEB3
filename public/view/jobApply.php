@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $chat_sessions_price = $_POST['chat_sessions_price'];
     $id_client = $_SESSION["id_user"];
 
+    
     $file_path = '';
     if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
         $upload_dir = "cv_uploads/";
