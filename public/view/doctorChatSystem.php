@@ -1,64 +1,61 @@
 <?php
 session_start();
 include "../../includes/connection.php";
-
-?> 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor-Client Chat</title>
-   <link rel="stylesheet" href="../css/chatSystem.css">
+    <link rel="stylesheet" href="../css/chatSystem.css">
 </head>
 <body>
 <!-- Sidebar for Contacts -->
 <div class="sidebar">
-    <h3>Doctors</h3>
+    <h3>Clients</h3>
     <?php
     if (isset($_SESSION["id_user"])) {
-        $id_user = $_SESSION["id_user"];
+        $id_doctor = $_SESSION["id_user"]; // Assuming doctor is logged in
 
-        $sql = "SELECT u.*,c.*,d.* 
+        $sql = "SELECT u.*, c.* 
                 FROM chat_sessions c
-                JOIN doctor d ON c.id_doctor = d.id_doctor
-                JOIN users u ON d.id_doctor = u.id_user
-                WHERE c.id_user = $id_user
+                JOIN users u ON c.id_user = u.id_user
+                WHERE c.id_doctor = $id_doctor
                 GROUP BY u.id_user";
 
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $doc_id = $row['id_user'];
+                $client_id = $row['id_user'];
                 $session_id = $row["chat_session_id"];
-                $doc_name = htmlspecialchars($row['user_name']);
+                $client_name = htmlspecialchars($row['user_name']);
                 $pic = $row['PPicture'] ? "../images/" . $row['PPicture'] : "../../images/default.png";
                 echo "
                 <div class='contact' onclick=\"fetchMessages();currentSessionId = $session_id;\">
-                    <img src='$pic' alt='Doctor Image'>
-                    <span>$doc_name</span>
-                    
+                    <img src='$pic' alt='Client Image'>
+                    <span>$client_name</span>
                 </div>";
             }
         } else {
-            echo "<p>No doctors found.</p>";
+            echo "<p>No clients found.</p>";
         }
     } else {
-        echo "<p>Please login to view your doctors.</p>";
+        echo "<p>Please login to view your clients.</p>";
     }
     ?>
 </div>
 
 <!-- Chat Section -->
 <div class="chat-container">
-    <div class="chat-header" id="chat-header">💬 Chat with Dr. Smith</div>
-
+    <div class="chat-header" id="chat-header">💬 Chat with Client</div>
     <div class="chat-box" id="chat-box">
         <!-- ajax code will fetch here -->
     </div>
 
-<script>
+    <script>
+        let currentSessionId = null;
 
         function fetchMessages() {
             if (!currentSessionId) return; 
@@ -70,13 +67,14 @@ include "../../includes/connection.php";
                     if (msgContainer) {
                         msgContainer.innerHTML = xhr.responseText;
                         msgContainer.scrollTop = msgContainer.scrollHeight;
+
                     }
                 }
             };
             xhr.open("GET", "getMessages.php?session=" + currentSessionId, true);
             xhr.send();
         }
-        setInterval(fetchMessages, 2000);  
+        setInterval(fetchMessages, 10);
 
         function sendMessage() {
             const input = document.getElementById("message-input");
@@ -94,29 +92,14 @@ include "../../includes/connection.php";
                 }
             };
 
-         xhr.send("message=" + encodeURIComponent(message) + "&chat_session_id=" + currentSessionId);
+            xhr.send("message=" + encodeURIComponent(message) + "&chat_session_id=" + currentSessionId);
         }
-
-</script>
+    </script>
 
     <div class="chat-input">
-            <input type="text" name="message" id="message-input" placeholder="Type your message..." required>
-            <button type="submit" onclick="sendMessage()">Send</button>
+        <input type="text" name="message" id="message-input" placeholder="Type your message..." required>
+        <button type="submit" onclick="sendMessage()">Send</button>
     </div>
 </div>
-
-<script>
-    let currentSessionId = null;
-
-    function changeChat(doctorName) {
-        document.getElementById("chat-header").innerText = "💬 Chat with " + doctorName;
-        document.getElementById("chat-box").innerHTML = `
-            <div class="message client">Hello ${doctorName}, how are you?</div>
-            <div class="message doctor">Hello! How can I assist you today?</div>
-        `;
-    }
-    
-</script>
-
 </body>
 </html>

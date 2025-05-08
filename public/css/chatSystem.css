@@ -92,13 +92,13 @@ body {
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-.client {
+.him {
     background: #A3E635;
     color: #004d40;
     align-self: flex-start;
 }
 
-.doctor {
+.me {
     background: #00796b;
     color: white;
     align-self: flex-end;
