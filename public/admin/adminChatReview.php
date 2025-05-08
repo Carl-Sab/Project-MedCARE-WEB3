@@ -17,31 +17,8 @@ if (!$result) {
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="../css/adminChatReview.css">
   <title>Chat Reviews (Admin Panel)</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f7fb;
-      
-    }
-    h2 {
-      color: #004d40;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 12px;
-      text-align: center;
-    }
-    th {
-      background-color: #00796b;
-      color: white;
-    }
-  </style>
 </head>
 <body>
 <?php

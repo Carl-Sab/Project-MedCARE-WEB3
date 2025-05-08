@@ -29,6 +29,9 @@ if (!$result) {
 <html>
 <head>
     <title>Doctor List - User Panel</title>
+
+  <link rel="stylesheet" href="../css/doctorList.css">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
@@ -133,6 +136,7 @@ if (!$result) {
             opacity: 0.9;
         }
     </style>
+>>>>>>> origin/Roger
 </head>
 <body>
 

@@ -1,121 +1,166 @@
 <?php
 include "../../includes/connection.php";
 session_start();
-
-// Ensure method is POST
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $speciality = $_POST['speciality'];
-    $booking_price = $_POST['booking_price'];
-    $chat_sessions_price = $_POST['chat_sessions_price'];
-    $id_client = $_SESSION["id_user"];
-
-    
-    $file_path = '';
-    if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
-        $upload_dir = "cv_uploads/";
-        if (!is_dir($upload_dir)) {
-            mkdir($upload_dir, 0777, true);
-        }
-
-        $original_name = basename($_FILES["file"]["name"]);
-        $extension = pathinfo($original_name, PATHINFO_EXTENSION);
-        $allowed = ['pdf', 'doc', 'docx'];
-
-        if (!in_array(strtolower($extension), $allowed)) {
-            die("Invalid file type. Allowed: PDF, DOC, DOCX");
-        }
-
-        $new_filename = uniqid("job_") . "." . $extension;
-        $file_path = $upload_dir . $new_filename;
-
-        if (!move_uploaded_file($_FILES["file"]["tmp_name"], $file_path)) {
-            die("File upload failed.");
-        }
-    } else {
-        die("File is required.");
-    }
-
-    // Prepare SQL Insert
-    $stmt = $conn->prepare("INSERT INTO job_apply (title, description, file, booking_price, chat_sessions_price, stats, id_client, speciality)
-                            VALUES (?, ?, ?, ?, ?, 'pending', ?, ?)");
-    $stmt->bind_param("sssiiis", $title, $description, $file_path, $booking_price, $chat_sessions_price, $id_client, $speciality);
-
-    if ($stmt->execute()) {
-        echo "<p style='color: green;'>Application submitted successfully.</p>";
-        echo "<a href='apply_job.php'>Apply Another</a>";
-    } else {
-        echo "<p style='color: red;'>Failed to submit application: " . $stmt->error . "</p>";
-    }
-
-    $stmt->close();
-    $conn->close();
-
-}
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Application Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f7f9;
-            padding: 40px;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(90deg, #00796b, #004d40);
+            overflow: hidden;
+            color: white;
+            padding: 15px;
         }
+
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .background .glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, #26a69a, transparent);
+            filter: blur(100px);
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            animation: pulse 7s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.6);
+                opacity: 0.7;
+            }
+        }
+
         .form-container {
-            max-width: 600px;
-            background: #fff;
-            margin: auto;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            background-color: rgba(38, 166, 154, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(40px);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            color: white;
         }
+
+        @keyframes fadeInUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
         .form-container h2 {
-            margin-bottom: 25px;
-            color: #333;
+            font-size: 22px;
+            margin-bottom: 15px;
         }
+
         .form-group {
-            margin-bottom: 20px;
+            text-align: left;
+            margin-bottom: 10px;
         }
+
         label {
             display: block;
             font-weight: bold;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
         }
-        input[type="text"],
-        input[type="number"],
-        select,
-        textarea,
-        input[type="file"] {
+
+        input, select, textarea {
+            width: 90%;
+            padding: 8px;
+            border-radius: 6px;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.6);
+            outline: none;
+            font-size: 14px;
+            color: #222;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        textarea {
+            min-height: 60px;
+            resize: vertical;
+        }
+
+        input:focus, textarea:focus {
+            border-color: darkgreen;
+            box-shadow: 0 0 8px rgba(0, 86, 179, 0.6);
+        }
+
+        button {
             width: 100%;
             padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 15px;
-        }
-        textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-        button {
-            background: #28a745;
-            color: #fff;
+            border-radius: 8px;
             border: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            border-radius: 6px;
+            background: linear-gradient(90deg, #00796b, #004d40);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
             cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         button:hover {
-            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                background-color: transparent;
+                box-shadow: 0px 0px 0px 0px;
+                padding: 15px;
+                max-width: 350px;
+                border:none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                border:none;
+                background-color: transparent;
+                box-shadow: 0px 0px 0px 0px;
+                padding: 12px;
+                max-width: 300px;
+            }
         }
     </style>
 </head>
 <body>
+
+<div class="background">
+    <div class="glow"></div>
+</div>
 
 <div class="form-container">
     <h2>Apply for a Job</h2>
@@ -128,13 +173,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div class="form-group">
             <label for="speciality">Speciality</label>
             <select name="speciality" required>
-            <option value="">-- All Specialties --</option>
-            <option value="Cardiologist">Cardiologist</option>
-            <option value="Dermatologist">Dermatologist</option>
-            <option value="Pediatrician">Pediatrician</option>
-            <option value="Neurologist">Neurologist</option>
-            <option value="General Physician">General Physician</option>
-        </select>        </div>
+                <option value="">-- All Specialties --</option>
+                <option value="Cardiologist">Cardiologist</option>
+                <option value="Dermatologist">Dermatologist</option>
+                <option value="Pediatrician">Pediatrician</option>
+                <option value="Neurologist">Neurologist</option>
+                <option value="General Physician">General Physician</option>
+            </select>
+        </div>
 
         <div class="form-group">
             <label for="booking_price">Booking Price ($)</label>

@@ -4,71 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin Statistics</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f7fb;
-      margin: 0;
-      padding: 0;
-    }
-
-    .stats-section {
-      padding: 20px;
-    }
-
-    .stats-section h2 {
-      color: #004d40;
-    }
-
-    .filter {
-      margin-bottom: 20px;
-    }
-
-    .filter input[type="month"] {
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      width: 250px;
-    }
-
-    .filter button {
-      padding: 10px 20px;
-      background-color: #00796b;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .filter button:hover {
-      background-color: #004d40;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 30px;
-    }
-
-    table th, table td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: center;
-    }
-
-    table th {
-      background-color: #00796b;
-      color: white;
-    }
-
-    .total-profit {
-      font-size: 18px;
-      font-weight: bold;
-      color: #00796b;
-      margin-top: 20px;
-    }
-  </style>
+ <link rel="stylesheet" href="../css/adminStats.css">
 </head>
 <body>
 

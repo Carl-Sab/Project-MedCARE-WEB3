@@ -30,7 +30,7 @@ if (isset($_POST['id_doctor'], $_POST['type'], $_POST['amount'], $_POST['card_nu
             $stmt->bind_param("di", $new_balance, $card_number);
             $stmt->execute();
 
-            $admin_percent = 10;
+            $admin_percent = $amount*0.1;
             $stmt = $conn->prepare("INSERT INTO payments (id_client, id_doctor, amount, admin_percentage, payment_date) VALUES (?, ?, ?, ?, NOW())");
             $stmt->bind_param("iidi", $id_user, $id_doctor, $amount, $admin_percent);
             $stmt->execute();
