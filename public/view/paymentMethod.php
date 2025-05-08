@@ -17,9 +17,21 @@ error_reporting(E_ALL);
 </head>
 <body>
 
+<<<<<<< HEAD
 <div class="background">
     <div class="glow"></div>
 </div>
+=======
+<?php
+
+if (isset($_GET["id_doctor"], $_GET["type"])) {
+    if(isset($_GET['error'])){
+        $error = $_GET['error'];
+        echo "<script>alert('$error');</script>";
+    }
+    $id_doctor = $_GET["id_doctor"];
+    $id_type = $_GET["type"];
+>>>>>>> origin/Roger
 
 <div class="payment-box">
     <h2>Pay for <?php //ucfirst($id_type); ?> with Dr. <?php //htmlspecialchars($doctor_name); ?></h2>
