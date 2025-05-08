@@ -4,55 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Schedule</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #00796b;
-            color: white;
-            text-align: center;
-        }
-
-        .schedule-container {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        select, input, button {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        button {
-            background-color: white;
-            color: #00796b;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        button:hover {
-            background-color: #004d40;
-            color: white;
-        }
-
-        .result {
-            margin-top: 20px;
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 15px;
-            border-radius: 8px;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/adminChooseSchedule.css">
 </head>
 <body>
 
