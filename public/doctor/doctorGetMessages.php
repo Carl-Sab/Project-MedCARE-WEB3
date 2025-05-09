@@ -32,7 +32,7 @@ if (isset($_GET['session']) && isset($_SESSION['id_user'])) {
         $row = $result->fetch_assoc();
         $flag = $row['status'];
         if ($flag === 'ended') {
-            echo "<div id='session-status' data-ended='true' style='text-align:center;'>session ended <a href='chatReview.php'>Review</a></div>";
+            echo "<div id='session-status' data-ended='true' style='text-align:center;'>session ended</div>";
         } else {
             echo "<div id='session-status' data-ended='false'></div>";
         }

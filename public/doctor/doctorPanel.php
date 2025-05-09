@@ -19,7 +19,7 @@
         <div class="card">
             <h2>Consultations</h2>
             <p>Chat with patients, view saved chat logs, and respond to consultation requests.</p>
-            <button><a href="#">View Consultations</a></button>
+            <button><a href="doctorChatSystem.php">View Consultations</a></button>
         </div>
         
     
