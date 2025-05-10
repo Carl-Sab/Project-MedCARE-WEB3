@@ -155,7 +155,6 @@
       }elseif(in_array($currentPage,["doctorPanel.php"])){
         echo '
         <a href="../view/logout.php">Logout</a>
-        <a href="../doctor/doctorChatSystem.php">Chat</a>
         <a href="../view/homepage.php">HomePage</a>';
       }
     ?>

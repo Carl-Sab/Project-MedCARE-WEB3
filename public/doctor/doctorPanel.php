@@ -15,21 +15,18 @@
             <button><a href="doctorChatSystem.php">View Consultations</a></button>
         </div>
         
-    
-        <div class="card">
-            <h2>Emergency Requests</h2>
-            <p>View and respond to urgent blood test or vaccination requests.</p>
-            <button><a href="#">Manage Requests</a></button>
-        </div>
-
-  
-
-
         <div class="card">
             <h2>Upload Test Results</h2>
             <p>Upload and manage patient test results securely.</p>
             <button><a href="#">Upload Results</a></button>
         </div>
+
+<div class="card">
+    <h2>View Your Statistics</h2>
+    <p>Track your appointment history, patient visits, and performance metrics.</p>
+    <button><a href="doctorStats.php" class="btn">View Statistics</a></button>
+</div>
+
 
         <div class="card">
             <h2>Profile</h2>
