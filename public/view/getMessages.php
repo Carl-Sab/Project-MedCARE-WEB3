@@ -23,7 +23,6 @@ if (isset($_GET['session']) && isset($_SESSION['id_user'])) {
     $checkSession = "SELECT status from chat_sessions WHERE chat_session_id = $id_session";
     $result = $conn->query($checkSession);
     
-    // Check for query errors
     if (!$result) {
         die("Error in query: " . $conn->error);
     }
@@ -32,7 +31,7 @@ if (isset($_GET['session']) && isset($_SESSION['id_user'])) {
         $row = $result->fetch_assoc();
         $flag = $row['status'];
         if ($flag === 'ended') {
-            echo "<div id='session-status' data-ended='true' style='text-align:center;'>session ended <a href='chatReview.php'>Review</a></div>";
+            echo "<div id='session-status' data-ended='true' style='text-align:center;'>session ended <a href='chatReview.php?session=$id_session'>Review</a></div>";
         } else {
             echo "<div id='session-status' data-ended='false'></div>";
         }
