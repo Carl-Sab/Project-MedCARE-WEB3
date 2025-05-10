@@ -7,15 +7,8 @@
     <link rel="stylesheet" href="../css/doctorPanel.css">
 </head>
 <body>
-    <header>
-        <h1>Doctor Dashboard</h1>
-        <nav>
-            <button><a href="#">Log Out</a></button>
-        </nav>
-    </header>
-
+    <?php include '../../includes/header.php';?>
     <div class="container">
-        
         <div class="card">
             <h2>Consultations</h2>
             <p>Chat with patients, view saved chat logs, and respond to consultation requests.</p>

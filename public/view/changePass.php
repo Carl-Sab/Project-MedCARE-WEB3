@@ -36,7 +36,7 @@ if (isset($_POST['pass']) && isset($_SESSION['id_user'])) {
         if ($role === 'admin') {
             header("Location: ../admin/adminPanel.php");
         } else if ($role === 'doctor') {
-            header("Location: ./doctorPanel.php");
+            header("Location: ../doctor/doctorPanel.php");
         } else {
             header("Location: ./homepage.php");
         }

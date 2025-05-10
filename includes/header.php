@@ -152,6 +152,11 @@
         <a href="../public/view/homepage.php">Homepage</a>
         <a href="#doctor">Doctor</a>
         <a href="adminPanel.php">Back</a>';
+      }elseif(in_array($currentPage,["doctorPanel.php"])){
+        echo '
+        <a href="../view/logout.php">Logout</a>
+        <a href="../doctor/doctorChatSystem.php">Chat</a>
+        <a href="../view/homepage.php">HomePage</a>';
       }
     ?>
   </nav>
