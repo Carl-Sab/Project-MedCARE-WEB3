@@ -19,12 +19,13 @@ include "../../includes/connection.php";
     if (isset($_SESSION["id_user"])) {
         $id_user = $_SESSION["id_user"];
 
-        $sql = "SELECT u.*,c.*,d.* 
+        $sql = "SELECT u.*, c.*, d.*
                 FROM chat_sessions c
                 JOIN doctor d ON c.id_doctor = d.id_doctor
                 JOIN users u ON d.id_doctor = u.id_user
                 WHERE c.id_user = $id_user
-                GROUP BY u.id_user";
+                and c.status = 'active'
+                ORDER BY c.chat_session_id DESC";
 
         $result = $conn->query($sql);
 

@@ -21,7 +21,6 @@
       <p><strong>Specialty:</strong> <span id="doctorSpecialty">Cardiology</span></p>
 
       
-      <!-- Star Rating Section -->
       <div class="star-rating">
         <span class="star" data-value="1">★</span>
         <span class="star" data-value="2">★</span>
@@ -36,7 +35,6 @@
   </div>
   
   <script>
-    // Example data for demonstration (replace with dynamic data in your implementation)
     const doctorData = {
       id: "D001",
       name: "Dr. John Doe",
@@ -47,7 +45,6 @@
       // pictureUrl: "https://via.placeholder.com/150"
     };
 
-    // Populate the profile page with doctor data
 
     document.getElementById('doctorName').textContent = doctorData.name;
     document.getElementById('doctorID').textContent = doctorData.id;
@@ -56,7 +53,6 @@
     document.getElementById('doctorSpecialty').textContent = doctorData.specialty;
     document.getElementById('doctorSalary').textContent = doctorData.salary;
 
-    // Star Rating Script
     const stars = document.querySelectorAll('.star');
     const ratingText = document.querySelector('#rating');
     
@@ -65,7 +61,6 @@
         const ratingValue = star.dataset.value;
         ratingText.textContent = ratingValue;
 
-        // Fill all stars up to the clicked one
         stars.forEach(s => {
           if (s.dataset.value <= ratingValue) {
             s.classList.add('filled');
@@ -78,7 +73,6 @@
       star.addEventListener('mouseover', () => {
         const hoverValue = star.dataset.value;
 
-        // Highlight stars up to the hovered one
         stars.forEach(s => {
           if (s.dataset.value <= hoverValue) {
             s.classList.add('filled');
@@ -91,7 +85,6 @@
       star.addEventListener('mouseout', () => {
         const currentRating = ratingText.textContent;
 
-        // Restore to the current rating when mouse moves out
         stars.forEach(s => {
           if (s.dataset.value <= currentRating) {
             s.classList.add('filled');

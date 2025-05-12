@@ -87,6 +87,7 @@ $totalDoctorProfit = 0;
             $totalDoctorProfit += $row['doctor_profit'];
         }
     }
+    $totalDoctorProfit -= $totalCommission;
     ?>
   </table>
 
