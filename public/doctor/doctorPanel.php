@@ -29,9 +29,9 @@
 
 
         <div class="card">
-            <h2>Profile</h2>
-            <p>Manage your profile details and availability.</p>
-            <button><a href="#">Edit Profile</a></button>
+            <h2>Client List</h2>
+            <p>View and manage your clients' details and appointments.</p>
+            <button><a href="doctorSelectClient.php">View Clients</a></button>
         </div>
     </div>
 </body>
