@@ -31,7 +31,13 @@ if (isset($_GET['session']) && isset($_SESSION['id_user'])) {
         $row = $result->fetch_assoc();
         $flag = $row['status'];
         if ($flag === 'ended') {
-            echo "<div id='session-status' data-ended='true' style='text-align:center;'>session ended <a href='chatReview.php?session=$id_session'>Review</a></div>";
+            $check = "SELECT * FROM review WHERE chat_session_id = $id_session";
+            $reviewResult = $conn->query($check);            
+            if ($reviewResult->num_rows > 0) {
+                echo "<div id='session-status' data-ended='true' style='text-align:center;'>session ended</div>";
+            } else {
+                echo "<div id='session-status' data-ended='true' style='text-align:center;'>session ended - <a href='chatReview.php?session=$id_session'>Review</a></div>";
+            }
         } else {
             echo "<div id='session-status' data-ended='false'></div>";
         }
