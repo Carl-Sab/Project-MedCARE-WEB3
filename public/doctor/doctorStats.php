@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Doctor Statistics</title>
-  <link rel="stylesheet" href="../css/adminStats.css">
+  <link rel="stylesheet" href="../css/doctorStats.css">
 </head>
 <body>
 

@@ -51,72 +51,21 @@ $stmt->bind_param("iis", $client_id, $doctor_id, $test_result);
 <html lang="en">
 <head>
     <title>Upload Test Result</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #00796b, #004d40);
-            color: white;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .form-container {
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(20px);
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            padding: 35px;
-            width: 420px;
-            text-align: center;
-        }
-        .form-container h2 {
-            font-size: 26px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            margin-top: 12px;
-            border-radius: 10px;
-            border: 2px solid #004d40;
-            background: white;
-            font-size: 16px;
-            color: black;
-        }
-        input[readonly] {
-            background: #e0f2f1;
-        }
-        button {
-            background: linear-gradient(135deg, #004d40, #26a69a);
-            color: white;
-            padding: 14px;
-            border-radius: 10px;
-            font-size: 18px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 15px;
-        }
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-        }
-    </style>
+    <link rel="stylesheet" href="../css/doctorTestResult.css">
 </head>
 <body>
 
 <div class="form-container">
     <h2>Submit Test Result</h2>
     <form method="POST" enctype="multipart/form-data">
-        <label>Client:</label>
         <input type="text" value="<?= htmlspecialchars($client_name) ?>" readonly>
         <input type="hidden" name="client_id" value="<?= $client_id ?>">
         <textarea name="test_result" placeholder="Enter Test Result..." required></textarea>
         <input type="file" name="test_file" required>
-        <button type="submit">Submit</button>
+        <div class="button-container">
+            <button type="submit">Submit</button>
+            <button type="button"  id="back"><a href="doctorSelectClient.php">Back</a></button>
+        </div>
     </form>
 </div>
 
