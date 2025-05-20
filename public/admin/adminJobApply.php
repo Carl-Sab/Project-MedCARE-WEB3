@@ -3,90 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Job Applications Management</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f7fb;
-      margin: 0;
-      padding: 0;
-    }
-
-    .stats-section {
-      padding: 20px;
-    }
-
-    .stats-section h2 {
-      color: #004d40;
-    }
-
-    .filter {
-      margin-bottom: 20px;
-    }
-
-    .filter input[type="text"] {
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      width: 250px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 30px;
-    }
-
-    table th, table td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: center;
-    }
-
-    table th {
-      background-color: #00796b;
-      color: white;
-    }
-
-    .status-pending {
-      color: orange;
-      font-weight: bold;
-    }
-
-    .status-approved {
-      color: green;
-      font-weight: bold;
-    }
-
-    .status-rejected {
-      color: red;
-      font-weight: bold;
-    }
-
-    .download-link {
-      text-decoration: none;
-      color: #00796b;
-      font-weight: bold;
-    }
-
-    .download-link:hover {
-      text-decoration: underline;
-    }
-
-    .Action {
-      padding: 5px 10px;
-      background-color: #00796b;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin: 5px;
-      border-radius: 5px;
-    }
-
-    .Action:hover {
-      background-color: #004d40;
-    }
-  </style>
+  <link rel="stylesheet" href="../css/adminJobApply.css">
 </head>
 <body>
 <?php
@@ -126,7 +43,7 @@ $result = $conn->query($sql);
             <td><?= htmlspecialchars($row['description']) ?></td>
             <td>
               <?php if (!empty($row['file'])): ?>
-                <a class="download-link" href="uploads/<?= urlencode($row['file']) ?>" target="_blank">Download</a>
+                <a class="download-link" href="<?= $row['file']?>">Download</a>
               <?php else: ?>
                 No file
               <?php endif; ?>

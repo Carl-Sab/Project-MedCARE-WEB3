@@ -146,13 +146,16 @@
         "adminBloodDonation.php", "adminChatReview.php", "adminDashboard.php",
         "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminManageSchedule.php","adminTestResult.php",
         "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminJobApply.php","adminTestResult.php","adminChatReview.php"
-
       ])) {
         echo '
         <a href="../public/view/logout.php">Logout</a>
         <a href="../public/view/homepage.php">Homepage</a>
         <a href="#doctor">Doctor</a>
         <a href="adminPanel.php">Back</a>';
+      }elseif(in_array($currentPage,["doctorPanel.php"])){
+        echo '
+        <a href="../view/logout.php">Logout</a>
+        <a href="../view/homepage.php">HomePage</a>';
       }
     ?>
   </nav>

@@ -47,7 +47,7 @@ $id = $_SESSION['id_user'];
         <section id="emergency-requests">
             <h2>Emergency Requests</h2>
             <p>Request home visits or emergency help from our team.</p>
-            <button class="btn">Get Help</button>
+            <button class="btn"><a href="emergencyRequest.php">Get Help</a></button>
         </section>
 
     </main>

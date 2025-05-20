@@ -35,7 +35,7 @@ if (isset($_POST['Uname']) && isset($_POST['pass'])) {
                 if ($row['role'] == 'admin') {
                     header("Location: ../admin/adminPanel.php");
                 } else if ($row['role'] == 'doctor') {
-                    header("Location: ./doctorPanel.php");
+                    header("Location: ../doctor/doctorPanel.php");
                 } else {
                     header("Location: ./homepage.php");
                 }

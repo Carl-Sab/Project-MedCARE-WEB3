@@ -7,41 +7,31 @@
     <link rel="stylesheet" href="../css/doctorPanel.css">
 </head>
 <body>
-    <header>
-        <h1>Doctor Dashboard</h1>
-        <nav>
-            <button><a href="#">Log Out</a></button>
-        </nav>
-    </header>
-
+    <?php include '../../includes/header.php';?>
     <div class="container">
-        
         <div class="card">
             <h2>Consultations</h2>
             <p>Chat with patients, view saved chat logs, and respond to consultation requests.</p>
-            <button><a href="#">View Consultations</a></button>
+            <button><a href="doctorChatSystem.php">View Consultations</a></button>
         </div>
         
-    
-        <div class="card">
-            <h2>Emergency Requests</h2>
-            <p>View and respond to urgent blood test or vaccination requests.</p>
-            <button><a href="#">Manage Requests</a></button>
-        </div>
-
-  
-
-
         <div class="card">
             <h2>Upload Test Results</h2>
             <p>Upload and manage patient test results securely.</p>
             <button><a href="#">Upload Results</a></button>
         </div>
 
+<div class="card">
+    <h2>View Your Statistics</h2>
+    <p>Track your appointment history, patient visits, and performance metrics.</p>
+    <button><a href="doctorStats.php" class="btn">View Statistics</a></button>
+</div>
+
+
         <div class="card">
-            <h2>Profile</h2>
-            <p>Manage your profile details and availability.</p>
-            <button><a href="#">Edit Profile</a></button>
+            <h2>Client List</h2>
+            <p>View and manage your clients' details and appointments.</p>
+            <button><a href="doctorSelectClient.php">View Clients</a></button>
         </div>
     </div>
 </body>
