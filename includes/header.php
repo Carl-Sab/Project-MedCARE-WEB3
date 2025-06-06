@@ -136,8 +136,8 @@
         <a href="public/view/login.php">Login</a>';
       } elseif ($currentPage == "adminPanel.php") {
         echo '
-        <a href="../public/view/logout.php">Logout</a>
-        <a href="../public/view/homepage.php">Homepage</a>
+        <a href="../view/logout.php">Logout</a>
+        <a href="../view/homePage.php">Homepage</a>
         <a href="#doctor">Doctor</a>
         <a href="adminManageSchedule.php">Manage Schedule</a>
         <a href="adminTestResult.php">Show result</a>';
@@ -148,19 +148,24 @@
         "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminJobApply.php","adminTestResult.php","adminChatReview.php","adminChooseSchedule.php"
       ])) {
         echo '
-        <a href="../public/view/logout.php">Logout</a>
-        <a href="../public/view/homepage.php">Homepage</a>
+        <a href="../view/logout.php">Logout</a>
+        <a href="../view/homePage.php">Homepage</a>
         <a href="#doctor">Doctor</a>
         <a href="adminPanel.php">Back</a>';
       }elseif(in_array($currentPage,["doctorPanel.php"])){
         echo '
         <a href="../view/logout.php">Logout</a>
-        <a href="../view/homepage.php">HomePage</a>';
+        <a href="../view/homePage.php">HomePage</a>';
       }elseif(in_array($currentPage,["doctorTestResult.php"])){
         echo '
-        <a href="../public/view/logout.php">Logout</a>
-        <a href="../public/view/homepage.php">Homepage</a>
+        <a href="../view/logout.php">Logout</a>
+        <a href="../view/homePage.php">Homepage</a>
         <a href="doctorPanel.php">Back</a>';
+      }else if(in_array($currentPage,["chatReview.php"])){
+        echo'
+        <a href="../view/logout.php">Logout</a>
+        <a href="../view/homePage.php">Homepage</a>
+        <a href="chatSystem.php">Back</a>';
       }
     ?>
   </nav>

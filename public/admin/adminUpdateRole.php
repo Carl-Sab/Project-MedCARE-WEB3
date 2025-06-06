@@ -5,10 +5,22 @@ if (isset($_POST['id_user'], $_POST['role'])) {
     $id_user = $_POST['id_user'];
     $role = $_POST['role'];
 
-    // Update role
+  
     $stmt = $conn->prepare("UPDATE users SET role = ? WHERE id_user = ?");
     $stmt->bind_param("si", $role, $id_user);
     $stmt->execute();
+
+    if ($role !== "doctor") {
+        $stmt = $conn->prepare("DELETE FROM doctor WHERE id_doctor = ?");
+        $stmt->bind_param("i", $id_user);
+        $stmt->execute();
+    }
+
+    if ($role !== "client") {
+        $stmt = $conn->prepare("DELETE FROM client WHERE id_client = ?");
+        $stmt->bind_param("i", $id_user);
+        $stmt->execute();
+    }
 
     // Get user name
     $stmt = $conn->prepare("SELECT user_name FROM users WHERE id_user = ?");
@@ -48,15 +60,13 @@ if (isset($_POST['id_user'], $_POST['role'])) {
         header("Location: adminManageUser.php");
         exit();
     }
+
     if ($role === "admin") {
         header("Location: adminManageUser.php");
         exit();
     }
-    
-
-
-    // Show form depending on role
     ?>
+
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -150,12 +160,12 @@ if (isset($_POST['id_user'], $_POST['role'])) {
                     <option value="Night Shift (6 PM - 12 AM)">Night Shift (6 PM - 12 AM)</option>
                 </select>
 
-
                 <label for="consultation_amount">Consultation Amount:</label>
                 <input type="number" name="consultation_amount" required>
 
                 <label for="booking_amount">Booking Amount:</label>
                 <input type="number" name="booking_amount" required>
+
             <?php elseif ($role === "client"): ?>
                 <label for="blood_type">Blood Type:</label>
                 <select name="blood_type" required>
@@ -182,6 +192,7 @@ if (isset($_POST['id_user'], $_POST['role'])) {
     </div>
     </body>
     </html>
+
     <?php
 }
 ?>
