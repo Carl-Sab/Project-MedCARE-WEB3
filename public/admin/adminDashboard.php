@@ -35,6 +35,7 @@
     <option value="psychiatry">Psychiatry (Mental Health Specialist)</option>
     <option value="radiology">Radiology (Imaging & X-rays)</option>
 </select>
+<br>
         <label for="doctorSalary">Salary:</label>
         <input type="text" id="doctorSalary" placeholder="Enter salary">
         <button type="button" class="button" id="addDoctorButton">Add Doctor</button>

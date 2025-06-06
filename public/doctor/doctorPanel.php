@@ -15,11 +15,7 @@
             <button><a href="doctorChatSystem.php">View Consultations</a></button>
         </div>
         
-        <div class="card">
-            <h2>Upload Test Results</h2>
-            <p>Upload and manage patient test results securely.</p>
-            <button><a href="#">Upload Results</a></button>
-        </div>
+
 
 <div class="card">
     <h2>View Your Statistics</h2>
@@ -30,7 +26,7 @@
 
         <div class="card">
             <h2>Client List</h2>
-            <p>View and manage your clients' details and appointments.</p>
+            <p>View and manage your clients details and appointments.</p>
             <button><a href="doctorSelectClient.php">View Clients</a></button>
         </div>
     </div>

@@ -2,17 +2,21 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #00796b, #004d40);
-    color: white;
+    background: white;
+    color: black;
     margin: 0;
+    height: 100vh; 
+
+}   
+#container{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    width: 100%;
+    height: 90%;
 }
-
 .form-container {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(0, 121, 107, 0.2);
     backdrop-filter: blur(20px);
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
@@ -26,6 +30,7 @@ body {
 }
 
 .form-container h2 {
+
     font-size: 26px;
     font-weight: bold;
     margin-bottom: 20px;
@@ -44,7 +49,8 @@ input, textarea, button {
 }
 
 input[readonly] {
-    background: #e0f2f1;
+    background: white;
+    color: black;
 }
 
 button {

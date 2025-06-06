@@ -5,9 +5,9 @@ session_start();
 // Ensure the client ID is passed
 $client_id = $_GET['id_client'] ?? null;
 
-if (!$client_id) {
-    die("Client ID is missing.");
-}
+// if (!$client_id) {
+//     die("Client ID is missing.");
+// }
 
 // Fetch client name
 $client_name = '';
@@ -54,7 +54,11 @@ $stmt->bind_param("iis", $client_id, $doctor_id, $test_result);
     <link rel="stylesheet" href="../css/doctorTestResult.css">
 </head>
 <body>
-
+    
+<?php 
+include "../../includes/header.php";
+?>
+<div id="container">
 <div class="form-container">
     <h2>Submit Test Result</h2>
     <form method="POST" enctype="multipart/form-data">
@@ -68,6 +72,6 @@ $stmt->bind_param("iis", $client_id, $doctor_id, $test_result);
         </div>
     </form>
 </div>
-
+</div>
 </body>
 </html>

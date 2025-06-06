@@ -71,7 +71,7 @@ $totalDoctorProfit = 0;
 
     <?php
     if ($result->num_rows === 0) {
-        echo '<tr><td colspan="7">No transactions found for this month.</td></tr>';
+        echo '<tr><td colspan="7">No Doctors found.</td></tr>';
     } else {
         while ($row = $result->fetch_assoc()) {
             echo "<tr>
