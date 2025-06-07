@@ -156,7 +156,7 @@
         echo '
         <a href="../view/logout.php">Logout</a>
         <a href="../view/homePage.php">HomePage</a>';
-      }elseif(in_array($currentPage,["doctorTestResult.php"])){
+      }elseif(in_array($currentPage,["doctorTestResult.php","doctorStats.php"])){
         echo '
         <a href="../view/logout.php">Logout</a>
         <a href="../view/homePage.php">Homepage</a>
@@ -166,6 +166,12 @@
         <a href="../view/logout.php">Logout</a>
         <a href="../view/homePage.php">Homepage</a>
         <a href="chatSystem.php">Back</a>';
+      }elseif($currentPage=="homepage.php"){
+        echo '
+                <a href="../view/logout.php">Logout</a>
+                <a href="#blood-donation">Blood Donation</a>
+                <a href="#appointments">Appointments</a>
+                <a href="#emergency-requests">Emergency</a>';
       }
     ?>
   </nav>

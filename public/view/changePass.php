@@ -16,7 +16,7 @@ if (isset($_POST['pass']) && isset($_SESSION['id_user'])) {
     $pass = $_POST['pass'];
     $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
     $id = $_SESSION['id_user'];
-
+    
     // Secure UPDATE statement
     $update = $conn->prepare("UPDATE users SET pass = ? WHERE id_user = ?");
     $update->bind_param("si", $hashedPass, $id);

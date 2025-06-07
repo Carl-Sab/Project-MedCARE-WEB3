@@ -39,7 +39,6 @@ include "../../includes/connection.php";
                 <div class='contact' onclick=\"fetchMessages();currentSessionId = $session_id;openChat('$doc_name')\">
                     <img src='$pic' alt='Doctor Image'>
                     <span>$doc_name</span>
-                    
                 </div>";
             }
         } else {

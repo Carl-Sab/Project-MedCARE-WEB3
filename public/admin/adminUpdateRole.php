@@ -152,13 +152,12 @@ if (isset($_POST['id_user'], $_POST['role'])) {
                 </select>
 
                 <label for="shifts">Shifts:</label>
-                <select name="shifts" required>
-                    <option value="">-- Select Shift --</option>
-                    <option value="Overnight Shift (12 AM - 6 AM)">Overnight Shift (12 AM - 6 AM)</option>
-                    <option value="Morning Shift (6 AM - 12 PM)">Morning Shift (6 AM - 12 PM)</option>
-                    <option value="Afternoon Shift (12 PM - 6 PM)">Afternoon Shift (12 PM - 6 PM)</option>
-                    <option value="Night Shift (6 PM - 12 AM)">Night Shift (6 PM - 12 AM)</option>
-                </select>
+                    <select name="shifts" required>
+                        <option value="">-- Select Shift --</option>
+                        <option value="Morning Shift (6 AM - 12 PM)">Morning Shift (6 AM - 12 PM)</option>
+                        <option value="Evening Shift (12 PM - 6 PM)">Evening Shift (12 PM - 6 PM)</option>
+                    </select>
+
 
                 <label for="consultation_amount">Consultation Amount:</label>
                 <input type="number" name="consultation_amount" required>

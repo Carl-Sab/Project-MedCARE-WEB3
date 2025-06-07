@@ -22,17 +22,7 @@ $id = $_SESSION['id_user'];
 
 ?>
 <body>
-    <header>
-        <h1>MedCare</h1>
-        <nav>
-            <ul>
-                <li><a href="#blood-donation">Blood Donation</a></li>
-                <li><a href="#appointments">Appointments</a></li>
-                <li><a href="#emergency-requests">Emergency</a></li>
-
-            </ul>
-        </nav>
-    </header>
+    <?php  include "../../includes/header.php"   ?> 
     <main>
         <section id="blood-donation">
             <h2>Blood Donation System</h2>

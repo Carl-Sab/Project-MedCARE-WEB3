@@ -39,9 +39,9 @@ if (isset($_POST['id_doctor'], $_POST['type'], $_POST['amount'], $_POST['card_nu
                 $stmt = $conn->prepare("INSERT INTO chat_sessions (id_user, id_doctor, started_at) VALUES (?, ?, NOW())");
                 $stmt->bind_param("ii", $id_user, $id_doctor);
                 $stmt->execute();
+                header("location:chatSystem.php");
             }
 
-            header("location:chatSystem.php");
         } else {
             $error = "Insufficient balance";
             header("location:paymentMethod.php?id_doctor=$id_doctor&type=$type&error=$error");
