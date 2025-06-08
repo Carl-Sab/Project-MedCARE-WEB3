@@ -1,68 +1,96 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/requestBlood.css">
+  <title>Request Blood</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Keep header at the top */
+    header {
+      flex-shrink: 0;
+    }
+
+    /* Main content area */
+    .main-content {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-container {
+      background: rgba(0, 121, 107, 0.2);
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #004d40;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    select {
+      padding: 10px;
+      width: 200px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #00796b;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #004d40;
+    }
+  </style>
 </head>
 <body>
-    
-    <?php 
-session_start();
-include "../../includes/header.php";
-include "../../includes/connection.php";
-$id_client=$_SESSION['id_user'];
-$query="SELECT blood_type from client where id_client=?";
-$stmt=$conn->prepare($query);
-$stmt->bind_param("i",$id_client);
-$stmt->execute();
-$result=$stmt->get_result();
-$client = $result->fetch_assoc();
-if(!$client){
-    echo "Client not found.";
-    exit;
-}
-$bloodType=$client["blood_type"];
-$queryDonors = "
-    SELECT u.id_user, u.user_name, u.email, u.tel
-    FROM users u
-    JOIN client c ON u.id_user = c.id_client
-    WHERE c.blood_type = ? AND c.id_client != ?
-";
-$stmtDonors = $conn->prepare($queryDonors);
-$stmtDonors->bind_param("si", $bloodType, $id_client);
-$stmtDonors->execute();
-$resultDonors = $stmtDonors->get_result();
-if(!$resultDonors){
-    echo "No donors found";
-    exit();
-}else{
-$donorsArray=$resultDonors->fetch_assoc();
-    ?>
-    <table>
-        <thead>
-            <th>Donor_ID</th>
-            <th>Donor_Name</th>
-            <th>Donor_Email</th>
-            <th>Donor_TEL</th>
-        </thead>
-    <tbody>
-        <?php while ($donor = $resultDonors->fetch_assoc()) { ?>
-            <tr>
-                <td><?= htmlspecialchars($donor["id_user"]) ?></td>
-                <td><?= htmlspecialchars($donor["user_name"]) ?></td>
-                <td><?= htmlspecialchars($donor["email"]) ?></td>
-                <td><?= htmlspecialchars($donor["tel"]) ?></td>
-            </tr>
-        <?php } ?>
-    </tbody>
-    </table>
-    <?php
-}
 
-?>
+<?php include "../../includes/header.php"; ?>
+
+<div class="main-content">
+  <div class="form-container">
+    <h2>Request Blood</h2>
+    <form method="POST">
+      <label for="blood_type">Select Blood Type:</label>
+      <select name="blood_type" id="blood_type" required>
+        <option value="" disabled selected>-- Choose Blood Type --</option>
+        <?php
+        $types = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+        foreach ($types as $type) {
+            echo "<option value=\"$type\">$type</option>";
+        }
+        ?>
+      </select>
+      <br>
+      <button type="submit">Submit Request</button>
+    </form>
+  </div>
+</div>
 
 </body>
 </html>

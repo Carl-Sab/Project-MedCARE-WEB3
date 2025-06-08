@@ -29,6 +29,11 @@ $id = $_SESSION['id_user'];
     <p>Find donors with your blood type quickly and contact them directly via WhatsApp.</p>
     <button class="btn"><a href="requestBlood.php">View Compatible Donors</a></button>
 </section>
+<section id="blood-request">
+    <h2>Blood Requests</h2>
+    <p>Find requests with your blood type quickly and contact them directly via WhatsApp.</p>
+    <button class="btn"><a href="donorRequest.php">View Requests</a></button>
+</section>
         <section id="appointments">
             <h2>Consultation & Appointments</h2>
             <p>Request consultations, view time slots, and manage your bookings.</p>
