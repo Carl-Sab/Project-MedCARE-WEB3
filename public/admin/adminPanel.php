@@ -44,7 +44,7 @@
     <div class="card" id="appointments">
       <h2>Doctor schedule </h2>
       <p>Track and manage doctor appointments.</p>
-      <button><a href="adminManageDoctorSchedule.php">Manage schedule</a></button>
+      <button><a href="adminManageSchedule.php">Manage schedule</a></button>
     </div>
     
     <div class="card" id="userManage">

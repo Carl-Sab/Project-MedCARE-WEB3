@@ -33,6 +33,11 @@ session_start();
             <p>View and manage your clients details and appointments.</p>
             <button><a href="doctorSelectClient.php">View Clients</a></button>
         </div>
+                <div class="card">
+            <h2>Schedule</h2>
+            <p>View your weekly schedule.</p>
+            <button><a href="doctorWeeklySchedule.php">View Schedule</a></button>
+        </div>
     </div>
 </body>
 </html>

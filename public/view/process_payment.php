@@ -41,6 +41,18 @@ if (isset($_POST['id_doctor'], $_POST['type'], $_POST['amount'], $_POST['card_nu
                 $stmt->execute();
                 header("location:chatSystem.php");
             }
+            if ($type === 'booking') {
+         // Update appointment status to Paid
+    $stmt = $conn->prepare("UPDATE appointments SET status = 'Paid' WHERE id_patient = ? AND id_doctor = ? AND status = 'Booked' ORDER BY appointment_id DESC LIMIT 1");
+    $stmt->bind_param("ii", $id_user, $id_doctor);
+    $stmt->execute();
+
+    // Redirect to a thank you or dashboard page
+    header("location:homePage.php");
+    exit;
+}
+
+            
 
         } else {
             $error = "Insufficient balance";

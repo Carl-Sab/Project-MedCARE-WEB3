@@ -152,21 +152,21 @@
         <a href="../view/homePage.php">Homepage</a>
         <a href="#doctor">Doctor</a>
         <a href="adminPanel.php">Back</a>';
-      }elseif(in_array($currentPage,["doctorPanel.php"])){
+      }elseif(in_array($currentPage,["doctorPanel.php","bookAppointment.php","confirmation.php"])){
         echo '
         <a href="../view/logout.php">Logout</a>
         <a href="../view/homePage.php">HomePage</a>';
-      }elseif(in_array($currentPage,["doctorTestResult.php","doctorStats.php"])){
+      }elseif(in_array($currentPage,["doctorTestResult.php","doctorStats.php","doctorWeeklySchedule.php"])){
         echo '
         <a href="../view/logout.php">Logout</a>
         <a href="../view/homePage.php">Homepage</a>
         <a href="doctorPanel.php">Back</a>';
-      }else if(in_array($currentPage,["chatReview.php"])){
+      }else if(in_array($currentPage,["chatReview.php",])){
         echo'
         <a href="../view/logout.php">Logout</a>
         <a href="../view/homePage.php">Homepage</a>
         <a href="chatSystem.php">Back</a>';
-      }elseif($currentPage=="homepage.php"){
+      }elseif($currentPage=="homePage.php"){
         echo '
                 <a href="../view/logout.php">Logout</a>
                 <a href="#blood-donation">Blood Donation</a>
