@@ -19,12 +19,13 @@ if (isset($_POST['Uname']) && isset($_POST['pass'])) {
     $pass = $_POST['pass'];
 
     // Prepare statement using MySQLi (object-oriented)
-    $stmt = $conn->prepare("SELECT * FROM users WHERE BINARY user_name = ?");
+    $stmt = $conn->prepare("SELECT * FROM users WHERE  user_name = ?");
     if ($stmt) {
         $stmt->bind_param("s", $uname); // "s" means string
         $stmt->execute();
 
         $result = $stmt->get_result();
+  
         if ($result && $result->num_rows > 0) {
             $row = $result->fetch_assoc();
 
@@ -65,7 +66,7 @@ if (isset($_POST['Uname']) && isset($_POST['pass'])) {
       <form action="./login.php" method="POST">
 
       <p style="color: red;"><?php echo (isset($msg)?$msg:"");?></p>
-        <input type="text" placeholder="Username/Email" name="Uname" autocomplete="off" required>
+        <input type="text" placeholder="Username" name="Uname" autocomplete="off" required>
         <div class="input-wrapper">
           <input type="password" id="password" placeholder="Password" name="pass" autocomplete="off" required>
           <button type="button" class="show-password" onclick="togglePassword()">

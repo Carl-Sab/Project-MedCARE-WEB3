@@ -1,6 +1,6 @@
 <?php
-include "../../includes/connection.php";
 session_start();
+include "../../includes/connection.php";
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -11,54 +11,13 @@ error_reporting(E_ALL);
 <html>
 <head>
     <title>Doctor Payment</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f3f6f9;
-            padding: 30px;
-        }
-        .payment-box {
-            max-width: 500px;
-            background: #fff;
-            margin: auto;
-            padding: 25px 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .payment-box h2 {
-            margin-bottom: 20px;
-        }
-        .payment-box p {
-            margin: 10px 0;
-        }
-        .payment-box input[type="text"],
-        .payment-box input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .payment-box button {
-            width: 100%;
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .payment-box button:hover {
-            background: #0056b3;
-        }
-        .error {
-            color: red;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/paymentMethod.css">
+
 </head>
 <body>
+<div class="background">
+  <div class="glow"></div>
+</div>
 
 <?php
 

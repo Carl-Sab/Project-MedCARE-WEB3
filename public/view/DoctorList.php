@@ -4,12 +4,10 @@ session_start();
 
 $user_id = $_SESSION['id_user'] ?? null;
 
-// Get list of unique specialties
 $specialty_filter = isset($_GET['speciality']) ? $_GET['speciality'] : '';
 $specialties_sql = "SELECT DISTINCT d.speciality FROM doctor d JOIN users u ON d.id_doctor = u.id_user WHERE u.role = 'doctor'";
 $specialties_result = $conn->query($specialties_sql);
 
-// Fetch doctors (with optional filter)
 $sql = "SELECT u.*, d.* FROM users u 
         JOIN doctor d ON u.id_user = d.id_doctor 
         WHERE u.role = 'doctor'";
@@ -28,69 +26,101 @@ if (!$result) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Doctor List - User Panel</title>
-
-  <link rel="stylesheet" href="../css/doctorList.css">
-
+    <title>Find Your Doctor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #00796b, #004d40);
-            color: white;
             margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fc;
+            color: #333;
         }
 
-        h2 {
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 25px;
+        header {
+            background: linear-gradient(135deg, #00796b, #004d40);
+            color: white;
+            padding: 50px;
             text-align: center;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        header h2 {
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 12px;
+            margin: -40px auto 30px;
+            padding: 50px;
+            max-width: 1100px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
         }
 
         .filter-bar {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .filter-bar select {
-            padding: 10px;
-            font-size: 18px;
-            border-radius: 8px;
-            border: none;
+            padding: 14px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: 2px solid #00796b;
             background-color: #ffffff;
-            color: #00796b;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            color: #333;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-bar select:hover {
+            background: #e3f2fd;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
         }
 
         .doctors-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            width: 100%;
-            margin-top: 20px;
+            gap: 30px;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(12px);
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            padding: 25px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
             text-align: center;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
         }
 
         .profile-img {
@@ -98,77 +128,93 @@ if (!$result) {
             height: 100px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 15px;
-            border: 4px solid #ffffff;
+            margin-bottom: 20px;
+            border: 3px solid #00796b;
         }
 
         .card h3 {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
+            font-size: 22px;
+            color: #00796b;
+            margin: 10px 0 5px;
         }
 
         .card p {
-            font-size: 18px;
-            margin: 5px 0;
+            font-size: 16px;
+            color: #555;
+            margin: 6px 0;
+        }
+
+        .btn-group {
+            margin-top: 15px;
         }
 
         .btn {
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
             text-decoration: none;
             color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 16px;
             display: inline-block;
-            transition: all 0.3s ease-in-out;
+            margin: 8px;
+            transition: all 0.3s ease;
         }
 
         .chat-btn {
-            background-color: #28a745;
+            background-color: #43a047;
         }
 
         .book-btn {
-            background-color: #007bff;
+            background-color: #0288d1;
         }
 
         .btn:hover {
-            transform: scale(1.08);
             opacity: 0.9;
+            transform: scale(1.07);
+        }
+
+        @media (max-width: 600px) {
+            .main-content {
+                padding: 25px;
+            }
         }
     </style>
->>>>>>> origin/Roger
 </head>
 <body>
 
-<h2>Find a Doctor</h2>
+<?php  include "../../includes/header.php"  ?>
 
-<div class="filter-bar">
-    <form method="GET" action="">
-        <label for="speciality">Filter by Specialty:</label>
-        <select name="speciality" onchange="this.form.submit();event.preventDefault();">
-            <option value="">-- All Specialties --</option>
-            <option value="Cardiologist">Cardiologist</option>
-            <option value="Dermatologist">Dermatologist</option>
-            <option value="Pediatrician">Pediatrician</option>
-            <option value="Neurologist">Neurologist</option>
-            <option value="General Physician">General Physician</option>
-        </select>
-    </form>
-</div>
+<div class="main-content">
+    <div class="filter-bar">
+        <form method="GET" action="">
+            <label for="speciality">Filter by Specialty:</label>
+            <select name="speciality" onchange="this.form.submit();">
+                <option value="">-- All Specialties --</option>
+                <option value="Cardiologist">Cardiologist</option>
+                <option value="Dermatologist">Dermatologist</option>
+                <option value="Pediatrician">Pediatrician</option>
+                <option value="Neurologist">Neurologist</option>
+                <option value="General Physician">General Physician</option>
+            </select>
+        </form>
+    </div>
 
-<div class="doctors-grid">
-    <?php while ($row = $result->fetch_assoc()): ?>
-        <div class="card">
-            <img class="profile-img" src="../images/<?= $row['PPicture']?>" alt="Doctor Image">
-            <h3><?= $row['user_name'] ?></h3>
-            <p><?= $row['speciality'] ?></p>
-            <p>Consultation Fee: <?= "$" . $row['consultation_amount'] ?></p>
-            <p>Booking Fee: <?= "$" . $row['booking_amount'] ?></p>
+    <div class="doctors-grid">
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <div class="card">
+                <img class="profile-img" src="../images/<?= $row['PPicture']?>" alt="Doctor Image">
+                <h3><?= $row['user_name'] ?></h3>
+                <p><?= $row['speciality'] ?></p>
+                <p>Consultation Fee: <?= "$" . $row['consultation_amount'] ?></p>
+                <p>Booking Fee: <?= "$" . $row['booking_amount'] ?></p>
 
-            <a class="btn chat-btn" href="paymentMethod.php?id_doctor=<?= $row['id_user'] ?>&type=consultation">Chat</a>
-            <a class="btn book-btn" href="paymentMethod.php?id_doctor=<?= $row['id_user'] ?>&type=booking">Book</a>
-        </div>
-    <?php endwhile; ?>
+                <div class="btn-group">
+                    <a class="btn chat-btn" href="paymentMethod.php?id_doctor=<?= $row['id_user'] ?>&type=consultation">Chat</a>
+                    <a class="btn book-btn" href="bookAppointment.php?id_doctor=<?= $row['id_user'] ?>&type=booking">Book</a>
+                </div>
+            </div>
+        <?php endwhile; ?>
+    </div>
 </div>
 
 </body>

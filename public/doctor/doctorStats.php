@@ -9,12 +9,25 @@
 <body>
 
 <?php
+session_start();
 include "../../includes/header.php";
-include "../../includes/connection.php";  // Ensure database connection
+include "../../includes/connection.php";
 
+
+if (!isset($_SESSION["id_user"])) {
+    echo "<p>You must be logged in to view this page.</p>";
+    exit;
+}
+
+$doctorId = $_SESSION["id_user"];
 $selectedMonth = isset($_GET['month']) ? $_GET['month'] : date('Y-m');
 
-// SQL query to retrieve payment data with doctor profit
+$nameQuery = $conn->prepare("SELECT user_name FROM users WHERE id_user = ?");
+$nameQuery->bind_param("i", $doctorId);
+$nameQuery->execute();
+$nameResult = $nameQuery->get_result();
+$doctorName = ($nameResult->num_rows > 0) ? $nameResult->fetch_assoc()['user_name'] : "Doctor";
+
 $sql = "SELECT 
             p.payment_date, 
             u.user_name AS client_name, 
@@ -28,20 +41,20 @@ $sql = "SELECT
         JOIN 
             client c ON p.id_client = c.id_client
         JOIN 
-            users u ON c.id_client = u.id_user         -- client user name
+            users u ON c.id_client = u.id_user
         JOIN 
             doctor d ON p.id_doctor = d.id_doctor
         JOIN 
-            users u2 ON d.id_doctor = u2.id_user       -- doctor user name
+            users u2 ON d.id_doctor = u2.id_user
         WHERE 
-            DATE_FORMAT(p.payment_date, '%Y-%m') = ?";
+            DATE_FORMAT(p.payment_date, '%Y-%m') = ?
+            AND p.id_doctor = ?";
 
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
     die("SQL prepare failed: " . $conn->error);
 }
-
-$stmt->bind_param("s", $selectedMonth);
+$stmt->bind_param("si", $selectedMonth, $doctorId);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -50,7 +63,7 @@ $totalDoctorProfit = 0;
 ?>
 
 <div class="stats-section">
-  <h2>Monthly Transactions</h2>
+  <h2><?= htmlspecialchars($doctorName) ?>'s Monthly Transaction Statistics</h2>
 
   <form class="filter" method="GET">
     <label for="month">Choose Month:</label>
@@ -87,7 +100,6 @@ $totalDoctorProfit = 0;
             $totalDoctorProfit += $row['doctor_profit'];
         }
     }
-    $totalDoctorProfit -= $totalCommission;
     ?>
   </table>
 

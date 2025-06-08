@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="../css/adminChooseSchedule.css">
 </head>
 <body>
-
+<?php
+include "../../includes/header.php";
+?>
 <div class="schedule-container">
     <h2>Doctor's Weekly Schedule</h2>
 

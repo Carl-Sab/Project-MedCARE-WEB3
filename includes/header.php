@@ -137,7 +137,7 @@
       } elseif ($currentPage == "adminPanel.php") {
         echo '
         <a href="../view/logout.php">Logout</a>
-        <a href="../public/view/homepage.php">Homepage</a>
+        <a href="../view/homePage.php">Homepage</a>
         <a href="#doctor">Doctor</a>
         <a href="adminManageSchedule.php">Manage Schedule</a>
         <a href="adminTestResult.php">Show result</a>';
@@ -145,18 +145,37 @@
       } elseif (in_array($currentPage, [
         "adminBloodDonation.php", "adminChatReview.php", "adminDashboard.php",
         "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminManageSchedule.php","adminTestResult.php",
-        "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminJobApply.php","adminTestResult.php","adminChatReview.php"
+        "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminJobApply.php","adminTestResult.php","adminChatReview.php","adminChooseSchedule.php"
       ])) {
         echo '
-        <a href="../public/view/logout.php">Logout</a>
-        <a href="../public/view/homepage.php">Homepage</a>
+        <a href="../view/logout.php">Logout</a>
+        <a href="../view/homePage.php">Homepage</a>
         <a href="#doctor">Doctor</a>
         <a href="adminPanel.php">Back</a>';
-      }elseif(in_array($currentPage,["doctorPanel.php"])){
+      }elseif(in_array($currentPage,["doctorPanel.php","bookAppointment.php","confirmation.php"])){
         echo '
         <a href="../view/logout.php">Logout</a>
-        <a href="../doctor/doctorChatSystem.php">chat</a>
-        <a href="#">schedule</a>';
+        <a href="../view/homePage.php">HomePage</a>';
+      }elseif(in_array($currentPage,["doctorTestResult.php","doctorStats.php","doctorWeeklySchedule.php"])){
+        echo '
+        <a href="../view/logout.php">Logout</a>
+        <a href="../view/homePage.php">Homepage</a>
+        <a href="doctorPanel.php">Back</a>';
+      }else if(in_array($currentPage,["chatReview.php",])){
+        echo'
+        <a href="../view/logout.php">Logout</a>
+        <a href="../view/homePage.php">Homepage</a>
+        <a href="chatSystem.php">Back</a>';
+      }elseif($currentPage=="homePage.php"){
+        echo '
+                <a href="../view/logout.php">Logout</a>
+                <a href="#blood-donation">Blood Donation</a>
+                <a href="#appointments">Appointments</a>
+                <a href="#emergency-requests">Emergency</a>';
+      }elseif(in_array($currentPage,["requestBlood.php","doctorList.php","emergencyRequest.php","donorRequest.php"])){
+        echo '
+        <a href="../view/logout.php">Logout</a>
+        <a href="homePage.php">Back</a>';
       }
     elseif(in_array($currentPage,["homepage.php"])){
       echo '

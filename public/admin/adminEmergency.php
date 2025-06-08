@@ -38,6 +38,7 @@ $result = $conn->query($sql);
         </tr>
       </thead>
       <tbody>
+        
         <?php while ($row = $result->fetch_assoc()) { ?>
           <tr>
             <td><?= $row['id_client'] ?></td>
