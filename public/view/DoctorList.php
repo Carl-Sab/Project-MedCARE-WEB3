@@ -182,10 +182,7 @@ if (!$result) {
 </head>
 <body>
 
-<header>
-    <button class="back-btn" onclick="//window.history.back();">← Back</button>
-    <h2>Find Your Doctor</h2>
-</header>
+<?php  include "../../includes/header.php"  ?>
 
 <div class="main-content">
     <div class="filter-bar">

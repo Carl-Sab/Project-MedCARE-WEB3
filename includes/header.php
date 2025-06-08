@@ -172,6 +172,10 @@
                 <a href="#blood-donation">Blood Donation</a>
                 <a href="#appointments">Appointments</a>
                 <a href="#emergency-requests">Emergency</a>';
+      }elseif(in_array($currentPage,["requestBlood.php","doctorList.php","emergencyRequest.php"])){
+        echo '
+        <a href="../view/logout.php">Logout</a>
+        <a href="homePage.php">Back</a>';
       }
     ?>
   </nav>
