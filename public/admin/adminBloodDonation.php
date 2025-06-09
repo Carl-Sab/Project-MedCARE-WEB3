@@ -44,7 +44,7 @@ $resultApproved = $stmtApproved->get_result();
   <form class="filter" method="GET">
     <label for="month">Choose Month:</label>
     <input type="month" name="month" id="month" value="<?= htmlspecialchars($selectedMonth) ?>" />
-    <button type="submit">Filter</button>
+    <button type="submit" id="filter">Filter</button>
   </form>
 
   <table>

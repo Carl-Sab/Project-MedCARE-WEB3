@@ -50,11 +50,11 @@ if (isset($_POST['id_user'], $_POST['role'])) {
     if ($role === "client" && isset($_POST["blood_type"])) {
         $blood_type = $_POST["blood_type"];
         $health_condition = $_POST["health_condition"];
-        $last_donation = $_POST["last_donation"];
+        
 
-        $stmt = $conn->prepare("INSERT INTO client (id_client, blood_type, health_condition, date_of_last_donation)
-                                VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("isss", $id_user, $blood_type, $health_condition, $last_donation);
+        $stmt = $conn->prepare("INSERT INTO client (id_client, blood_type, health_condition)
+                                VALUES (?, ?, ?)");
+        $stmt->bind_param("isss", $id_user, $blood_type, $health_condition );
         $stmt->execute();
 
         header("Location: adminManageUser.php");
@@ -182,8 +182,7 @@ if (isset($_POST['id_user'], $_POST['role'])) {
                 <label for="health_condition">Health Condition:</label>
                 <input type="text" name="health_condition" required>
 
-                <label for="last_donation">Date of Last Donation:</label>
-                <input type="date" name="last_donation" required>
+         
             <?php endif; ?>
 
             <button type="submit">Save <?php echo ucfirst($role); ?> Info</button>
