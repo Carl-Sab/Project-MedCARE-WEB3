@@ -1,3 +1,25 @@
+<?php
+session_start();
+include "../../includes/connection.php";
+
+$id_user = $_SESSION['id_user'];
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $blood_type = $_POST['blood_type'] ?? '';
+
+    if ($blood_type) {
+        $stmt = $conn->prepare("INSERT INTO blood_request (id_requester, blood_type, date_request, status) VALUES (?, ?, NOW(), 'pending')");
+        $stmt->bind_param("is", $id_user, $blood_type);
+        $stmt->execute();
+        $stmt->close();
+        echo "<script>alert('Blood request submitted successfully!');</script>";
+    } else {
+        echo "<script>alert('Please select a blood type.');</script>";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +39,6 @@
       flex-shrink: 0;
     }
 
-    /* Main content area */
     .main-content {
       flex-grow: 1;
       display: flex;
