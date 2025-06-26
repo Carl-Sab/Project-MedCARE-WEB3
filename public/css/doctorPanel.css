@@ -4,46 +4,12 @@ body {
     background-color: white;
 }
 
-header {
-    background: linear-gradient(90deg, #00796b, #004d40);
-    color: white;
-    padding: 20px;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav {
-    padding: 10px;
-    text-align: center;
-}
-
-nav button {
-    background: linear-gradient(90deg, #00796b, #004d40);
-    color: white; 
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s ease;
-}
-
-nav button a {
-    text-decoration: none;
-    color: white;
-}
-
-nav button:hover {
-    color: #f0f4f9;
-    transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-}
 
 /* Center cards */
 .container {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     gap: 20px;
     justify-content: center;
     padding: 20px;
@@ -51,7 +17,7 @@ nav button:hover {
 
 /* Updated Card for Consistency */
 .card {
-    width: 280px; 
+    width: 100%; 
     background-color: white;
     border-radius: 10px;
     padding: 20px;
@@ -59,7 +25,6 @@ nav button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     text-align: center;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,7 +33,7 @@ nav button:hover {
 
 .card h2 {
     margin-top: 0;
-    color: #66bb6a;
+      color: #00796b;
 }
 
 .card p {

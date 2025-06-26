@@ -182,10 +182,7 @@ if (!$result) {
 </head>
 <body>
 
-<header>
-    <button class="back-btn" onclick="//window.history.back();">← Back</button>
-    <h2>Find Your Doctor</h2>
-</header>
+<?php  include "../../includes/header.php"  ?>
 
 <div class="main-content">
     <div class="filter-bar">
@@ -213,7 +210,7 @@ if (!$result) {
 
                 <div class="btn-group">
                     <a class="btn chat-btn" href="paymentMethod.php?id_doctor=<?= $row['id_user'] ?>&type=consultation">Chat</a>
-                    <a class="btn book-btn" href="paymentMethod.php?id_doctor=<?= $row['id_user'] ?>&type=booking">Book</a>
+                    <a class="btn book-btn" href="bookAppointment.php?id_doctor=<?= $row['id_user'] ?>&type=booking">Book</a>
                 </div>
             </div>
         <?php endwhile; ?>
