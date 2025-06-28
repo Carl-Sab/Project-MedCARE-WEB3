@@ -57,3 +57,38 @@ div a {
 a:hover {
     background: #004D40;
 }
+@media (max-width: 768px) {
+    #main-content {
+        padding-top: 10px;
+        height: auto;
+    }
+
+    #container {
+        padding: 15px;
+        width: 95%;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    div a {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 13px;
+    }
+
+    div a {
+        font-size: 13px;
+        padding: 8px 14px;
+    }
+}

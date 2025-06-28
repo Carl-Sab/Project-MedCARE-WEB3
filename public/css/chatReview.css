@@ -131,14 +131,50 @@
             text-decoration: underline;
         }
 
-        @media (max-width: 768px) {
-            .review-card {
-                padding: 20px;
-            }
-            textarea {
-                font-size: 14px;
-            }
-            button {
-                font-size: 14px;
-            }
-        }
+@media (max-width: 768px) {
+    .review-card {
+        padding: 20px;
+        width: 90%;
+        height: auto;
+    }
+
+    textarea {
+        font-size: 14px;
+        width: 100%;
+    }
+
+    button {
+        font-size: 14px;
+    }
+
+    .star-rating {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .review-card {
+        padding: 15px;
+        max-width: 95%;
+    }
+
+    .review-card h2 {
+        font-size: 20px;
+    }
+
+    textarea {
+        height: 80px;
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .star-rating {
+        font-size: 1.2rem;
+    }
+}
+}

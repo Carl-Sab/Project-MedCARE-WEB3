@@ -24,70 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
   <title>Request Blood</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f0f0f0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    /* Keep header at the top */
-    header {
-      flex-shrink: 0;
-    }
-
-    .main-content {
-      flex-grow: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .form-container {
-      background: rgba(0, 121, 107, 0.2);
-      padding: 30px 40px;
-      border-radius: 12px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-
-    h2 {
-      margin-bottom: 20px;
-      color: #004d40;
-    }
-
-    label {
-      font-weight: bold;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    select {
-      padding: 10px;
-      width: 200px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      margin-bottom: 20px;
-    }
-
-    button {
-      background: #00796b;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    button:hover {
-      background: #004d40;
-    }
-  </style>
+  <link rel="stylesheet" href="../css/requestBlood.css">
 </head>
 <body>
 

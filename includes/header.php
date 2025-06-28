@@ -166,7 +166,7 @@
         <a href="../view/logout.php">Logout</a>
         <a href="../view/homePage.php">Homepage</a>
         <a href="chatSystem.php">Back</a>';
-      }elseif($currentPage=="homePage.php"){
+      }elseif($currentPage=="homepage.php"){
         echo '
                 <a href="../view/logout.php">Logout</a>
                 <a href="#blood-donation">Blood Donation</a>
