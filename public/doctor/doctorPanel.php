@@ -1,7 +1,3 @@
-<?php
-session_start();
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +7,10 @@ session_start();
     <link rel="stylesheet" href="../css/doctorPanel.css">
 </head>
 <body>
-    <?php include '../../includes/header.php';?>
+    <?php
+    session_start();
+    include '../../includes/header.php';
+    ?>
     <div class="container">
         <div class="card">
             <h2>Consultations</h2>

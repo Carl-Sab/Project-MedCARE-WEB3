@@ -146,7 +146,7 @@
         "adminBloodDonation.php", "adminChatReview.php", "adminDashboard.php",
         "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminManageSchedule.php","adminTestResult.php",
         "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminJobApply.php","adminTestResult.php","adminChatReview.php","adminChooseSchedule.php"
-      ])) {
+      ])) { 
         echo '
         <a href="../view/logout.php">Logout</a>
         <a href="../view/homePage.php">Homepage</a>
@@ -177,6 +177,15 @@
         <a href="../view/logout.php">Logout</a>
         <a href="homePage.php">Back</a>';
       }
+    elseif(in_array($currentPage,["homepage.php"])){
+      echo '
+      <a href="../view/jobApply.php">JobApply</a>
+      <a href="../view/report.php">Report</a>
+      <a href="../view/chatSystem.php">Chat</a>
+      <a href="../view/logout.php">Logout</a>
+      ';
+    }
+    
     ?>
   </nav>
 </header>

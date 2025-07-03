@@ -43,7 +43,7 @@ $result = $conn->query($sql);
             <td><?= htmlspecialchars($row['description']) ?></td>
             <td>
               <?php if (!empty($row['file'])): ?>
-                <a class="download-link" href="<?= $row['file']?>">Download</a>
+                <a class="download-link" href="../cv_uploads/<?= $row['file']?>">Download</a>
               <?php else: ?>
                 No file
               <?php endif; ?>
