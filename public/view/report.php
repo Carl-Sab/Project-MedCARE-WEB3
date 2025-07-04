@@ -2,53 +2,29 @@
 session_start();
 include "../../includes/connection.php";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $title = $_POST['title'];
-    $speciality = $_POST['speciality'];
-    $booking_price = $_POST['booking_price'];
-    $chat_sessions_price = $_POST['chat_sessions_price'];
-    $description = $_POST['description'];
-    $user_id = $_SESSION['id_user'];
+if (isset($_POST['subject'], $_POST["description"])) {
+    $id_user = $_SESSION['id_user'];
+    $title = $_POST['subject'];
+    $desc = $_POST["description"];
 
-    if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
-        $fileTmp = $_FILES['file']['tmp_name'];
-        $fileName = basename($_FILES['file']['name']);
-        $fileExt = pathinfo($fileName, PATHINFO_EXTENSION);
-        $allowed = ['pdf', 'doc', 'docx', 'png', 'jpg', 'jpeg',];
+    $insert = "INSERT INTO report (id_client,title,description,date_of_post) VALUES (?, ?, ?, NOW())";
+    $stmt = $conn->prepare($insert);
+    $stmt->bind_param("iss", $id_user, $title, $desc);
 
-        if (in_array(strtolower($fileExt), $allowed)) {
-            $newFileName = uniqid() . '.' . $fileExt;
-            $uploadPath = '../cv_uploads/' . $newFileName;
-
-            if (move_uploaded_file($fileTmp, $uploadPath)) { 
-                $stmt = $conn->prepare("INSERT INTO job_apply (id_client, title, speciality, booking_price, chat_sessions_price, description,file, dateOfPost) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
-                $stmt->bind_param("issddss", $user_id, $title, $speciality, $booking_price, $chat_sessions_price, $description, $newFileName);
-
-                if ($stmt->execute()) {
-                    header("Location: homepage.php");
-                    exit();
-                } else {
-                    echo "<script>alert('Failed to submit application. Please try again.');</script>";
-                }
-            } else {
-                echo "<script>alert('File upload failed.');</script>";
-            }
-        } else {
-            echo "<script>alert('Invalid file type.');</script>";
-        }
+    if ($stmt->execute()) {
+        header("Location: ./homepage.php");
+        exit(); // Always add exit() after header redirects
     } else {
-        echo "<script>alert('Please upload a valid file.');</script>";
+        echo "<script>alert('Failed to submit report.');</script>";
     }
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Application Form</title>
+    <title>Report an Issue</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -178,18 +154,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         @media (max-width: 768px) {
             .form-container {
                 background-color: transparent;
-                box-shadow: 0px 0px 0px 0px;
+                box-shadow: none;
                 padding: 15px;
                 max-width: 350px;
-                border:none;
+                border: none;
             }
         }
 
         @media (max-width: 480px) {
             .form-container {
-                border:none;
+                border: none;
                 background-color: transparent;
-                box-shadow: 0px 0px 0px 0px;
+                box-shadow: none;
                 padding: 12px;
                 max-width: 300px;
             }
@@ -203,46 +179,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <div class="form-container">
-    <h2>Apply for a Job</h2>
-    <form action="jobApply.php" method="POST" enctype="multipart/form-data">
+    <h2>Report an Issue</h2>
+    <form action="report.php" method="POST">
         <div class="form-group">
-            <label for="title">Job Title</label>
-            <input type="text" name="title" id="title" required>
+            <label for="subject">Report Subject</label>
+            <input type="text" name="subject" id="subject" required>
         </div>
 
         <div class="form-group">
-            <label for="speciality">Speciality</label>
-            <select name="speciality" required>
-                <option value="">-- All Specialties --</option>
-                <option value="Cardiologist">Cardiologist</option>
-                <option value="Dermatologist">Dermatologist</option>
-                <option value="Pediatrician">Pediatrician</option>
-                <option value="Neurologist">Neurologist</option>
-                <option value="General Physician">General Physician</option>
-            </select>
+            <label for="description">Description</label>
+            <textarea name="description" id="description" maxlength="500" required></textarea>
         </div>
 
-        <div class="form-group">
-            <label for="booking_price">Booking Price ($)</label>
-            <input type="number" name="booking_price" id="booking_price" required>
-        </div>
 
-        <div class="form-group">
-            <label for="chat_sessions_price">Chat Session Price ($)</label>
-            <input type="number" name="chat_sessions_price" id="chat_sessions_price" required>
-        </div>
 
-        <div class="form-group">
-            <label for="description">Short Description</label>
-            <textarea name="description" id="description" maxlength="255" required></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="file">Upload Resume or Portfolio</label>
-            <input type="file" name="file" id="file" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg" required>
-        </div>
-
-        <button type="submit">Submit Application</button>
+        <button type="submit">Submit Report</button>
     </form>
 </div>
 

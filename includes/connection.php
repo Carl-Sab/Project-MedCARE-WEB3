@@ -1,10 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "medcare";
 
-$conn = new mysqli($servername, $username, $password, $database);
+    $conn = new mysqli("localhost", "root","", "medcare");
 
 //------------------------------------------------------------------------------------------------------------
 //to check the connection if it work uncomment it and check if it succesfull when you are getting the database 
