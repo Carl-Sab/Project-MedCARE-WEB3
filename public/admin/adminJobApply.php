@@ -18,10 +18,6 @@ $result = $conn->query($sql);
   <div class="stats-section">
     <h2>Job Applications Management</h2>
 
-    <div class="filter">
-      <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search by title or description...">
-    </div>
-
     <table id="jobTable">
       <thead>
         <tr>
@@ -52,13 +48,11 @@ $result = $conn->query($sql);
             <td><?= $row['chat_sessions_price'] ?></td>
             <td class="status-<?= strtolower($row['stats']) ?>"><?= ucfirst($row['stats']) ?></td>
             <td>
-              <!-- Approve Job Application Form -->
               <form method="POST" action="ApproveJobApply.php">
                 <input type="hidden" name="id" value="<?= $row['id_job_apply'] ?>">
                 <button type="submit" class="Action">Approve</button>
               </form>
 
-              <!-- Decline Job Application Form -->
               <form method="POST" action="DeclineJobApply.php">
                 <input type="hidden" name="id" value="<?= $row['id_job_apply'] ?>">
                 <button type="submit" class="Action">Decline</button>
@@ -69,17 +63,6 @@ $result = $conn->query($sql);
       </tbody>
     </table>
   </div>
-
-  <script>
-    function filterTable() {
-      const input = document.getElementById("searchInput").value.toLowerCase();
-      const rows = document.querySelectorAll("#jobTable tbody tr");
-      rows.forEach(row => {
-        const title = row.cells[1].textContent.toLowerCase();
-        row.style.display = (title.includes(input)) ? "" : "none";
-      });
-    }
-  </script>
 </body>
 </html>
 

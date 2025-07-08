@@ -91,7 +91,7 @@ $result = $stmt->get_result();
         <td>
             <form method="POST" style="display:inline">
                 <input type="hidden" name="id_blood_req" value="<?= $row['id_blood_req'] ?>" />
-                <button type="submit" name="action" value="approve">Approve</button>
+                <button type="submit" name="action" value="approve">Donate</button>
             </form>
             <form method="POST" style="display:inline">
                 <input type="hidden" name="id_blood_req" value="<?= $row['id_blood_req'] ?>" />

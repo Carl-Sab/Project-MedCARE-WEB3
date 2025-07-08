@@ -15,11 +15,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
     
     if ($application) {
       
-        $insert = "INSERT INTO doctor (id_doctor, speciality, shifts, status, consultation_amount, booking_amount)
-                   VALUES (?, ?, 'AM', 'ON', ?, ?)";
+        $insert = "INSERT INTO doctor (id_doctor, speciality, shifts, consultation_amount, booking_amount)
+                   VALUES (?, ?, 'AM', ?, ?)";
         $stmt = $conn->prepare($insert);
-$stmt->bind_param("isdd", $application['id_client'], $application['title'], $application['chat_sessions_price'], $application['booking_price']);
-$client_id=$application['id_client'];
+        $stmt->bind_param("isii", $application['id_client'], $application['title'], $application['chat_sessions_price'], $application['booking_price']);
+        $client_id=$application['id_client'];
 
         if ($stmt->execute()) {
             $update = $conn->prepare("UPDATE job_apply SET stats='approved' WHERE id_job_apply = ?");
