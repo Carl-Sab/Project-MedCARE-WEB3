@@ -37,7 +37,8 @@ include "../../includes/connection.php"; // Adjust this path as needed
                 u_client.user_name AS patient_name,
                 u_doctor.user_name AS doctor_name,
                 tr.result, 
-                tr.date_result
+                tr.date_result,
+                tr.fileName
               FROM test_result tr
               LEFT JOIN users u_client ON tr.id_client = u_client.id_user
               LEFT JOIN users u_doctor ON tr.id_doctor = u_doctor.id_user
@@ -54,7 +55,7 @@ include "../../includes/connection.php"; // Adjust this path as needed
                   <td>{$row['date_result']}</td>
                   <td>$status</td>
                   <td class='action-buttons'>
-                    <button class='view-btn' data-id='{$row['id_result']}'>View</button>
+                    <a class='view-btn' href='../test_result_uploads/{$row['fileName']}'>View</a>
                   </td>
                 </tr>";
         }

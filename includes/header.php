@@ -139,7 +139,7 @@
       } elseif ($currentPage === "adminPanel.php") {
         echo '
         <a href="../view/logout.php">Logout</a>
-        <a href="../view/homePage.php">Homepage</a>
+        <a href="../view/homepage.php">Homepage</a>
         <a href="#doctor">Doctor</a>
         <a href="adminManageSchedule.php">Manage Schedule</a>
         <a href="adminTestResult.php">Show result</a>';
@@ -151,25 +151,25 @@
       ])) {
         echo '
         <a href="../view/logout.php">Logout</a>
-        <a href="../view/homePage.php">Homepage</a>
+        <a href="../view/homepage.php">Homepage</a>
         <a href="#doctor">Doctor</a>
         <a href="adminPanel.php">Back</a>';
 
       } elseif (in_array($currentPage, ["doctorPanel.php", "bookAppointment.php", "confirmation.php"])) {
         echo '
         <a href="../view/logout.php">Logout</a>
-        <a href="../view/homePage.php">Homepage</a>';
+        <a href="../view/homepage.php">Homepage</a>';
 
       } elseif (in_array($currentPage, ["doctorTestResult.php", "doctorStats.php", "doctorWeeklySchedule.php"])) {
         echo '
         <a href="../view/logout.php">Logout</a>
-        <a href="../view/homePage.php">Homepage</a>
+        <a href="../view/homepage.php">Homepage</a>
         <a href="doctorPanel.php">Back</a>';
 
       } elseif ($currentPage === "chatReview.php") {
         echo '
         <a href="../view/logout.php">Logout</a>
-        <a href="../view/homePage.php">Homepage</a>
+        <a href="../view/homepage.php">Homepage</a>
         <a href="chatSystem.php">Back</a>';
 
       } elseif ($currentPage === "homepage.php") {
@@ -183,7 +183,7 @@
       } elseif (in_array($currentPage, ["requestBlood.php", "doctorList.php", "emergencyRequest.php", "donorRequest.php"])) {
         echo '
         <a href="../view/logout.php">Logout</a>
-        <a href="homePage.php">Back</a>';
+        <a href="homepage.php">Back</a>';
       }
     ?>
   </nav>

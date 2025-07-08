@@ -8,21 +8,12 @@
 <body>
 
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 session_start();
 include "../../includes/header.php";
 include "../../includes/connection.php";
 
-// ✅ Check connection
-if (!$conn) {
-  die("<p style='color:red;'>Connection failed: " . mysqli_connect_error() . "</p>");
-}
-
-// ✅ Query: Pending Applications
 $pendingSql = "SELECT * FROM job_apply WHERE stats = 'pending'";
-$pendingResult = $conn->query($pendingSql);
+$result = $conn->query($pendingSql);
 ?>
   <div class="stats-section">
     <h2>Job Applications Management</h2>

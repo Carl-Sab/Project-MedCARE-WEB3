@@ -11,9 +11,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($blood_type) {
         $stmt = $conn->prepare("INSERT INTO blood_request (id_requester, blood_type, date_request, status) VALUES (?, ?, NOW(), 'pending')");
         $stmt->bind_param("is", $id_user, $blood_type);
-        $stmt->execute();
-        $stmt->close();
-        echo "<script>alert('Blood request submitted successfully!');</script>";
+        if($stmt->execute()){
+            echo "<script>alert('Blood request submitted successfully!');</script>";
+        }
+        else{
+          echo "<script>alert('".$conn->error."');</script>";
+        }
     } else {
         echo "<script>alert('Please select a blood type.');</script>";
     }

@@ -202,7 +202,7 @@ if (!$result) {
     <div class="doctors-grid">
         <?php while ($row = $result->fetch_assoc()): ?>
             <div class="card">
-                <img class="profile-img" src="../images/<?= $row['PPicture']?>" alt="Doctor Image">
+                <img class="profile-img" src="../images/uploads/<?= $row['PPicture']?>" alt="Doctor Image">
                 <h3><?= $row['user_name'] ?></h3>
                 <p><?= $row['speciality'] ?></p>
                 <p>Consultation Fee: <?= "$" . $row['consultation_amount'] ?></p>

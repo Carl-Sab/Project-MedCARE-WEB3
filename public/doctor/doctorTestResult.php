@@ -27,14 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $file_name = time() . "_" . basename($_FILES['test_file']['name']);
         move_uploaded_file($_FILES['test_file']['tmp_name'], "../test_result_uploads/" . $file_name);
     }
-$sql = "INSERT INTO test_result (id_client, id_doctor, result, date_result) VALUES (?, ?, ?, NOW())";
+$sql = "INSERT INTO test_result (id_client, id_doctor, result, date_result,fileName) VALUES (?, ?, ?, NOW(),?)";
 $stmt = $conn->prepare($sql);
 
 if (!$stmt) {
-    die("Prepare failed: " . $conn->error);  // ❗ Shows you the real reason for failure
+    die("Prepare failed: " . $conn->error);
 }
 
-$stmt->bind_param("iis", $client_id, $doctor_id, $test_result);
+$stmt->bind_param("iiss", $client_id, $doctor_id, $test_result,$file_name);
 
 
     if ($stmt->execute()) {
