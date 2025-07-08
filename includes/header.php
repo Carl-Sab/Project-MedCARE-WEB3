@@ -128,64 +128,63 @@
   <nav class="navbar">
     <?php 
       $currentPage = basename($_SERVER['PHP_SELF']); 
-      if ($currentPage == "index.php") {
+
+      if ($currentPage === "index.php") {
         echo '
         <a href="#features">Features</a>
         <a href="#about">About Us</a>
         <a href="#services">Services</a>
         <a href="public/view/login.php">Login</a>';
-      } elseif ($currentPage == "adminPanel.php") {
+
+      } elseif ($currentPage === "adminPanel.php") {
         echo '
         <a href="../view/logout.php">Logout</a>
         <a href="../view/homePage.php">Homepage</a>
         <a href="#doctor">Doctor</a>
         <a href="adminManageSchedule.php">Manage Schedule</a>
         <a href="adminTestResult.php">Show result</a>';
-        
+
       } elseif (in_array($currentPage, [
         "adminBloodDonation.php", "adminChatReview.php", "adminDashboard.php",
-        "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminManageSchedule.php","adminTestResult.php",
-        "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminJobApply.php","adminTestResult.php","adminChatReview.php","adminChooseSchedule.php"
-      ])) { 
+        "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php",
+        "adminManageSchedule.php", "adminTestResult.php", "adminJobApply.php", "adminChooseSchedule.php"
+      ])) {
         echo '
         <a href="../view/logout.php">Logout</a>
         <a href="../view/homePage.php">Homepage</a>
         <a href="#doctor">Doctor</a>
         <a href="adminPanel.php">Back</a>';
-      }elseif(in_array($currentPage,["doctorPanel.php","bookAppointment.php","confirmation.php"])){
+
+      } elseif (in_array($currentPage, ["doctorPanel.php", "bookAppointment.php", "confirmation.php"])) {
         echo '
         <a href="../view/logout.php">Logout</a>
-        <a href="../view/homePage.php">HomePage</a>';
-      }elseif(in_array($currentPage,["doctorTestResult.php","doctorStats.php","doctorWeeklySchedule.php"])){
+        <a href="../view/homePage.php">Homepage</a>';
+
+      } elseif (in_array($currentPage, ["doctorTestResult.php", "doctorStats.php", "doctorWeeklySchedule.php"])) {
         echo '
         <a href="../view/logout.php">Logout</a>
         <a href="../view/homePage.php">Homepage</a>
         <a href="doctorPanel.php">Back</a>';
-      }else if(in_array($currentPage,["chatReview.php",])){
-        echo'
+
+      } elseif ($currentPage === "chatReview.php") {
+        echo '
         <a href="../view/logout.php">Logout</a>
         <a href="../view/homePage.php">Homepage</a>
         <a href="chatSystem.php">Back</a>';
-      }elseif($currentPage=="homepage.php"){
+
+      } elseif ($currentPage === "homepage.php") {
         echo '
-                <a href="../view/logout.php">Logout</a>
-                <a href="#blood-donation">Blood Donation</a>
-                <a href="#appointments">Appointments</a>
-                <a href="#emergency-requests">Emergency</a>';
-      }elseif(in_array($currentPage,["requestBlood.php","doctorList.php","emergencyRequest.php","donorRequest.php"])){
+
+        <a href="../view/jobApply.php">JobApply</a>
+        <a href="../view/report.php">Report</a>
+        <a href="../view/chatSystem.php">Chat</a>
+        <a href="../view/logout.php">Logout</a>';
+
+      } elseif (in_array($currentPage, ["requestBlood.php", "doctorList.php", "emergencyRequest.php", "donorRequest.php"])) {
         echo '
         <a href="../view/logout.php">Logout</a>
         <a href="homePage.php">Back</a>';
       }
-    elseif(in_array($currentPage,["homepage.php"])){
-      echo '
-      <a href="../view/jobApply.php">JobApply</a>
-      <a href="../view/report.php">Report</a>
-      <a href="../view/chatSystem.php">Chat</a>
-      <a href="../view/logout.php">Logout</a>
-      ';
-    }
-    
     ?>
   </nav>
 </header>

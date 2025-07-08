@@ -7,11 +7,6 @@
     <title>MedCare Home</title>
     <link rel="stylesheet" href="../css/homepage.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('Welcome to the enhanced MedCare homepage!');
-        });
-    </script>
 </head>
 <?php
 

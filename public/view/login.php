@@ -84,9 +84,11 @@ if (isset($_POST['Uname']) && isset($_POST['pass'])) {
           </button>
         </div>
 
-        <label style="display: flex; align-items: center; margin-top: 10px;">
-          <input type="checkbox" name="remember" <?php if(isset($_COOKIE['username'])) echo "checked"; ?>> Remember Me
-        </label>
+<label class="remember-me">
+  <input type="checkbox" name="remember" <?php if(isset($_COOKIE['username'])) echo "checked"; ?>>
+  <span>Remember Me</span>
+</label>
+
 
         <a href="./forgotPass.php" class="forgot-password">Forgot Password?</a>
         <button id="login" type="submit">Log In</button>
