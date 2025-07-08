@@ -22,31 +22,31 @@ if (isset($_POST['id_user'], $_POST['role'])) {
         $stmt->execute();
     }
 
-    // Get user name
     $stmt = $conn->prepare("SELECT user_name FROM users WHERE id_user = ?");
     $stmt->bind_param("i", $id_user);
     $stmt->execute();
     $result = $stmt->get_result();
     $userName = $result->fetch_assoc()['user_name'] ?? '';
 
-    // If doctor form submitted
-    if ($role === "doctor" && isset($_POST["speciality"])) {
+    if ($role === "doctor" && isset($_POST["speciality"],$_POST["shifts"],$_POST["consultation_amount"],$_POST["booking_amount"])) {
         $speciality = $_POST["speciality"];
         $shifts = $_POST["shifts"];
-        $status = $_POST["status"];
         $consultation_amount = (int)$_POST["consultation_amount"];
         $booking_amount = (int)$_POST["booking_amount"];
 
-        $stmt = $conn->prepare("INSERT INTO doctor (id_doctor, speciality, shifts, status, consultation_amount, booking_amount)
-                                VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("isssii", $id_user, $speciality, $shifts, $status, $consultation_amount, $booking_amount);
-        $stmt->execute();
+        $stmt = $conn->prepare("INSERT INTO doctor (id_doctor, speciality, shifts, consultation_amount, booking_amount)
+                                VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("issii", $id_user, $speciality, $shifts, $consultation_amount, $booking_amount);
+        if($stmt->execute()){
+            header("Location: adminManageUser.php");
+        }
+        else{
+            die( $conn->error);
+        }
 
-        header("Location: adminManageUser.php");
         exit();
     }
 
-    // If client form submitted
     if ($role === "client" && isset($_POST["blood_type"])) {
         $blood_type = $_POST["blood_type"];
         $health_condition = $_POST["health_condition"];
@@ -54,7 +54,7 @@ if (isset($_POST['id_user'], $_POST['role'])) {
 
         $stmt = $conn->prepare("INSERT INTO client (id_client, blood_type, health_condition)
                                 VALUES (?, ?, ?)");
-        $stmt->bind_param("isss", $id_user, $blood_type, $health_condition );
+        $stmt->bind_param("iss", $id_user, $blood_type, $health_condition );
         $stmt->execute();
 
         header("Location: adminManageUser.php");
@@ -145,17 +145,11 @@ if (isset($_POST['id_user'], $_POST['role'])) {
                     <option value="General Physician">General Physician</option>
                 </select>
 
-                <label for="status">Status:</label>
-                <select name="status" required>
-                    <option value="ava">Available</option>
-                    <option value="act">Active</option>
-                </select>
-
                 <label for="shifts">Shifts:</label>
                     <select name="shifts" required>
-                        <option value="">-- Select Shift --</option>
-                        <option value="Morning Shift (6 AM - 12 PM)">Morning Shift (6 AM - 12 PM)</option>
-                        <option value="Evening Shift (12 PM - 6 PM)">Evening Shift (12 PM - 6 PM)</option>
+                        <option  disabled>-- Select Shift --</option>
+                        <option value="AM">Morning Shift (6 AM - 12 PM)</option>
+                        <option value="PM">Evening Shift (12 PM - 6 PM)</option>
                     </select>
 
 
