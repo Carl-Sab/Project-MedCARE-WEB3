@@ -39,7 +39,10 @@ if (!$appointment) {
     <title>Document</title>
 </head>
 <body>
-    <?php include "../../includes/header.php" ?>
+    <?php include "../../includes/header.php";
+    include "../../includes/security.php";
+
+    ?>
 <div id="main-content">
     <div id="container">
         <div>

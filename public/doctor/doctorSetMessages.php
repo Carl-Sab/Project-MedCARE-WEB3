@@ -1,6 +1,8 @@
 <?php
 session_start();
 include "../../includes/connection.php";
+include "../../includes/security.php";
+
 
 if (isset($_SESSION['id_user']) && isset($_POST['message']) && isset($_POST['chat_session_id'])) {
     $id_user = $_SESSION['id_user'];

@@ -1,5 +1,7 @@
 <?php
 include "../../includes/connection.php";
+include "../../includes/security.php";
+
 
 if (isset($_POST['id_user'], $_POST['role'])) {
     $id_user = $_POST['id_user'];

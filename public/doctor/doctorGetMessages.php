@@ -1,5 +1,7 @@
 <?php
 include "../../includes/connection.php";
+include "../../includes/security.php";
+
 session_start();
 
 if (isset($_GET['session']) && isset($_SESSION['id_user'])) {

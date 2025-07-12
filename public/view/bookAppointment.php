@@ -1,6 +1,8 @@
 <?php
 session_start();
 include "../../includes/connection.php";
+include "../../includes/security.php";
+
 
 $id_doctor = $_GET['id_doctor'];
 $id_client = $_SESSION['id_user']; // Assuming client is logged in

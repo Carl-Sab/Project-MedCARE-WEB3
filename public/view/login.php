@@ -1,9 +1,11 @@
 <?php
 session_start();
 include "../../includes/connection.php";
+include "../../includes/security.php";
+
 
 $msg = "";
-$remembered_username = isset($_COOKIE['username']) ? $_COOKIE['username'] : '';
+$remembered_username = isset($_COOKIE['Uname']) ? $_COOKIE['Uname'] : '';
 
 if (isset($_POST['Uname']) && isset($_POST['pass'])) {
     $uname = $_POST['Uname'];
@@ -22,14 +24,11 @@ if (isset($_POST['Uname']) && isset($_POST['pass'])) {
                 $_SESSION["id_user"] = $row['id_user'];
                 $_SESSION["Uname"] = $row['user_name'];
 
-                // Set or clear the cookie
                 if (isset($_POST['remember'])) {
-                    setcookie("username", $uname, time() + (86400 * 30), "/"); // 30 days
-                } else {
-                    setcookie("username", "", time() - 3600, "/"); // Delete
-                }
+                    setcookie("id_user", $row['id_user'], time() + (86400 * 30), "/"); // 30 days
+                    setcookie("Uname", $row['user_name'], time() + (86400 * 30), "/"); // 30 days
 
-                // Redirect by role
+                }
                 if ($row['role'] == 'admin') {
                     header("Location: ../admin/adminPanel.php");
                 } else if ($row['role'] == 'doctor') {

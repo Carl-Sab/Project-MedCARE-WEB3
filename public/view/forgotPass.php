@@ -18,6 +18,8 @@ require '../../PHPMailer/src/PHPMailer.php';
 require '../../PHPMailer/src/SMTP.php';
 
 include '../../includes/connection.php';
+include "../../includes/security.php";
+
 $msg = "";
 
 if (isset($_POST['mail'])) {

@@ -12,6 +12,8 @@
 
 session_start();
 include "../../includes/connection.php";
+include "../../includes/security.php";
+
 $Uname = $_SESSION['Uname'];
 $id = $_SESSION['id_user'];
 

@@ -1,6 +1,8 @@
 <?php
 session_start();
 include "../../includes/connection.php";
+include "../../includes/security.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,19 +13,18 @@ include "../../includes/connection.php";
     <link rel="stylesheet" href="../css/chatSystem.css">
 </head>
 <body>
-<!-- Sidebar for Contacts -->
 <div class="sidebar">
     <h3>Clients</h3>
     <?php
     if (isset($_SESSION["id_user"])) {
         $id_doctor = $_SESSION["id_user"]; // Assuming doctor is logged in
-
-        $sql = "SELECT u.*, c.* 
+        $sql = "SELECT u.*, c.*, cl.*
                 FROM chat_sessions c
-                JOIN users u ON c.id_user = u.id_user
+                JOIN client cl ON c.id_user = cl.id_client
+                JOIN users u ON cl.id_client = u.id_user
                 WHERE c.id_doctor = $id_doctor
-                GROUP BY u.id_user";
-
+                and c.status = 'active'
+                ORDER BY c.chat_session_id DESC";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {

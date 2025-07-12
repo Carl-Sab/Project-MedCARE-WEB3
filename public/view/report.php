@@ -1,6 +1,8 @@
 <?php
 session_start();
 include "../../includes/connection.php";
+include "../../includes/security.php";
+
 
 if (isset($_POST['subject'], $_POST["description"])) {
     $id_user = $_SESSION['id_user'];

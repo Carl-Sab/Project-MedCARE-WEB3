@@ -12,6 +12,8 @@
 session_start();
 include "../../includes/header.php";
 include "../../includes/connection.php";
+include "../../includes/security.php";
+
 
 
 if (!isset($_SESSION["id_user"])) {

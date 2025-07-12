@@ -1,6 +1,8 @@
 <?php
 include "../../includes/header.php";
 include "../../includes/connection.php";
+include "../../includes/security.php";
+
 
 // Get total client count
 $sql_count = "SELECT COUNT(*) AS total_clients FROM users WHERE role = 'client'";

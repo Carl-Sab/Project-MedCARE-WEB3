@@ -11,7 +11,9 @@
 
 <?php
 include "../../includes/header.php";
+include "../../includes/security.php";
 include "../../includes/connection.php";
+session_start();
 
 $selectedMonth = isset($_GET['month']) ? $_GET['month'] : date('Y-m');
 

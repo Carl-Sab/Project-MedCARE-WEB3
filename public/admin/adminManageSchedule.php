@@ -10,6 +10,8 @@
 <?php
   include "../../includes/header.php";
   include "../../includes/connection.php";
+  include "../../includes/security.php";
+
   ?>
   <h2>Doctor Schedule Management</h2>
 

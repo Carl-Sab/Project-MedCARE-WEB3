@@ -11,6 +11,8 @@
 session_start();
 include "../../includes/header.php";
 include "../../includes/connection.php";
+include "../../includes/security.php";
+
 
 $pendingSql = "SELECT * FROM job_apply WHERE stats = 'pending'";
 $result = $conn->query($pendingSql);

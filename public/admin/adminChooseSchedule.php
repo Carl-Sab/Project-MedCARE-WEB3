@@ -9,6 +9,8 @@
 <body>
 <?php
 include "../../includes/header.php";
+include "../../includes/security.php";
+
 ?>
 <div class="schedule-container">
     <h2>Doctor's Weekly Schedule</h2>

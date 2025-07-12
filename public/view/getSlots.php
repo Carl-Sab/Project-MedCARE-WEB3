@@ -1,5 +1,7 @@
 <?php
 include "../../includes/connection.php";
+include "../../includes/security.php";
+
 
 $id_doctor = $_GET['id_doctor'];
 $date = $_GET['date'];

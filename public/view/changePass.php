@@ -10,6 +10,8 @@
 </head>
 <?php
 include "../../includes/connection.php";
+include "../../includes/security.php";
+
 session_start();
 
 if (isset($_POST['pass']) && isset($_SESSION['id_user'])) {

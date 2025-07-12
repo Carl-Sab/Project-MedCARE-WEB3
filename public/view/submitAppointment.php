@@ -1,6 +1,8 @@
 <?php
 session_start();
 include "../../includes/connection.php";
+include "../../includes/security.php";
+
 
 $id_slot = $_POST['id_slot'];
 $id_doctor = $_POST['id_doctor'];

@@ -1,5 +1,7 @@
 <?php
 include "../../includes/connection.php";
+include "../../includes/security.php";
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["id"])) {
     $id_job_apply = intval($_POST["id"]);

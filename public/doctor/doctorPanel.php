@@ -10,6 +10,8 @@
     <?php
     session_start();
     include '../../includes/header.php';
+    include "../../includes/security.php";
+
     ?>
     <div class="container">
         <div class="card">

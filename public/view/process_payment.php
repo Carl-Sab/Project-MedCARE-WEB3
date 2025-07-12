@@ -1,5 +1,7 @@
 <?php
 include "../../includes/connection.php";
+include "../../includes/security.php";
+
 session_start();
 
 if (isset($_POST['id_doctor'], $_POST['type'], $_POST['amount'], $_POST['card_number'], $_POST['card_pass'])) {

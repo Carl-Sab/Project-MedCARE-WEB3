@@ -10,6 +10,7 @@
 <?php
 include "../../includes/header.php";
 
+include "../../includes/security.php";
 
 include "../../includes/connection.php";
 

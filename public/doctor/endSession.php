@@ -1,6 +1,8 @@
 <?php
 
 include "../../includes/connection.php";
+include "../../includes/security.php";
+
 session_start();
 
 if(isset($_POST['chat_session_id'])){

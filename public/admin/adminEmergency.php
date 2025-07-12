@@ -9,7 +9,7 @@
 
 <?php
 include "../../includes/header.php";
-
+include "../../includes/security.php";
 include "../../includes/connection.php";
 
 $sql = "SELECT u.user_name, c.id_client, e.id_emergency, e.reason, e.date_emergency, e.stats 

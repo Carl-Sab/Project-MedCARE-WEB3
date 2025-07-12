@@ -1,6 +1,8 @@
 <?php
 session_start();
 include '../../includes/connection.php';
+include "../../includes/security.php";
+
 
 // Assuming user is logged in and session contains user id
 $id_client = $_SESSION['id_user']; 

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./public/css/footer.css">
  
 <?php
+include "../../includes/security.php";
 include "includes/header.php";
 echo "<style>.n1{display:flex}</style>";
 ?>

@@ -1,9 +1,7 @@
 <?php
 session_start();
 include "../../includes/connection.php";
-
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+include "../../includes/security.php";
 
 ?>
 
@@ -28,6 +26,16 @@ if (isset($_GET["id_doctor"], $_GET["type"])) {
     }
     $id_doctor = $_GET["id_doctor"];
     $id_type = $_GET["type"];
+    $id_user = $_SESSION['id_user'];
+
+    $stmt = $conn->prepare("SELECT * FROM chat_sessions where id_user = ? AND id_doctor = ? AND status = 'active';");
+    $stmt->bind_param("ii", $id_user, $id_doctor);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if($result && $result->num_rows > 0){
+        header("location:chatSystem.php");
+        exit;
+    }
 
     $stmt = $conn->prepare("SELECT d.*, u.user_name FROM doctor d JOIN users u ON u.id_user = d.id_doctor WHERE d.id_doctor = ?");
     $stmt->bind_param("i", $id_doctor);
