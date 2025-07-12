@@ -1,5 +1,5 @@
 <?php
-include "../../includes/connection.php"; // Adjust this path as needed
+include "../../includes/connection.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
