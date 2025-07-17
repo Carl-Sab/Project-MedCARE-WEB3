@@ -11,7 +11,13 @@
   <div class="overlay" id="overlay"></div>
 
   <?php
+    include "../../includes/security.php";
+
   include "../../includes/header.php";
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
   ?>
 
 

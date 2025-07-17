@@ -8,10 +8,16 @@
 <body>
 
 <?php
+include "../../includes/security.php";
 include "../../includes/header.php";
 
 
 include "../../includes/connection.php";
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 
 $sql_count = "SELECT SUM(role = 'client') AS total_clients,SUM(role = 'doctor') AS total_doctors,SUM(role = 'admin') AS total_admins FROM users";
 $count_result = $conn->query($sql_count);

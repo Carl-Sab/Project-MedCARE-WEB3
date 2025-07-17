@@ -10,8 +10,15 @@
 </head>
 
 <?php
+<<<<<<< Updated upstream
 include "../../includes/connection.php";
 session_start();
+=======
+include "../../includes/security.php";
+
+include "../../includes/connection.php";
+
+>>>>>>> Stashed changes
 
 if(isset($_POST['code'])){
     $code = $_POST['code'];

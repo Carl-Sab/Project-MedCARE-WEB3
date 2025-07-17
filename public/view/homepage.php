@@ -14,9 +14,16 @@
     </script>
 </head>
 <?php
+<<<<<<< Updated upstream
 
 session_start();
 include "../../includes/connection.php";
+=======
+include "../../includes/security.php";
+
+include "../../includes/connection.php";
+
+>>>>>>> Stashed changes
 $Uname = $_SESSION['Uname'];
 $id = $_SESSION['id_user'];
 
@@ -48,6 +55,11 @@ $id = $_SESSION['id_user'];
             <h2>Emergency Requests</h2>
             <p>Request home visits or emergency help from our team.</p>
             <button class="btn">Get Help</button>
+        </section>
+        <section id="emergency-requests">
+            <h2>Test Result</h2>
+            <p>Place where you can see your test result.</p>
+            <button class="btn"><a href="testResult.php">check result</a></button>
         </section>
 
     </main>

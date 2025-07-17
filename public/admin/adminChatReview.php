@@ -1,5 +1,14 @@
 <?php
+<<<<<<< Updated upstream
 include "../../includes/connection.php";
+=======
+
+include "../../includes/security.php";
+include "../../includes/connection.php";
+
+
+$monthFilter = isset($_GET['month']) ? mysqli_real_escape_string($conn, $_GET['month']) : null;
+>>>>>>> Stashed changes
 
 $sql = "SELECT cr.feedback, cr.rating, cr.submitted_at, u.user_name AS client_name, d.user_name AS doctor_name, cs.ended_at
         FROM review cr 

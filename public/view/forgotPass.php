@@ -9,18 +9,25 @@
   <link rel="stylesheet" href="../css/forgotPass.css">
 </head>
 <?php
-session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require '../../PHPMailer/src/Exception.php';
 require '../../PHPMailer/src/PHPMailer.php';
 require '../../PHPMailer/src/SMTP.php';
+include "../../includes/security.php";
 
 
 include '../../includes/connection.php';
+<<<<<<< Updated upstream
 $msg ="";
 if(isset($_POST['mail'])){
+=======
+
+$msg = "";
+
+if (isset($_POST['mail'])) {
+>>>>>>> Stashed changes
     $userEmail = $_POST['mail'];
     $sql = "SELECT * FROM users where email = '$userEmail';";
     $result = $conn->query($sql);

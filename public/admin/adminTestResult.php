@@ -1,5 +1,11 @@
 <?php
+<<<<<<< Updated upstream
 include "../../includes/connection.php"; // Adjust this path as needed
+=======
+include "../../includes/security.php";
+include "../../includes/connection.php";
+
+>>>>>>> Stashed changes
 ?>
 <!DOCTYPE html>
 <html lang="en">

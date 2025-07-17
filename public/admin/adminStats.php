@@ -73,31 +73,31 @@
 <body>
 
 <?php
+<<<<<<< Updated upstream
 include "../../includes/header.php";
 include "../../includes/connection.php";  // Ensure database connection
+=======
+include "../../includes/security.php";
+include "../../includes/header.php";
+include "../../includes/connection.php";
+>>>>>>> Stashed changes
 
 $selectedMonth = isset($_GET['month']) ? $_GET['month'] : date('Y-m');
 
-// Corrected SQL query: Get doctor name from users (joined via doctor table)
 $sql = "SELECT 
             p.payment_date, 
             u.user_name AS client_name, 
             u2.user_name AS doctor_name,
             d.speciality AS doctor_speciality,
             p.amount, 
+            p.type,
             p.admin_percentage 
-        FROM 
-            payments p
-        JOIN 
-            client c ON p.id_client = c.id_client
-        JOIN 
-            users u ON c.id_client = u.id_user         -- client user name
-        JOIN 
-            doctor d ON p.id_doctor = d.id_doctor
-        JOIN 
-            users u2 ON d.id_doctor = u2.id_user       -- doctor user name
-        WHERE 
-            DATE_FORMAT(p.payment_date, '%Y-%m') = ?";
+        FROM payments p 
+        JOIN client c ON p.id_client = c.id_client
+        JOIN users u ON c.id_client = u.id_user
+        JOIN doctor d ON p.id_doctor = d.id_doctor
+        JOIN users u2 ON d.id_doctor = u2.id_user
+        WHERE DATE_FORMAT(p.payment_date, '%Y-%m') = ?";
 
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
@@ -125,6 +125,7 @@ $totalCommission = 0;
       <th>Client Name</th>
       <th>Doctor Name</th>
       <th>Doctor Speciality</th>
+      <th>Payment Type</th>
       <th>Transaction Amount ($)</th>
       <th>Admin Commission ($)</th>
     </tr>
@@ -136,6 +137,7 @@ $totalCommission = 0;
                 <td>{$row['client_name']}</td>
                 <td>{$row['doctor_name']}</td>
                 <td>{$row['doctor_speciality']}</td>
+                <td>{$row['type']}</td>
                 <td>{$row['amount']}</td>
                 <td>{$row['admin_percentage']}</td>
               </tr>";

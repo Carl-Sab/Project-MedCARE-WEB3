@@ -8,9 +8,14 @@
 <body>
 
 <?php
+<<<<<<< Updated upstream
 include "../../includes/header.php";
 
 
+=======
+include "../../includes/security.php";
+include "../../includes/header.php";
+>>>>>>> Stashed changes
 include "../../includes/connection.php";
 
 $sql = "SELECT u.user_name, c.id_client, r.id_report, r.description, r.stats, r.date_of_post FROM users u, client c, report r

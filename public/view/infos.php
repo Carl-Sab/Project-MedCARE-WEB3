@@ -9,8 +9,15 @@
   <link rel="stylesheet" href="../css/infos.css">
 </head>
 <?php
+<<<<<<< Updated upstream
 include "../../includes/connection.php";
 session_start();
+=======
+include "../../includes/security.php";
+
+include "../../includes/connection.php";
+
+>>>>>>> Stashed changes
 $id = $_SESSION["id_user"];
 
 $msg = "";

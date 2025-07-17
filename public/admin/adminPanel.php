@@ -12,7 +12,12 @@
 </head>
 <body>
   <?php
+    include "../../includes/security.php";
   include "../../includes/header.php";
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
   ?>
   <br><br>

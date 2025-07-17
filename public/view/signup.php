@@ -8,9 +8,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     <link rel="stylesheet" href="../css/signup.css">
   </head>
+<<<<<<< Updated upstream
 <?php 
 include "../../includes/connection.php";
 session_start();
+=======
+  <?php
+  include "../../includes/security.php";
+include "../../includes/connection.php";
+
+>>>>>>> Stashed changes
 
 if(isset($_POST['uname'],$_POST['mail'],$_POST['tel'],$_POST['pass'])){
   $name = $_POST['uname'];
@@ -24,12 +31,36 @@ if(isset($_POST['uname'],$_POST['mail'],$_POST['tel'],$_POST['pass'])){
   $select = "SELECT * from users where user_name = '$name' && email = '$email';";
   $result = $conn->query($select);
 
+<<<<<<< Updated upstream
   if($result->num_rows>0){
     $row = $result->fetch_assoc();
     $_SESSION['id_user'] = $row["id_user"];
     $_SESSION['Uname'] = $name;
     header("location:infos.php");
   }
+=======
+    // Select newly inserted user securely
+    $select = $conn->prepare("SELECT * FROM users WHERE user_name = ? AND email = ?");
+    if ($select) {
+        $select->bind_param("ss", $name, $email);
+        $select->execute();
+        $result = $select->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $_SESSION['id_user'] = $row["id_user"];
+            $_SESSION['Uname'] = $name;
+            setcookie("id_user", $row['id_user'], time() + (86400 * 30), "/"); // 30 days
+            setcookie("Uname",$uname, time() + (86400 * 30), "/"); // 30 days
+            header("location:infos.php");
+            exit();
+        }
+
+        $select->close();
+    } else {
+        die("Error preparing select statement: " . $conn->error);
+    }
+>>>>>>> Stashed changes
 }
 
 ?>
