@@ -19,7 +19,7 @@ if (empty($_SESSION['id_user'])) {
     if (!in_array($currentPage, $publicPages)) {
         echo "<script>
             alert('Session expired, please relogin');
-            window.location.href = 'login.php';
+            window.location.href = '../view/login.php';
             </script>";
         exit;
     }

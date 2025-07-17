@@ -7,60 +7,44 @@
     <title>MedCare Home</title>
     <link rel="stylesheet" href="../css/homepage.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('Welcome to the enhanced MedCare homepage!');
-        });
-    </script>
 </head>
 <?php
-<<<<<<< Updated upstream
 
 session_start();
 include "../../includes/connection.php";
-=======
-include "../../includes/security.php";
-
-include "../../includes/connection.php";
-
->>>>>>> Stashed changes
 $Uname = $_SESSION['Uname'];
 $id = $_SESSION['id_user'];
 
 ?>
 <body>
-    <header>
-        <h1>MedCare</h1>
-        <nav>
-            <ul>
-                <li><a href="#blood-donation">Blood Donation</a></li>
-                <li><a href="#appointments">Appointments</a></li>
-                <li><a href="#emergency-requests">Emergency</a></li>
-
-            </ul>
-        </nav>
-    </header>
+    <?php  include "../../includes/header.php"?> 
     <main>
-        <section id="blood-donation">
-            <h2>Blood Donation System</h2>
-            <p>Register as a donor, check your blood type, and receive donation requests.</p>
-            <button class="btn">Learn More</button>
-        </section>
+<section id="blood-donation">
+    <h2>Request Blood</h2>
+    <p>Find donors with your blood type quickly and contact them directly via WhatsApp.</p>
+    <button class="btn"><a href="requestBlood.php">View Compatible Donors</a></button>
+</section>
+<section id="blood-request">
+    <h2>Blood Requests</h2>
+    <p>Find requests with your blood type quickly and contact them directly via WhatsApp.</p>
+    <button class="btn"><a href="donorRequest.php">View Requests</a></button>
+</section>
         <section id="appointments">
             <h2>Consultation & Appointments</h2>
             <p>Request consultations, view time slots, and manage your bookings.</p>
-            <button class="btn">Book Now</button>
+            <button class="btn"><a href="doctorList.php">Book Now</a></button>
         </section>
         <section id="emergency-requests">
             <h2>Emergency Requests</h2>
             <p>Request home visits or emergency help from our team.</p>
-            <button class="btn">Get Help</button>
+            <button class="btn"><a href="emergencyRequest.php">Get Help</a></button>
         </section>
         <section id="emergency-requests">
             <h2>Test Result</h2>
-            <p>Place where you can see your test result.</p>
-            <button class="btn"><a href="testResult.php">check result</a></button>
+            <p>place where you see all your test result</p>
+            <button class="btn"><a href="testResult.php">Get Help</a></button>
         </section>
+
 
     </main>
     <footer>

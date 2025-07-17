@@ -11,10 +11,6 @@
     <link rel="stylesheet" href="./public/css/footer.css">
  
 <?php
-<<<<<<< Updated upstream
-=======
-include "includes/security.php";
->>>>>>> Stashed changes
 include "includes/header.php";
 echo "<style>.n1{display:flex}</style>";
 ?>

@@ -34,5 +34,22 @@
     color: white;
   }
   .pending-status {
-    color: yellow;
+    color: orange;
+  }
+    #filter{
+      border: 0px;
+      margin-top: 20px;
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #00796b, #004d40);
+      color: white;
+      border-radius: 15px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.3s ease;
+  }
+    #filter:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
   }

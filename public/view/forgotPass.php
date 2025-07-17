@@ -19,15 +19,9 @@ include "../../includes/security.php";
 
 
 include '../../includes/connection.php';
-<<<<<<< Updated upstream
-$msg ="";
-if(isset($_POST['mail'])){
-=======
 
 $msg = "";
-
 if (isset($_POST['mail'])) {
->>>>>>> Stashed changes
     $userEmail = $_POST['mail'];
     $sql = "SELECT * FROM users where email = '$userEmail';";
     $result = $conn->query($sql);

@@ -49,13 +49,7 @@ $conn->close();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Weekly Appointment Schedule</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
-        th { background: #f2f2f2; }
-        .booked { background: #dff0d8; }
-    </style>
+    <link rel="stylesheet" href="../css/doctorWeeklySchedule.css">
 </head>
 <body>
 <?php include "../../includes/header.php"; ?>

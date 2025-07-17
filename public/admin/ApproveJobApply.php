@@ -1,8 +1,5 @@
 <?php
-<<<<<<< Updated upstream
 
-include "../../includes/connection.php";
-=======
 include "../../includes/security.php";
 include "../../includes/connection.php";
 
@@ -76,4 +73,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
     echo "Invalid request.";
 }
 ?>
->>>>>>> Stashed changes

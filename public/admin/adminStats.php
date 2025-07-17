@@ -73,14 +73,10 @@
 <body>
 
 <?php
-<<<<<<< Updated upstream
-include "../../includes/header.php";
-include "../../includes/connection.php";  // Ensure database connection
-=======
+
 include "../../includes/security.php";
 include "../../includes/header.php";
 include "../../includes/connection.php";
->>>>>>> Stashed changes
 
 $selectedMonth = isset($_GET['month']) ? $_GET['month'] : date('Y-m');
 

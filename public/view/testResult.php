@@ -7,7 +7,6 @@ $id_client = $_SESSION['id_user'];  // get logged-in client ID
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<<<<<<< Updated upstream
   <meta charset="UTF-8">
   <title>Admin - Test Results</title>
   <style>
@@ -142,12 +141,10 @@ $id_client = $_SESSION['id_user'];  // get logged-in client ID
       }
     }
   </style>
-=======
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Test Results</title>
   <link rel="stylesheet" href="../css/adminTestResult.css">
->>>>>>> Stashed changes
 </head>
 <body>
   <?php include "../../includes/header.php"; ?>

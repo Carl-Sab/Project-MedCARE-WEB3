@@ -136,28 +136,19 @@
         <a href="public/view/login.php">Login</a>';
       } elseif ($currentPage == "adminPanel.php") {
         echo '
-<<<<<<< Updated upstream
-        <a href="../public/view/logout.php">Logout</a>
-        <a href="../public/view/homepage.php">Homepage</a>
-        <a href="#doctor">Doctor</a>';
-=======
         <a href="../view/logout.php">Logout</a>
         <a href="../view/homepage.php">Homepage</a>
-        <a href="adminManageSchedule.php">Manage Schedule</a>
         ';
 
->>>>>>> Stashed changes
       } elseif (in_array($currentPage, [
         "adminBloodDonation.php", "adminChatReview.php", "adminDashboard.php",
-        "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminJobApply.php","adminTestResult.php",
+        "adminEmergency.php", "adminManageUser.php", "adminReport.php", "adminStats.php","adminJobApply.php","adminTestResult.php","adminManageDoctorSchedule.php","adminChooseSchedule.php"
       ])) {
         echo '
         <a href="../public/view/logout.php">Logout</a>
         <a href="../public/view/homepage.php">Homepage</a>
         <a href="#doctor">Doctor</a>
         <a href="adminPanel.php">Back</a>';
-<<<<<<< Updated upstream
-=======
 
       } elseif (in_array($currentPage, ["doctorPanel.php", "bookAppointment.php", "confirmation.php"])) {
         echo '
@@ -188,7 +179,6 @@
         echo '
         <a href="../view/logout.php">Logout</a>
         <a href="homepage.php">Back</a>';
->>>>>>> Stashed changes
       }
     ?>
   </nav>

@@ -14,10 +14,6 @@
     include "../../includes/security.php";
 
   include "../../includes/header.php";
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
   ?>
 
 

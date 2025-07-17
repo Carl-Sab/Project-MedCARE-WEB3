@@ -1,0 +1,94 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f5f5;
+    margin: 0;
+}
+
+#main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 70px); /* Adjust this if your header height is different */
+    padding-top: 20px;
+}
+
+/* Centered confirmation container */
+#container {
+    background: rgba(0, 121, 107, 0.2);
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+/* Inner content div */
+#container div {
+    padding: 10px;
+}
+
+h2 {
+    color: #00796B;
+    font-weight: 600;
+}
+
+p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+div a {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #00796B;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+a:hover {
+    background: #004D40;
+}
+@media (max-width: 768px) {
+    #main-content {
+        padding-top: 10px;
+        height: auto;
+    }
+
+    #container {
+        padding: 15px;
+        width: 95%;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    div a {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 13px;
+    }
+
+    div a {
+        font-size: 13px;
+        padding: 8px 14px;
+    }
+}
