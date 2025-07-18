@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <input type="radio" name="rating" id="star1" value="1"><label for="star1">★</label>
             </div>
             <textarea name="feedback" placeholder="Write your feedback..." required></textarea>
-            <?php if (!empty($success)) echo "<div class='message' style='color: lightgreen;'>$success <a href='chatSystem.php'>Back</a></div>"; ?>
+            <?php if (!empty($success)) echo "<div class='message' style='color: lightgreen;'>$success <a href='homepage.php'>Back</a></div>"; ?>
             <?php if (!empty($error)) echo "<div class='message' style='color: red;'>$error</div>"; ?>
             <button type="submit">Submit Review</button>
         </form>
